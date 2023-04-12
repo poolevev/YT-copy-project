@@ -1,40 +1,33 @@
-import React from 'react';
-import { Box, Stack } from '@mui/material';
+import React, { useState, useEffect } from 'react';
 import Categories from './Categories.js';
 import Videos from './Videos.js';
 import { makeAPICall } from '../../utils/makeAPICall.js';
-import { useState, useEffect } from 'react';
+import styles from './Home.module.scss';
 
 const Home = () => {
-
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState('All');
   const [videos, setVideos] = useState(null);
 
   useEffect(() => {
-
-    makeAPICall(`search?part=snippet&q=${selectedCategory}`)
-      .then((data) => setVideos(data.items))
+    makeAPICall(`search?part=snippet&q=${selectedCategory}`).then((data) =>
+      setVideos(data.items)
+    );
   }, [selectedCategory]);
 
   return (
-    <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
+    <div className={styles.homeWrapper}>
+    
 
-      <Box>SideMenu</Box>
-
-      <Box sx={
-        { flex: 2, height: '90vh', overflowY: 'auto' }
-      }>
+      <div className={styles.videoContainer}>
         <Categories
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
         />
-
         <Videos videos={videos} />
         {console.log(videos)}
-      </Box>
+      </div>
+    </div>
+  );
+};
 
-    </Stack>
-  )
-}
-
-export default Home
+export default Home;

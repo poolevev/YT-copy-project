@@ -1,32 +1,30 @@
-import React from 'react';
-import { Stack } from '@mui/material';
-import { categories } from '../../utils/categoriesList'
-import "./categories.scss"
+import React from "react";
+import { categories } from "../../utils/categoriesList";
+import styles from "./Categories.module.scss";
+
 const Categories = ({ selectedCategory, setSelectedCategory }) => {
+const selected = selectedCategory;
 
-    let selected = selectedCategory;
-    return (
-        <Stack direction="row"
-            sx={{
-                gap: "5px",
-                overflowX: 'auto',
-                width: { sx: "auto", md: '95%' }
-            }}>
+return (
+<div
+className={styles.categories_container}
+style={{ width: "95%", overflowX: "auto", display: "flex" }}
+>
+{categories.map((category) => (
+<button
+key={category.name}
+className={ styles.category_btn }
+onClick={() => setSelectedCategory(category.name)}
+>
+<span
+className={ styles.category_name }
+>
+{category.name}
+</span>
+</button>
+))}
+</div>
+);
+};
 
-            {categories.map(category => (
-                <button key={category.name}
-                    className="category-btn"
-                    style={{ background: category.name === selected ? "black" : "#c2c0c0" }}
-                    onClick={() => setSelectedCategory(category.name)}
-                >
-                    <span
-                        style={{ color: category.name === selected ? "white" : "black" }}
-                    >{category.name}</span>
-                </button>
-            ))}
-
-        </Stack>
-    )
-}
-
-export default Categories
+export default Categories;

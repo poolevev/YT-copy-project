@@ -1,0 +1,25 @@
+.homeWrapper {
+  display: flex;
+  flex-direction:column;
+  height: 100%;
+
+  .sideMenu {
+    flex: 1;
+    background-color: #eee;
+    padding: 1rem;
+  }
+
+  .videoContainer {
+    flex: 2;
+    height: 90vh;
+    overflow-y: auto;
+    padding: 1rem;
+    
+
+    @media (max-width: 768px) {
+      height: auto;
+    }
+  }
+}
+
+
