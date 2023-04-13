@@ -1,7 +1,8 @@
 class HistoryItem {
-  constructor(videoID, username, isLiked) {
+  constructor(videoID, username, snippet, isLiked) {
     this.videoID = videoID;
     this.username = username;
+    this.snippet = snippet;
     this.isLiked = isLiked;
   }
 }
@@ -17,7 +18,7 @@ class HistoryManager {
 
   allHistory = [];
 
-  createHistoryItem = (videoID, username, isLiked = null) => {
+  createHistoryItem = (videoID, username, snippet, isLiked = null) => {
     let loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));
 
     if (loggedUser) {
@@ -26,12 +27,12 @@ class HistoryManager {
       if (alreadyViewedVideoIndex > -1) {
         console.log("already")
         this.allHistory.splice(alreadyViewedVideoIndex, 1);//remove previos similar history
-        this.allHistory.unshift(new HistoryItem(videoID, username.username, isLiked));
+        this.allHistory.unshift(new HistoryItem(videoID, username.username, snippet, isLiked));
         localStorage.setItem("AllHistory", JSON.stringify(this.allHistory));
 
       } else {
 
-        this.allHistory.unshift(new HistoryItem(videoID, username.username, isLiked));
+        this.allHistory.unshift(new HistoryItem(videoID, username.username, snippet, isLiked));
         localStorage.setItem("AllHistory", JSON.stringify(this.allHistory));
       }
 

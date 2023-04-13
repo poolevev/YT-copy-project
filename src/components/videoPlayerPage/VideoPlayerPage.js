@@ -13,31 +13,35 @@ const VideoPlayerPage = () => {
   const [videos, setVideos] = useState(null);
   const { id } = useParams();
   const loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));
+  let videoSnippet = null;
 
   function addToHistory() {
-    historyManager.createHistoryItem(id, loggedUser);
+    historyManager.createHistoryItem(id, loggedUser, videoSnippet);
   }
 
   function likeVideo() {
-    historyManager.createHistoryItem(id, loggedUser, true);
+    historyManager.createHistoryItem(id, loggedUser, videoSnippet, true);
     console.log("Liked")
 
   }
   function dislikeVideo() {
-    historyManager.createHistoryItem(id, loggedUser, false);
+    historyManager.createHistoryItem(id, loggedUser, videoSnippet, false);
     console.log("disLiked")
   }
 
 
   useEffect(() => {
-    makeAPICall(`videos?part=snippet,statistics&id=${id}`).then((data) =>
-      setVideoDetail(data.items[0])
+    makeAPICall(`videos?part=snippet,statistics&id=${id}`).then((data) => {
+      setVideoDetail(data.items[0]);
+      videoSnippet = data.items[0].snippet
+      addToHistory();
+    }
     );
 
     makeAPICall(`search?part=snippet&relatedToVideoId=${id}&type=video`).then(
       (data) => {
         setVideos(data.items);
-        addToHistory();
+
       }
     );
   }, [id]);

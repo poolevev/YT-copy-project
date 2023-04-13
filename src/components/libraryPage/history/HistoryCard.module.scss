@@ -1,0 +1,48 @@
+.card {
+    width: 100%;
+
+    @media (min-width: 600px) {
+        width: 358px;
+    }
+
+    @media (min-width: 960px) {
+        width: 320px;
+    }
+
+    box-shadow: none;
+    border-radius: 10px;
+}
+
+.cardMedia {
+    width: 100%;
+
+    @media (min-width: 600px) {
+        width: 358px;
+    }
+
+    height: 180px;
+}
+
+.cardContent {
+    background-color: #dfdcdc;
+    height: 106px;
+}
+
+.cardTitle {
+    font-weight: bold;
+    color: #050505;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.channelLink {
+    text-decoration: none;
+}
+
+.channelTitle {
+    color: rgb(43, 32, 32);
+    display: flex;
+    align-items: center;
+}

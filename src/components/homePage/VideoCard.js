@@ -5,7 +5,7 @@ import styles from './VideoCard.module.scss';
 
 const VideoCard = ({ video: { id: { videoId }, snippet } }) => (
   <div className={styles.card}>
-    <Link to={videoId ? `/video/${videoId}` : `/video/trttj`}>
+    <Link to={videoId ? `/video/${videoId}` : `/video/PVc1yFV0p40`}>
       <img
         src={snippet?.thumbnails?.high?.url || defaultThumbnailUrl}
         alt={snippet?.title}
@@ -24,7 +24,6 @@ const VideoCard = ({ video: { id: { videoId }, snippet } }) => (
           {snippet?.channelTitle || defaultChannelTitle}
         </span>
       </Link>
-
     </div>
   </div>
 );

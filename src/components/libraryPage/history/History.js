@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import HistoryCard from "./HistoryCard";
+import styles from './History.module.scss';
 
 const History = () => {
   const [history, setHistory] = useState([]);
@@ -33,11 +35,13 @@ const History = () => {
       <h2>History</h2>
       {history.length > 0 ? (
         <div>
-          {history.map((item, index) => (
-            <div className="card" key={index}>
-              Card{index}
-            </div>
-          ))}
+          <div className={styles.container}>
+            {history.map(item => (
+              <div key={item.videoID}>
+                {item.videoID && <HistoryCard history={item} />}
+              </div>
+            ))}
+          </div>
           {showMore && (
             <button onClick={loadMore}>Show More</button>
           )}
