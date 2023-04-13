@@ -8,25 +8,28 @@ import PlaylistsPage from './components/playlistsPage/PlaylistsPage';
 import LoginPage from './components/loginPage/LoginPage';
 import RegisterPage from './components/registration/RegisterPage';
 import Sidebar from "./components/sideBar/Sidebar";
+import styles from './App.module.scss';
 
 function App() {
   return (
-
-    <div>
+    <div className={styles.container}>
       <Navigation />
-      <Sidebar />
-      <Routes>
-        <Route index element={<Home />} />
-        <Route path='/video/:id' element={<VideoPlayerPage />} />
-        <Route path='/search/:searchedVideos' element={<SearchedVideos />} />
-        <Route path='/library' element={<LibraryPage />} />
-        <Route path='/playlists' element={<PlaylistsPage />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/register' element={<RegisterPage />} />
-        <Route path='*' element={<div>Page not found</div>} />
-      </Routes>
+      <div className={styles.content}>
+        <Sidebar />
+        <div className={styles.main}>
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path='/video/:id' element={<VideoPlayerPage />} />
+            <Route path='/search/:searchedVideos' element={<SearchedVideos />} />
+            <Route path='/library' element={<LibraryPage />} />
+            <Route path='/playlists' element={<PlaylistsPage />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/register' element={<RegisterPage />} />
+            <Route path='*' element={<div>Page not found</div>} />
+          </Routes>
+        </div>
+      </div>
     </div>
-
   );
 }
 
