@@ -3,23 +3,22 @@ import React, { useState, useEffect } from 'react';
 const History = () => {
   const [history, setHistory] = useState([]);
   const [showMore, setShowMore] = useState(true);
+  const loggedUser = JSON.parse(localStorage.getItem('LoggedUser'));
+  const allHistory = JSON.parse(localStorage.getItem('AllHistory') || "[]");
+  const userHistory = allHistory.filter(viewedVideo => viewedVideo.username === loggedUser.username);
 
   useEffect(() => {
-    const loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
-    const allHistory = JSON.parse(localStorage.getItem('allHistory'));
 
-    if (allHistory) {
-      const userHistory = allHistory.filter(item => item.username === loggedUser.username);
+    if (allHistory.length) {
+
       setHistory(userHistory);
     }
   }, []);
 
   const loadMore = () => {
     const newLength = history.length + 3;
-    const allHistory = JSON.parse(localStorage.getItem('allHistory'));
 
     if (allHistory) {
-      const userHistory = allHistory.filter(item => item.username === localStorage.loggedUser.username);
       const newHistory = userHistory.slice(0, newLength);
       setHistory(newHistory);
 
@@ -36,8 +35,7 @@ const History = () => {
         <div>
           {history.map((item, index) => (
             <div className="card" key={index}>
-              <div className="card-title">{item.title}</div>
-              <div className="card-info">{item.description}</div>
+              Card{index}
             </div>
           ))}
           {showMore && (
@@ -52,5 +50,3 @@ const History = () => {
 }
 
 export default History;
-
-// Note that this implementation assumes that each item in the allHistory array has a username, title, and description property. You may need to modify it to fit your specific use case.

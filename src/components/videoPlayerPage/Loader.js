@@ -4,7 +4,7 @@ import "./Loader.module.scss";
 const Loader = () => (
   <div className="loader">
     <div className="loading">
-      Loading...
+      <h2>Loading...</h2>
     </div>
   </div>
 );

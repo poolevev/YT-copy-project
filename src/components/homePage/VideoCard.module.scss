@@ -10,7 +10,7 @@
     }
 
     box-shadow: none;
-    border-radius: 0;
+    border-radius: 10px;
 }
 
 .cardMedia {
@@ -24,13 +24,13 @@
 }
 
 .cardContent {
-    background-color: #1e1e1e;
+    background-color: #dfdcdc;
     height: 106px;
 }
 
 .cardTitle {
     font-weight: bold;
-    color: #fff;
+    color: #050505;
 
     &:hover {
         text-decoration: underline;
@@ -42,13 +42,7 @@
 }
 
 .channelTitle {
-    color: gray;
+    color: rgb(43, 32, 32);
     display: flex;
     align-items: center;
-}
-
-.checkCircleIcon {
-    font-size: 12px;
-    color: gray;
-    margin-left: 5px;
 }

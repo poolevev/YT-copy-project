@@ -49,6 +49,7 @@ const LoginPage = () => {
           onChange={handleUsernameChange}
         />
       </div>
+
       <div>
         <label htmlFor="password">Password:</label>
         <input
@@ -58,9 +59,13 @@ const LoginPage = () => {
           onChange={handlePasswordChange}
         />
       </div>
+
       {showError && <span className="error">Wrong password or username</span>}
-      <button type="submit">Login</button>
+
       <Link to="/register">Don't have an account yet?</Link>
+
+      <button type="submit">Login</button>
+
     </form>
   );
 };

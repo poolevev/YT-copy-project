@@ -119,8 +119,11 @@ const RegisterPage = () => {
           <span className="error">Passwords do not match</span>
         )}
       </div>
-      <button type="submit">Submit</button>
+
       <Link to="/login">Already have an account?</Link>
+
+      <button type="submit">Register</button>
+
     </form>
   );
 };

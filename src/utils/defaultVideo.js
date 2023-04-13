@@ -1,8 +1,7 @@
-//need to be set
 
-export const defaultThumbnailUrl = null
-export const defaultChannelUrl = null
-export const defaultVideoUrl = null
-export const defaultChannelTitle = null
-export const defaultVideoTitle = null
+export const defaultThumbnailUrl = "https://i.ytimg.com/vi/Jgf7vwAQp8c/default.jpg"
+export const defaultChannelUrl = "UCFi-x5DDejSUOFdCtk2jj9A"
+export const defaultVideoUrl = 'Jgf7vwAQp8c'
+export const defaultChannelTitle = "Гледай си работата!"
+export const defaultVideoTitle = "Как се преподава в IT индустрията?  #8"
 export const defaultProfilePicture = null
