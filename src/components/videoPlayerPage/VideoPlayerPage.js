@@ -4,6 +4,7 @@ import ReactPlayer from "react-player";
 import Loader from "./Loader"
 import Videos from "../homePage/Videos";
 import { makeAPICall } from "../../utils/makeAPICall";
+import historyManager from "../../models/HistoryManager";
 
 import styles from "./VideoPlayerPage.module.scss";
 
@@ -11,6 +12,22 @@ const VideoPlayerPage = () => {
   const [videoDetail, setVideoDetail] = useState(null);
   const [videos, setVideos] = useState(null);
   const { id } = useParams();
+  const loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));
+
+  function addToHistory() {
+    historyManager.createHistoryItem(id, loggedUser);
+  }
+
+  function likeVideo() {
+    historyManager.createHistoryItem(id, loggedUser, true);
+    console.log("Liked")
+
+  }
+  function dislikeVideo() {
+    historyManager.createHistoryItem(id, loggedUser, false);
+    console.log("disLiked")
+  }
+
 
   useEffect(() => {
     makeAPICall(`videos?part=snippet,statistics&id=${id}`).then((data) =>
@@ -18,7 +35,10 @@ const VideoPlayerPage = () => {
     );
 
     makeAPICall(`search?part=snippet&relatedToVideoId=${id}&type=video`).then(
-      (data) => setVideos(data.items)
+      (data) => {
+        setVideos(data.items);
+        addToHistory();
+      }
     );
   }, [id]);
 
@@ -38,8 +58,9 @@ const VideoPlayerPage = () => {
           url={`https://www.youtube.com/watch?v=${id}`}
           className={styles.reactPlayer}
           controls
+
         />
-        <h5 className={styles.title}>{title}</h5>
+        <h5 className={styles.title} >{title}</h5>
         <div className={styles.info}>
           <Link to={`/channel/${channelId}`}>
             <h6 className={styles.channelTitle}>{channelTitle}</h6>
@@ -52,6 +73,8 @@ const VideoPlayerPage = () => {
               {parseInt(likeCount).toLocaleString()} likes
             </span>
           </div>
+          <button onClick={likeVideo}>Like button</button>
+          <button onClick={dislikeVideo}>Dislike button</button>
         </div>
       </div>
       <div className={styles.relatedVideos}>
