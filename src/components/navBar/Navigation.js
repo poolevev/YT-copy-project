@@ -9,13 +9,15 @@ import LogoStyles from "../navBar/Logo.module.scss"; // Import the SCSS file
 const Navigation = () => (
   <div className={styles.navbar}>
     <div className={styles.logo}>
-      <Link to="/" style={{ display: "flex", alignItems: "center" }}></Link>
+      <Link to="/" style={{ display: "flex", alignItems: "center" }}>
+
       <img
         src={logo}
         alt="xxx Logo"
         height={45}
         className={LogoStyles.logo}
       />{" "}
+      </Link>
     </div>
     <SearchBar />
     <ProfilePic />

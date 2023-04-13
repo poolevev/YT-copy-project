@@ -10,6 +10,7 @@ const VideoCard = ({ video: { id: { videoId }, snippet } }) => (
         src={snippet?.thumbnails?.high?.url || defaultThumbnailUrl}
         alt={snippet?.title}
         className={styles.cardMedia}
+        style={{ objectFit: 'cover' }}
       />
     </Link>
     <div className={styles.cardContent}>

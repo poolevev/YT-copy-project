@@ -11,16 +11,24 @@ function Sidebar() {
     <div className={styles.sidebar}>
       <ul className={styles.linkList}>
         <li className={styles.linkItem}>
-          <img src={homeLogo} alt="home Logo" height={45} />
-          <Link to="/">Home</Link>
+          <Link to="/">
+            <img src={homeLogo} alt="home Logo" height={45} />
+            Home
+          </Link>
         </li>
         <li className={styles.linkItem}>
-          <img src={shortsLogo} alt="shorts Logo" height={45} />
-          <Link to="/">Shorts</Link>
+          <Link to="/">
+            {" "}
+            <img src={shortsLogo} alt="shorts Logo" height={45} />
+            Shorts
+          </Link>
         </li>
         <li className={styles.linkItem}>
-          <img src={libraryLogo} alt="library Logo" height={45} />
-          <Link to="/library">Library</Link>
+          <Link to="/library">
+            {" "}
+            <img src={libraryLogo} alt="library Logo" height={45} />
+            Library
+          </Link>
         </li>
       </ul>
     </div>
