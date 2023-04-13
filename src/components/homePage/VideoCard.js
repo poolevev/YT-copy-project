@@ -24,6 +24,7 @@ const VideoCard = ({ video: { id: { videoId }, snippet } }) => (
           {snippet?.channelTitle || defaultChannelTitle}
         </span>
       </Link>
+
     </div>
   </div>
 );
