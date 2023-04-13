@@ -4,26 +4,26 @@ import { makeAPICall } from "../../../utils/makeAPICall";
 import Videos from "../Videos";
 import styles from "./SearchedVideos.module.scss";
 
-const SearchVideos= () => {
+const SearchedVideos = () => {
   const [videos, setVideos] = useState(null);
-  const { searchTerm } = useParams();
+  const { searchedVideos } = useParams();
 
   useEffect(() => {
-    makeAPICall(`search?part=snippet&q=${searchTerm}`)
+    makeAPICall(`search?part=snippet&q=${searchedVideos}`)
       .then((data) => setVideos(data.items))
-  }, [searchTerm]);
+  }, [searchedVideos]);
 
   return (
     <div className={styles.container}>
       <h4 className={styles.title}>
-        Search Results for <span style={{ color: "#FC1503" }}>{searchTerm}</span> videos
+        Results for <span style={{ color: "blue" }}>{searchedVideos}</span>
       </h4>
       <div className={styles.content}>
-        <div className={styles.spacing}/>
+        <div className={styles.spacing} />
         {<Videos videos={videos} />}
       </div>
     </div>
   );
 };
 
-export default SearchVideos;
+export default SearchedVideos;

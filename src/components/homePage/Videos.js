@@ -6,7 +6,7 @@ import VideoCard from "./VideoCard"
 const Videos = ({ videos }) => {
 
     return (
-        <div>
+        <div className = {styles.container}>
             {videos?.map((item, index) => (
                 <div key={index}>
                     {console.log(item)}

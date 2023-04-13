@@ -27,7 +27,7 @@ const VideoPlayerPage = () => {
   const {
     snippet: { title, channelId, channelTitle },
   } = videoDetail;
-// will be taken from local storage
+  // will be taken from local storage
   const viewCount = null;
   const likeCount = null;
 

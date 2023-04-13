@@ -1,1 +1,5 @@
-// stylizaition needed (display flex or grid)
+.container{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}

@@ -1,37 +1,38 @@
-
 .categories_container {
+    padding-bottom: 10px;
     gap: 5px;
-    width: 100%;
-    }
-    
-    .category_btn {
-    background: #c2c0c0;
+    width: 95%;
+    display: flex;
+}
+
+.category_btn {
+    background: #e6e3e3;
     border: none;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 14px;
-    padding: 10px 20px;
-    
+    padding: 3px 5px;
+
     &:focus {
-    outline: none;
+        outline: none;
     }
-    
+
     &:hover {
-    background: #a09f9f;
+        background: #a09f9f;
     }
-    }
-    
-    .selected {
-    background: black;
-    
+}
+
+.selected {
+    background: rgb(126, 123, 123);
+
     .category_name {
-    color: white;
+        color: white;
     }
-    }
-    
-    .category_name {
+}
+
+.category_name {
     color: black;
     font-weight: bold;
     text-transform: uppercase;
     transition: color 0.2s ease-in-out;
-    }
+}

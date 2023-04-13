@@ -1,12 +1,10 @@
-import { CircularProgress } from "@mui/material";
-
 import React from "react";
 import "./Loader.module.scss";
 
 const Loader = () => (
   <div className="loader">
-    <div className="circular-progress">
-      <CircularProgress />
+    <div className="loading">
+      Loading...
     </div>
   </div>
 );

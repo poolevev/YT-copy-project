@@ -4,4 +4,9 @@ export let categories = [
     { name: "Education" },
     { name: "Movie" },
     { name: "Live" },
+    { name: "React" },
+    { name: "IT Talents" },
+    { name: "Javascript" },
+    { name: "Nature" },
+    { name: "Cars" },
 ]

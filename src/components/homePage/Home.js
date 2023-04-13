@@ -17,14 +17,12 @@ const Home = () => {
   return (
     <div className={styles.homeWrapper}>
     
-
       <div className={styles.videoContainer}>
         <Categories
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
         />
         <Videos videos={videos} />
-        {console.log(videos)}
       </div>
     </div>
   );
