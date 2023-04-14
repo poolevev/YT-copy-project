@@ -1,39 +1,41 @@
 .sidebar {
-    width: 100px;
+  width: 100px;
+}
+
+.linkList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.linkItem {
+  padding: 8px 16px;
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #cecaca;
   }
-  
-  .linkList {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+
+  &.active {
+    background-color: gray;
   }
-  
-  .linkItem {
-    padding: 8px 16px;
-    font-size: 16px;
-    line-height: 24px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #333;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  
-    &:hover {
-      background-color: #cecaca;
-    }
-  
-    &:first-child {
-      padding-top: 16px;
-    }
-  
-    &:last-child {
-      padding-bottom: 16px;
-    }
-  
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+
+  &:first-child {
+    padding-top: 16px;
   }
-  
-  
+
+  &:last-child {
+    padding-bottom: 16px;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
