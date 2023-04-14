@@ -5,6 +5,7 @@ import Loader from "./Loader"
 import Videos from "../homePage/Videos";
 import { makeAPICall } from "../../utils/makeAPICall";
 import historyManager from "../../models/HistoryManager";
+import Comments from "./Comments/Comments";
 
 import styles from "./VideoPlayerPage.module.scss";
 
@@ -106,8 +107,9 @@ const VideoPlayerPage = () => {
           <button className={`${styles.button} ${isDislikeClicked ? styles.clicked : styles.notClicked}`} onClick={dislikeVideo}>&#x1F44E;</button>
         </div>
       </div>
+      <Comments videoID={id} />
       <div className={styles.relatedVideos}>
-        <Videos videos={videos} direction="column" />
+        <Videos videos={videos} />
       </div>
     </div>
   );
