@@ -1,54 +1,83 @@
 .video-detail {
-    min-height: 95vh;
-    display: flex;
-    flex-direction: column;
-    .video-wrapper {
-      flex: 1;
-      .react-player {
-        width: 100%;
-        position: sticky;
-        top: 86px;
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+
+  .video-wrapper {
+    flex: 1;
+
+    .react-player {
+      width: 100%;
+      position: sticky;
+      top: 86px;
+    }
+
+    .title {
+      color: #fff;
+      font-weight: bold;
+      padding: 8px;
+      font-size: 24px;
+    }
+
+    .details {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      color: #fff;
+      padding: 8px;
+
+      .channel-title {
+        display: flex;
+        align-items: center;
+
+        .check-circle {
+          font-size: 12px;
+          color: gray;
+          margin-left: 5px;
+        }
       }
-      .title {
-        color: #fff;
-        font-weight: bold;
-        padding: 8px;
-        font-size: 24px;
-      }
-      .details {
+
+      .stats {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
-        color: #fff;
-        padding: 8px;
-        .channel-title {
-          display: flex;
-          align-items: center;
-          .check-circle {
-            font-size: 12px;
-            color: gray;
-            margin-left: 5px;
-          }
-        }
-        .stats {
-          display: flex;
-          flex-direction: row;
-          gap: 20px;
-          align-items: center;
-          opacity: 0.7;
-          font-size: 16px;
-        }
-      }
-    }
-    .related-videos {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 16px;
-      @media (min-width: 960px) {
-        padding: 8px;
+        gap: 20px;
+        align-items: center;
+        opacity: 0.7;
+        font-size: 16px;
       }
     }
   }
-  
+
+  .related-videos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+
+    @media (min-width: 960px) {
+      padding: 8px;
+    }
+  }
+}
+
+.clicked {
+  background-color: rgb(125, 128, 125);
+  color: rgb(3, 3, 3);
+
+}
+
+.notClicked {
+  background-color: rgb(226, 233, 226);
+  color: rgb(3, 3, 3);
+
+}
+
+button {
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 5px;
+}

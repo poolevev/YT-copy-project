@@ -13,23 +13,44 @@ const VideoPlayerPage = () => {
   const [videos, setVideos] = useState(null);
   const { id } = useParams();
   const loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));
+  const alreadyViewedVideo = historyManager.allHistory.find(videoHistory => videoHistory.videoID === id && videoHistory.username === loggedUser.username)
   const [likesVideoSnippet, setLikesVideoSnippet] = useState(null);
-  //const [isClicked, setIsClicked] = useState(false); the button should change the color on click
+  const [isLikeClicked, setIsLikeClicked] = useState(alreadyViewedVideo?.isLiked === true ? true : false);
+  const [isDislikeClicked, setIsDislikeClicked] = useState(alreadyViewedVideo?.isLiked === false ? true : false);
   let videoSnippet = null;
 
 
   function addToHistory() {
-    historyManager.createHistoryItem(id, loggedUser, videoSnippet);
+    historyManager.createHistoryItem(id, loggedUser, videoSnippet, alreadyViewedVideo?.isLiked);
   }
 
   function likeVideo() {
-    historyManager.createHistoryItem(id, loggedUser, likesVideoSnippet, true);
-    console.log("Liked")
+
+    if (isLikeClicked) {
+      historyManager.createHistoryItem(id, loggedUser, likesVideoSnippet, null);
+      console.log("not Liked");
+    } else {
+      historyManager.createHistoryItem(id, loggedUser, likesVideoSnippet, true);
+      console.log("Liked");
+    }
+
+    setIsLikeClicked(!isLikeClicked);
+    setIsDislikeClicked(false);
 
   }
   function dislikeVideo() {
-    historyManager.createHistoryItem(id, loggedUser, likesVideoSnippet, false);
-    console.log("disLiked")
+
+    if (isDislikeClicked) {
+      historyManager.createHistoryItem(id, loggedUser, likesVideoSnippet, null);
+      console.log("not disLiked");
+    } else {
+      historyManager.createHistoryItem(id, loggedUser, likesVideoSnippet, false);
+      console.log("disLiked")
+    }
+
+    setIsDislikeClicked(!isDislikeClicked);
+    setIsLikeClicked(false)
+
   }
 
 
@@ -81,8 +102,8 @@ const VideoPlayerPage = () => {
               {parseInt(likeCount).toLocaleString()} likes
             </span>
           </div>
-          <button onClick={likeVideo}>Like button</button>
-          <button onClick={dislikeVideo}>Dislike button</button>
+          <button className={`${styles.button} ${isLikeClicked ? styles.clicked : styles.notClicked}`} onClick={likeVideo}>&#x1F44D;</button>
+          <button className={`${styles.button} ${isDislikeClicked ? styles.clicked : styles.notClicked}`} onClick={dislikeVideo}>&#x1F44E;</button>
         </div>
       </div>
       <div className={styles.relatedVideos}>

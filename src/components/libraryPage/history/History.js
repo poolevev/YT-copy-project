@@ -38,7 +38,6 @@ const History = () => {
           <div className={styles.container}>
             {history.map(item => (
               <div key={item.videoID}>
-                {console.log(item)}
                 {item.videoID && <LibraryVideoCard video={item} />}
               </div>
             ))}
