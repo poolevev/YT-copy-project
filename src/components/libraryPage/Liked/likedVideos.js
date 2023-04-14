@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
+import LibraryVideoCard from "../LibraryVideoCard";
+import styles from './LikedVideo.module.scss';
 
 const LikedVideos = () => {
   const [likedVideos, setLikedVideos] = useState([]);
   const [showMore, setShowMore] = useState(true);
+  const allHistory = JSON.parse(localStorage.getItem('AllHistory')) || '[]';
+  const loggedUser = JSON.parse(localStorage.getItem('LoggedUser'));
+  const userLikedVideos = allHistory.filter(
+    item => item.username === loggedUser.username && item.isLiked
+  );
 
   useEffect(() => {
-    const allHistory = JSON.parse(localStorage.getItem('allHistory')) || [];
-    const loggedUser = JSON.parse(localStorage.getItem('loggedUser')) || {};
-
-    const userLikedVideos = allHistory.filter(
-      item => item.username === loggedUser.username && item.isLiked
-    );
 
     if (userLikedVideos.length > 0) {
       setLikedVideos(userLikedVideos.slice(0, 3));
@@ -18,12 +19,6 @@ const LikedVideos = () => {
   }, []);
 
   const handleShowMore = () => {
-    const allHistory = JSON.parse(localStorage.getItem('allHistory')) || [];
-    const loggedUser = JSON.parse(localStorage.getItem('loggedUser')) || {};
-
-    const userLikedVideos = allHistory.filter(
-      item => item.username === loggedUser.username && item.isLiked
-    );
 
     const start = likedVideos.length;
     const end = start + 3;
@@ -37,16 +32,17 @@ const LikedVideos = () => {
   }
 
   return (
-    <div className="liked">
+    <div>
       <h2>Liked</h2>
       {likedVideos.length > 0 ? (
-        <div className="cards">
-          {likedVideos.map(video => (
-            <div key={video.id} className="card">
-              <h3>{video.title}</h3>
-              <p>{video.description}</p>
-            </div>
-          ))}
+        <div>
+          <div className={styles.container}>
+            {likedVideos.map(item => (
+              <div key={item.videoID}>
+                {item.videoID && <LibraryVideoCard video={item} />}
+              </div>
+            ))}
+          </div>
           {showMore && <button onClick={handleShowMore}>Show more</button>}
         </div>
       ) : (

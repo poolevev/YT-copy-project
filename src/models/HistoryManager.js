@@ -25,7 +25,7 @@ class HistoryManager {
       let alreadyViewedVideoIndex = this.allHistory.findIndex(videoHistory => videoHistory.videoID === videoID && videoHistory.username === username.username)
 
       if (alreadyViewedVideoIndex > -1) {
-        console.log("already")
+        console.log("already was in the list, rewrite")
         this.allHistory.splice(alreadyViewedVideoIndex, 1);//remove previos similar history
         this.allHistory.unshift(new HistoryItem(videoID, username.username, snippet, isLiked));
         localStorage.setItem("AllHistory", JSON.stringify(this.allHistory));

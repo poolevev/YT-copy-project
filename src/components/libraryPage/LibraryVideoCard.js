@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { defaultThumbnailUrl, defaultVideoUrl, defaultVideoTitle, defaultChannelUrl, defaultChannelTitle } from "../../../utils/defaultVideo"
-import styles from './HistoryCard.module.scss';
+import { defaultThumbnailUrl, defaultVideoUrl, defaultVideoTitle, defaultChannelUrl, defaultChannelTitle } from "../../utils/defaultVideo"
+import styles from './LibraryVideoCard.module.scss';
 
-const HistoryCard = ({ history: { videoID, snippet } }) => (
+const LibraryVideoCard = ({ video: { videoID, snippet } }) => (
     <div className={styles.card}>
 
         <Link to={videoID ? `/video/${videoID}` : `/video/PVc1yFV0p40`}>
@@ -29,4 +29,4 @@ const HistoryCard = ({ history: { videoID, snippet } }) => (
     </div>
 );
 
-export default HistoryCard;
+export default LibraryVideoCard;

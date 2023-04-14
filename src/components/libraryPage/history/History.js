@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import HistoryCard from "./HistoryCard";
+import LibraryVideoCard from "../LibraryVideoCard";
 import styles from './History.module.scss';
 
 const History = () => {
@@ -38,7 +38,8 @@ const History = () => {
           <div className={styles.container}>
             {history.map(item => (
               <div key={item.videoID}>
-                {item.videoID && <HistoryCard history={item} />}
+                {console.log(item)}
+                {item.videoID && <LibraryVideoCard video={item} />}
               </div>
             ))}
           </div>

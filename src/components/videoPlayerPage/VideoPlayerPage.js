@@ -13,19 +13,22 @@ const VideoPlayerPage = () => {
   const [videos, setVideos] = useState(null);
   const { id } = useParams();
   const loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));
+  const [likesVideoSnippet, setLikesVideoSnippet] = useState(null);
+  //const [isClicked, setIsClicked] = useState(false); the button should change the color on click
   let videoSnippet = null;
+
 
   function addToHistory() {
     historyManager.createHistoryItem(id, loggedUser, videoSnippet);
   }
 
   function likeVideo() {
-    historyManager.createHistoryItem(id, loggedUser, videoSnippet, true);
+    historyManager.createHistoryItem(id, loggedUser, likesVideoSnippet, true);
     console.log("Liked")
 
   }
   function dislikeVideo() {
-    historyManager.createHistoryItem(id, loggedUser, videoSnippet, false);
+    historyManager.createHistoryItem(id, loggedUser, likesVideoSnippet, false);
     console.log("disLiked")
   }
 
@@ -34,6 +37,7 @@ const VideoPlayerPage = () => {
     makeAPICall(`videos?part=snippet,statistics&id=${id}`).then((data) => {
       setVideoDetail(data.items[0]);
       videoSnippet = data.items[0].snippet
+      setLikesVideoSnippet(videoSnippet);
       addToHistory();
     }
     );
