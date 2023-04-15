@@ -35,7 +35,7 @@ const Comments = ({ videoID }) => {
 
     return (
         <div>
-            <h2> {comments.length} Commentaries</h2>
+            <h2> {comments.length} Comments</h2>
 
             {loggedUser ? <CommentInput videoID={videoID} /> : null}
 
