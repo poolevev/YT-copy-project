@@ -83,39 +83,58 @@ const VideoPlayerPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.videoPlayer}>
-      <ReactPlayer
-  url={`https://www.youtube.com/watch?v=${id}`}
-  className={styles.reactPlayer}
-  controls
-  width="70vh"
-  height="100px"
-/>
-        <h5 className={styles.title} >{title}</h5>
-        <div className={styles.info}>
-  <Link to={`/channel/${channelId}`}>
-    <h6 className={styles.channelTitle}>{channelTitle}</h6>
-  </Link>
-  <div className={styles.stats}>
-    <span className={styles.viewCount}>
-      {parseInt(viewCount).toLocaleString()} views
-    </span>
-    <span className={styles.likeCount}>
-      {parseInt(likeCount).toLocaleString()} likes
-    </span>
-  </div>
-  <div className="like-dislike-container">
-  <button className={`${styles.button} ${isLikeClicked ? styles.clicked : styles.notClicked}`} onClick={likeVideo}>&#x1F44D;</button>
-  <button className={`${styles.button} ${isDislikeClicked ? styles.clicked : styles.notClicked}`} onClick={dislikeVideo}>&#x1F44E;</button>
-</div>
-</div>
+      <div className={styles.videoPlayerContainer}>
+        <div className={styles.videoPlayer}>
+          <ReactPlayer
+            url={`https://www.youtube.com/watch?v=${id}`}
+            className={styles.reactPlayer}
+            controls
+            width="130vh"
+            height="75vh"
+          />
+          <h5 className={styles.title}>{title}</h5>
+          <div className={styles.info}>
+            <Link to={`/channel/${channelId}`}>
+              <h6 className={styles.channelTitle}>{channelTitle}</h6>
+            </Link>
+            <div className={styles.stats}>
+              <span className={styles.viewCount}>
+                {parseInt(viewCount).toLocaleString()} views
+              </span>
+              <span className={styles.likeCount}>
+                {parseInt(likeCount).toLocaleString()} likes
+              </span>
+            </div>
+            <div className="like-dislike-container">
+              <button
+                className={`${styles.button} ${
+                  isLikeClicked ? styles.clicked : styles.notClicked
+                }`}
+                onClick={likeVideo}
+              >
+                &#x1F44D;
+              </button>
+              <button
+                className={`${styles.button} ${
+                  isDislikeClicked ? styles.clicked : styles.notClicked
+                }`}
+                onClick={dislikeVideo}
+              >
+                &#x1F44E;
+              </button>
+            </div>
+          </div>
+        </div>
+        <Comments videoID={id} />
       </div>
-      <Comments videoID={id} />
-      <div className={styles.relatedVideos}>
-        <Videos videos={videos} />
+      <div className={styles.relatedVideosContainer}>
+        <div className={styles.relatedVideos}>
+          <Videos videos={videos} />
+        </div>
       </div>
     </div>
   );
+  
 };
 
 export default VideoPlayerPage;

@@ -75,8 +75,7 @@
 
 .like-dislike-container {
   display: flex;
-  flex-direction: row;
-  gap: 10px;
+  grid-row: initial;
 }
 
 button { 
@@ -86,7 +85,25 @@ button {
   font-weight: bold;
   cursor: pointer;
   margin: 5px;
-  display:inline;
+  // display:inline;
 }
 
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.videoPlayer {
+  width: 70%;
+  margin-right: 20px;
+ }
+
+
+.relatedVideosContainer {
+  width: 30%;
+  float: right;
+}
 
