@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import styles from './CommentInput.module.scss';
 import commentsManager from '../../../models/CommentsManager';
+import { v4 as uuid } from 'uuid';
 
-function CommentInput({ videoID }) {
+function CommentInput({ videoID, addNewComments }) {
     const [commentText, setCommentText] = useState('');
     const loggedUser = JSON.parse(localStorage.getItem('LoggedUser'));
-    const allComments = JSON.parse(localStorage.getItem('AllComments') || "[]");
-    const commentID = videoID + "com" + allComments.length;
+    let commentID = uuid();
 
     const handleCommentChange = (event) => {
         setCommentText(event.target.value);
@@ -17,7 +17,10 @@ function CommentInput({ videoID }) {
     };
 
     const handleCommentSubmit = () => {
-        commentsManager.createComment(videoID, commentID, loggedUser.username, commentText)
+        commentsManager.createComment(videoID, commentID, loggedUser.username, commentText);
+        const allComments = JSON.parse(localStorage.getItem('AllComments') || "[]");
+        const currentVideoComments = allComments.filter(comment => comment.videoID === videoID);
+        addNewComments(currentVideoComments);
         setCommentText('');
     };
 

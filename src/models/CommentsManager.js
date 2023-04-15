@@ -33,33 +33,34 @@ class CommentsManager {
   };
 
   addReaction = (username, reaction, commentID) => {
-
-    let allComments = JSON.parse(localStorage.getItem("AllComments"));
-    let currentComment = allComments.find(comment => comment.commentID = commentID);
+    console.log("start")
+    console.log(this.allComments)
+    let currentComment = (this.allComments.find(comment => comment.commentID = commentID));
     let previousReactionObjIndex = currentComment.usersReactions.findIndex(reactionObj => reactionObj.username === username);
-    
+    console.log(previousReactionObjIndex)
     if (this.currentUser?.username !== currentComment.username) {
+      console.log("enter")
       if (previousReactionObjIndex > -1) {
         currentComment.usersReactions.splice(previousReactionObjIndex, 1);
-        localStorage.setItem("AllComments", JSON.stringify(allComments));
         console.log("previous removed")
       }
       currentComment.usersReactions.push(new Reaction(username, reaction));
-      localStorage.setItem("AllComments", JSON.stringify(allComments));
+      localStorage.setItem("AllComments", JSON.stringify(this.allComments));
       console.log("add reaction")
     }
   }
 
   removeReaction = (username, reaction, commentID) => {
-
-    let allComments = JSON.parse(localStorage.getItem("AllComments"));
-    let currentComment = allComments.find(comment => comment.commentID = commentID);
+    console.log("start")
+    console.log(this.allComments)
+    let currentComment = (this.allComments.find(comment => comment.commentID = commentID));
     let previousReactionObjIndex = currentComment.usersReactions.findIndex(reactionObj => reactionObj.username === username);
-    
+    console.log(currentComment, previousReactionObjIndex)
     if (this.currentUser?.username !== currentComment.username) {
+      console.log("enter")
       if (previousReactionObjIndex > -1) {
         currentComment.usersReactions.splice(previousReactionObjIndex, 1);
-        localStorage.setItem("AllComments", JSON.stringify(allComments));
+        localStorage.setItem("AllComments", JSON.stringify(this.allComments));
         console.log("remove reaction")
       }
     }

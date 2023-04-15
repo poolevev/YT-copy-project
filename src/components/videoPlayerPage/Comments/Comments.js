@@ -9,13 +9,13 @@ const Comments = ({ videoID }) => {
     const [showMore, setShowMore] = useState(true);
     const loggedUser = JSON.parse(localStorage.getItem('LoggedUser'));
     const allComments = JSON.parse(localStorage.getItem('AllComments') || "[]");
-    const videoComments = allComments.filter(comment => comment.videoID === videoID);
+    const initialComments = allComments.filter(comment => comment.videoID === videoID);
 
     useEffect(() => {
 
         if (allComments.length) {
 
-            setComments(videoComments);
+            setComments(initialComments);
         }
     }, []);
 
@@ -23,10 +23,10 @@ const Comments = ({ videoID }) => {
         const newLength = comments.length + 3;
 
         if (allComments) {
-            const moreComments = videoComments.slice(0, newLength);
+            const moreComments = initialComments.slice(0, newLength);
             setComments(moreComments);
 
-            if (moreComments.length >= videoComments.length) {
+            if (moreComments.length >= initialComments.length) {
                 setShowMore(false);
             }
         }
@@ -37,14 +37,14 @@ const Comments = ({ videoID }) => {
         <div>
             <h2> {comments.length} Comments</h2>
 
-            {loggedUser ? <CommentInput videoID={videoID} /> : null}
+            {loggedUser ? <CommentInput videoID={videoID} addNewComments = {setComments}/> : null}
 
             {comments.length > 0 ? (
                 <div>
                     <div className={styles.container}>
                         {comments.map(item => (
-                            <div key={item.videoID}>
-                                {item.videoID && <SingleComment comment={item} />}
+                            <div key={item.commentID}>
+                                {item.commentID && <SingleComment comment={item} />}
                             </div>
                         ))}
                     </div>
