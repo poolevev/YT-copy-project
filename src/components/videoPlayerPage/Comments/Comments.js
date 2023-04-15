@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styles from './Comments.module.scss';
 import SingleComment from "./SingleComment";
 import CommentInput from "./CommentInput";
-import { useParams } from "react-router-dom";
-
 
 const Comments = ({ videoID }) => {
 
@@ -46,8 +44,6 @@ const Comments = ({ videoID }) => {
                     <div className={styles.container}>
                         {comments.map(item => (
                             <div key={item.videoID}>
-                                console.log(item)
-                                {console.log(item)}
                                 {item.videoID && <SingleComment comment={item} />}
                             </div>
                         ))}

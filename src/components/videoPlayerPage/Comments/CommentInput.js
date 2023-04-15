@@ -3,34 +3,34 @@ import styles from './CommentInput.module.scss';
 import commentsManager from '../../../models/CommentsManager';
 
 function CommentInput({ videoID }) {
-    const [comment, setComment] = useState('');
+    const [commentText, setCommentText] = useState('');
     const loggedUser = JSON.parse(localStorage.getItem('LoggedUser'));
     const allComments = JSON.parse(localStorage.getItem('AllComments') || "[]");
     const commentID = videoID + "com" + allComments.length;
 
     const handleCommentChange = (event) => {
-        setComment(event.target.value);
+        setCommentText(event.target.value);
     };
 
     const handleCommentClear = () => {
-        setComment('');
+        setCommentText('');
     };
 
     const handleCommentSubmit = () => {
-        commentsManager.createComment(videoID, commentID, loggedUser.username, comment)
-        setComment('');
+        commentsManager.createComment(videoID, commentID, loggedUser.username, commentText)
+        setCommentText('');
     };
 
     return (
         <div className={styles.commentInput}>
             <textarea
-                value={comment}
+                value={commentText}
                 onChange={handleCommentChange}
                 placeholder="Add a comment..."
             />
-            {comment && (
+            {commentText && (
                 <div className={styles.buttons}>
-                    <button onClick={handleCommentClear} disabled={!comment}>
+                    <button onClick={handleCommentClear} disabled={!commentText}>
                         Clear
                     </button>
                     <button onClick={handleCommentSubmit}>Comment</button>
