@@ -5,7 +5,7 @@ import commentsManager from '../../../models/CommentsManager';
 const SingleComment = ({ comment }) => {
 
     const loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));
-    const alreadyReacted = comment.usersReactions?.find(reactionObj => reactionObj.username === loggedUser.username)
+    const alreadyReacted = comment.usersReactions?.find(reactionObj => reactionObj.username === loggedUser?.username)
     const [isLikeClicked, setIsLikeClicked] = useState(alreadyReacted?.reaction === "Like" ? true : false);
     const [isDislikeClicked, setIsDislikeClicked] = useState(alreadyReacted?.reaction === "Dislike" ? true : false);
     const [likesNumber, setLikesNumber] = useState(comment.usersReactions?.filter(reactionObj => reactionObj.reaction === "Like").length)
@@ -13,6 +13,7 @@ const SingleComment = ({ comment }) => {
 
 
     function likeComment() {
+
         if (isReactionPossible) {
             if (isLikeClicked) {
 
@@ -21,9 +22,11 @@ const SingleComment = ({ comment }) => {
                 console.log("not Liked");
 
             } else {
+
                 commentsManager.addReaction(loggedUser.username, "Like", comment.commentID);
                 setLikesNumber((prev) => prev + 1);
                 console.log("Liked");
+
             }
 
             setIsLikeClicked(!isLikeClicked);
@@ -36,8 +39,12 @@ const SingleComment = ({ comment }) => {
             if (isDislikeClicked) {
                 commentsManager.removeReaction(loggedUser.username, "Dislike", comment.commentID);
                 console.log("not disLiked");
+            } else if (isLikeClicked) {
+                commentsManager.addReaction(loggedUser.username, "Dislike", comment.commentID);
+                setLikesNumber((prev) => prev - 1);
+                console.log("disLiked")
             } else {
-                commentsManager.addReaction(loggedUser.username, "Dislike", comment.commentID)
+                commentsManager.addReaction(loggedUser.username, "Dislike", comment.commentID);
                 console.log("disLiked")
             }
 
