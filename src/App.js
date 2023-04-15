@@ -8,7 +8,11 @@ import PlaylistsPage from './components/playlistsPage/PlaylistsPage';
 import LoginPage from './components/loginPage/LoginPage';
 import RegisterPage from './components/registration/RegisterPage';
 import Sidebar from "./components/sideBar/Sidebar";
+import Profile from './components/profile/Profile';
+
+
 import styles from './App.module.scss';
+
 
 function App() {
   return (
@@ -25,6 +29,7 @@ function App() {
             <Route path='/playlists' element={<PlaylistsPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
+            <Route path='/profile' element={<Profile />} />
             <Route path='*' element={<div>Page not found</div>} />
           </Routes>
         </div>
