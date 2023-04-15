@@ -53,6 +53,3 @@ const LikedVideos = () => {
 }
 
 export default LikedVideos;
-
-
-// This component will render a "Liked" div with a title and a set of cards representing the user's liked videos. It uses the useState and useEffect hooks to retrieve the liked videos from local storage and update the state of the component. It also provides a "Show more" button that allows the user to load more liked videos from local storage as they scroll through the list. If there are no liked videos in local storage, it displays a message to the user.

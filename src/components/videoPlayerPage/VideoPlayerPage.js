@@ -14,7 +14,7 @@ const VideoPlayerPage = () => {
   const [videos, setVideos] = useState(null);
   const { id } = useParams();
   const loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));
-  const alreadyViewedVideo = historyManager.allHistory.find(videoHistory => videoHistory.videoID === id && videoHistory.username === loggedUser.username)
+  const alreadyViewedVideo = historyManager.allHistory.find(videoHistory => videoHistory.videoID === id && videoHistory.username === loggedUser?.username)
   const [likesVideoSnippet, setLikesVideoSnippet] = useState(null);
   const [isLikeClicked, setIsLikeClicked] = useState(alreadyViewedVideo?.isLiked === true ? true : false);
   const [isDislikeClicked, setIsDislikeClicked] = useState(alreadyViewedVideo?.isLiked === false ? true : false);
