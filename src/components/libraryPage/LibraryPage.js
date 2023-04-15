@@ -1,7 +1,7 @@
 import React from "react";
 import History from "./history/History";
 import Playlists from "./playlists/Playlists";
-import LikedVideos from "./Liked/LikedVideos";
+import LikedVideos from "./Liked/likedVideos";
 // import Profile from "../profile/Profile";
 
 const LibraryPage = () => {
