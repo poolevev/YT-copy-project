@@ -7,9 +7,9 @@ import LibraryPage from './components/libraryPage/LibraryPage';
 import EditPlaylistPage from './components/editPlaylistPage/EditPlaylistPage';
 import LoginPage from './components/loginPage/LoginPage';
 import RegisterPage from './components/registration/RegisterPage';
-import Sidebar from "./components/sideBar/Sidebar";
+import Sidebar from './components/sideBar/Sidebar';
 import Profile from './components/profile/Profile';
-
+import Shorts from './components/homePage/shorts/shorts';
 
 import styles from './App.module.scss';
 
@@ -30,7 +30,10 @@ function App() {
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/profile' element={<Profile />} />
+            <Route path='/shorts' element={<Shorts/>} />
             <Route path='*' element={<div>Page not found</div>} />
+          
+
           </Routes>
         </div>
       </div>

@@ -33,7 +33,7 @@ function Sidebar() {
           }`}
           onClick={() => handleClick(1)}
         >
-          <Link to="/">
+          <Link to="/shorts">
             {" "}
             <img src={shortsLogo} alt="shorts Logo" height={45} />
             Shorts
