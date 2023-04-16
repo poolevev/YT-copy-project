@@ -1,14 +1,12 @@
 import React from "react";
 import History from "./history/History";
 import Playlists from "./playlists/Playlists";
-import LikedVideos from "./Liked/likedVideos";
-// import Profile from "../profile/Profile";
+import LikedVideos from "./Liked/LikedVideos";
 
 const LibraryPage = () => {
-    let loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));
+
     return (
         <div>
-            {/* {loggedUser ? <Profile /> : null} */}
             <History />
             <Playlists />
             <LikedVideos />
