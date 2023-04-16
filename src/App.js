@@ -4,7 +4,7 @@ import Home from './components/homePage/Home';
 import VideoPlayerPage from './components/videoPlayerPage/VideoPlayerPage';
 import SearchedVideos from './components/homePage/searchedVideos/SearchedVideos'
 import LibraryPage from './components/libraryPage/LibraryPage';
-import PlaylistsPage from './components/playlistsPage/PlaylistsPage';
+import EditPlaylistPage from './components/editPlaylistPage/EditPlaylistPage';
 import LoginPage from './components/loginPage/LoginPage';
 import RegisterPage from './components/registration/RegisterPage';
 import Sidebar from "./components/sideBar/Sidebar";
@@ -26,7 +26,7 @@ function App() {
             <Route path='/video/:id' element={<VideoPlayerPage />} />
             <Route path='/search/:searchedVideos' element={<SearchedVideos />} />
             <Route path='/library' element={<LibraryPage />} />
-            <Route path='/playlists' element={<PlaylistsPage />} />
+            <Route path='/editPlaylistPage/:playlistID' element={<EditPlaylistPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/profile' element={<Profile />} />

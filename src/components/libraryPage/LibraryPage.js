@@ -1,6 +1,6 @@
 import React from "react";
 import History from "./history/History";
-import Playlists from "./playlists/Playlists";
+import LoggedUserPlaylists from "./playlists/LoggedUserPlaylists";
 import LikedVideos from "./Liked/LikedVideos";
 
 const LibraryPage = () => {
@@ -8,7 +8,7 @@ const LibraryPage = () => {
     return (
         <div>
             <History />
-            <Playlists />
+            <LoggedUserPlaylists />
             <LikedVideos />
         </div>
 

@@ -54,6 +54,11 @@ const VideoPlayerPage = () => {
 
   }
 
+  function showPlaylistsBlock() {
+    
+    console.log("Show user's playlists");
+  }
+
 
   useEffect(() => {
     makeAPICall(`videos?part=snippet,statistics&id=${id}`).then((data) => {
@@ -105,7 +110,7 @@ const VideoPlayerPage = () => {
                 {parseInt(likeCount).toLocaleString()} likes
               </span>
             </div>
-            <button className={styles.addToPlaylistBtn} >Add to playlist</button>
+            <button onClick={showPlaylistsBlock} className={styles.addToPlaylistBtn} >Add to playlist</button>
             <div className="like-dislike-container">
               <button
                 className={`${styles.button} ${isLikeClicked ? styles.clicked : styles.notClicked

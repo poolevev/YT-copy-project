@@ -8,7 +8,7 @@ const LikedVideos = () => {
   const allHistory = JSON.parse(localStorage.getItem('AllHistory')) || '[]';
   const loggedUser = JSON.parse(localStorage.getItem('LoggedUser'));
   const userLikedVideos = allHistory.filter(
-    item => item.username === loggedUser.username && item.isLiked
+    item => item.username === loggedUser?.username && item.isLiked
   );
 
   useEffect(() => {

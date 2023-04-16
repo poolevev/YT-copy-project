@@ -17,7 +17,7 @@ class PlaylistsManager {
         }
     }
 
-    allPlaylists = [];
+    allPlaylists = [{ username: "user1", playlistID: "23723y", playlistName: "favorites", videos: [] }];
 
     createPlaylist = (username, playlistID, playlistName, videos = []) => {
         let loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));
@@ -37,7 +37,6 @@ class PlaylistsManager {
     removeVideoFromPlaylist = () => {
 
     }
-
 
 }
 const playlistsManager = new PlaylistsManager();

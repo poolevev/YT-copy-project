@@ -7,7 +7,7 @@ const History = () => {
   const [showMore, setShowMore] = useState(true);
   const loggedUser = JSON.parse(localStorage.getItem('LoggedUser'));
   const allHistory = JSON.parse(localStorage.getItem('AllHistory') || "[]");
-  const userHistory = allHistory.filter(viewedVideo => viewedVideo.username === loggedUser.username);
+  const userHistory = allHistory.filter(viewedVideo => viewedVideo.username === loggedUser?.username);
 
   useEffect(() => {
 
