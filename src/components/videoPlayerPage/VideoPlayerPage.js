@@ -105,19 +105,18 @@ const VideoPlayerPage = () => {
                 {parseInt(likeCount).toLocaleString()} likes
               </span>
             </div>
+            <button className={styles.addToPlaylistBtn} >Add to playlist</button>
             <div className="like-dislike-container">
               <button
-                className={`${styles.button} ${
-                  isLikeClicked ? styles.clicked : styles.notClicked
-                }`}
+                className={`${styles.button} ${isLikeClicked ? styles.clicked : styles.notClicked
+                  }`}
                 onClick={likeVideo}
               >
                 &#x1F44D;
               </button>
               <button
-                className={`${styles.button} ${
-                  isDislikeClicked ? styles.clicked : styles.notClicked
-                }`}
+                className={`${styles.button} ${isDislikeClicked ? styles.clicked : styles.notClicked
+                  }`}
                 onClick={dislikeVideo}
               >
                 &#x1F44E;
@@ -134,7 +133,7 @@ const VideoPlayerPage = () => {
       </div>
     </div>
   );
-  
+
 };
 
 export default VideoPlayerPage;
