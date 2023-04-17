@@ -6,8 +6,18 @@ import styles from "./Navigation.module.scss";
 import ProfilePic from "./profilePic/ProfilePic";
 import logo from "../../img/logo.png";
 import LogoStyles from "../navBar/Logo.module.scss"; // Import the SCSS file
-const Navigation = () => (
-  <div className={styles.navbar}>
+import {  useDispatch } from "react-redux";
+import {  setIsUserLoggedIn } from "../../store/profileSlice";
+
+
+const Navigation = () => {
+  const dispatch = useDispatch();
+
+  let loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));
+  loggedUser && dispatch(setIsUserLoggedIn(true));
+
+  return (
+<div className={styles.navbar}>
     <div className={styles.logo}>
       <Link to="/" style={{ display: "flex", alignItems: "center" }}>
 
@@ -16,12 +26,14 @@ const Navigation = () => (
         alt="xxx Logo"
         height={45}
         className={LogoStyles.logo}
-      />{" "}
+      />
       </Link>
     </div>
     <SearchBar />
-    <ProfilePic />
+    <ProfilePic loggedUser={loggedUser}/>
   </div>
-);
+  )
+  
+  };
 
 export default Navigation;

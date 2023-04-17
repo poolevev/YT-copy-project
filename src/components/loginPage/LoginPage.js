@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setIsUserLoggedIn } from "../../store/profileSlice";
+
 
 import React, { useState } from "react";
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
     setShowError(false);
@@ -35,6 +41,8 @@ const LoginPage = () => {
       setUsername("");
       setPassword("");
       navigate(`/`);
+
+      dispatch(setIsUserLoggedIn(true))
     }
   };
 
