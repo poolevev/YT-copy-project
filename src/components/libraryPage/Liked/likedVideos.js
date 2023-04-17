@@ -4,32 +4,24 @@ import styles from './LikedVideo.module.scss';
 
 const LikedVideos = () => {
   const [likedVideos, setLikedVideos] = useState([]);
-  const [showMore, setShowMore] = useState(true);
   const allHistory = JSON.parse(localStorage.getItem('AllHistory')) || '[]';
   const loggedUser = JSON.parse(localStorage.getItem('LoggedUser'));
-  const userLikedVideos = allHistory.filter(
-    item => item.username === loggedUser?.username && item.isLiked
-  );
+  const userLikedVideos = allHistory.filter(item => item.username === loggedUser?.username && item.isLiked);
+  const [showMore, setShowMore] = useState(userLikedVideos.length > 3);
 
   useEffect(() => {
-
-    if (userLikedVideos.length > 0) {
+    if (userLikedVideos.length) {
       setLikedVideos(userLikedVideos.slice(0, 3));
     }
   }, []);
 
   const handleShowMore = () => {
-
-    const start = likedVideos.length;
-    const end = start + 3;
-    const newLikedVideos = userLikedVideos.slice(start, end);
-
-    if (newLikedVideos.length > 0) {
-      setLikedVideos([...likedVideos, ...newLikedVideos]);
-    } else {
+    const newLength = likedVideos.length + 3;
+    const newList = userLikedVideos.slice(0, newLength)
+    setLikedVideos(newList);
+    if (newList.length >= userLikedVideos.length)
       setShowMore(false);
-    }
-  }
+  };
 
   return (
     <div>

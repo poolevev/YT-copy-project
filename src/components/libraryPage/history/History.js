@@ -4,30 +4,26 @@ import styles from './History.module.scss';
 
 const History = () => {
   const [history, setHistory] = useState([]);
-  const [showMore, setShowMore] = useState(true);
   const loggedUser = JSON.parse(localStorage.getItem('LoggedUser'));
   const allHistory = JSON.parse(localStorage.getItem('AllHistory') || "[]");
   const userHistory = allHistory.filter(viewedVideo => viewedVideo.username === loggedUser?.username);
+  const [showMore, setShowMore] = useState(userHistory.length > 3);
 
   useEffect(() => {
-
-    if (allHistory.length) {
-
-      setHistory(userHistory);
+    if (userHistory.length) {
+      setHistory(userHistory.slice(0, 3));
     }
   }, []);
 
   const loadMore = () => {
     const newLength = history.length + 3;
+    const newHistory = userHistory.slice(0, newLength);
+    setHistory(newHistory);
 
-    if (allHistory) {
-      const newHistory = userHistory.slice(0, newLength);
-      setHistory(newHistory);
-
-      if (newHistory.length >= userHistory.length) {
-        setShowMore(false);
-      }
+    if (newHistory.length >= userHistory.length) {
+      setShowMore(false);
     }
+
   }
 
   return (

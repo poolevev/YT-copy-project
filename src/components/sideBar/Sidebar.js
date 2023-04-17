@@ -8,7 +8,7 @@ import libraryLogo from "../../img/LibraryLogo.webp";
 
 function Sidebar() {
   const [activeLink, setActiveLink] = useState(null);
-
+  const loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));
   const handleClick = (index) => {
     setActiveLink(index);
   };
@@ -17,9 +17,8 @@ function Sidebar() {
     <div className={styles.sidebar}>
       <ul className={styles.linkList}>
         <li
-          className={`${styles.linkItem} ${
-            activeLink === 0 ? styles.active : ""
-          }`}
+          className={`${styles.linkItem} ${activeLink === 0 ? styles.active : ""
+            }`}
           onClick={() => handleClick(0)}
         >
           <Link to="/">
@@ -28,9 +27,8 @@ function Sidebar() {
           </Link>
         </li>
         <li
-          className={`${styles.linkItem} ${
-            activeLink === 1 ? styles.active : ""
-          }`}
+          className={`${styles.linkItem} ${activeLink === 1 ? styles.active : ""
+            }`}
           onClick={() => handleClick(1)}
         >
           <Link to="/shorts">
@@ -40,12 +38,11 @@ function Sidebar() {
           </Link>
         </li>
         <li
-          className={`${styles.linkItem} ${
-            activeLink === 2 ? styles.active : ""
-          }`}
+          className={`${styles.linkItem} ${activeLink === 2 ? styles.active : ""
+            }`}
           onClick={() => handleClick(2)}
         >
-          <Link to="/library">
+          <Link to={loggedUser ? "/library" : "/login"}>
             {" "}
             <img src={libraryLogo} alt="library Logo" height={45} />
             Library

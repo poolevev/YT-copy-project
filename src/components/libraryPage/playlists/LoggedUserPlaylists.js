@@ -1,22 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./LoggedUserPlaylists.module.scss"
 import playlistsManager from "../../../models/PlaylistsManager";
 
 const LoggedUserPlaylists = () => {
   const [playlists, setPlaylists] = useState([]);
-  const [showMore, setShowMore] = useState(false);
-
   const loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));
   const allPlaylists = JSON.parse(localStorage.getItem("AllPlaylists") || "[]");
-  let userPlaylists = allPlaylists.filter(playlist => playlist.username === loggedUser?.username);
+  const userPlaylists = allPlaylists.filter(playlist => playlist.username === loggedUser?.username);
+  const [showMore, setShowMore] = useState(userPlaylists.length > 3);
+
+  useEffect(() => {
+    if (userPlaylists.length) {
+      setPlaylists(userPlaylists.slice(0, 3));
+    }
+  }, []);
 
   const handleShowMore = () => {
-    const numPlaylistsToShow = playlists.length + 3;
-    if (numPlaylistsToShow <= userPlaylists.length) {
-      setShowMore(true);
-    }
-    setPlaylists(userPlaylists.slice(0, numPlaylistsToShow));
+    const newLength = playlists.length + 3;
+    const newList = userPlaylists.slice(0, newLength)
+    setPlaylists(newList);
+    if (newList.length >= userPlaylists.length)
+      setShowMore(false);
   };
 
   const handlePlaylistDeletion = (username, playlistID) => {

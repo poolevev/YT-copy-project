@@ -111,9 +111,8 @@ const VideoPlayerPage = () => {
                 {parseInt(likeCount).toLocaleString()} likes
               </span>
             </div>
-            {/* <button onClick={showPlaylistsBlock} className={styles.addToPlaylistBtn} >Add to playlist</button> */}
-            <AddToPlaylistBtn videoID={id}/>
-            <div className="like-dislike-container">
+            {loggedUser ? <AddToPlaylistBtn videoID={id} /> : null}
+            {loggedUser ? <div className="like-dislike-container">
               <button
                 className={`${styles.button} ${isLikeClicked ? styles.clicked : styles.notClicked
                   }`}
@@ -128,7 +127,7 @@ const VideoPlayerPage = () => {
               >
                 &#x1F44E;
               </button>
-            </div>
+            </div> : null}
           </div>
         </div>
         <Comments videoID={id} />
