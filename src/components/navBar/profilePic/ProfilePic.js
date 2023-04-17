@@ -20,7 +20,7 @@ const ProfilePic = ({ loggedUser }) => {
             className="navBar_profilePic"
             style={{ marginRight: "10px" }}
           />
-         <Link to="/login">Hello, {loggedUser?.username}</Link>
+         <Link to="/profile">Hello, {loggedUser?.username}</Link>
         </>
       ) : (
         <Link to="/login">Login</Link>
