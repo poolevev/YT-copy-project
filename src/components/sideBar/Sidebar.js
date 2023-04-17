@@ -16,12 +16,12 @@ function Sidebar() {
   return (
     <div className={styles.sidebar}>
       <ul className={styles.linkList}>
-        <li
+        <li style={{paddingLeft: "20px"}}
           className={`${styles.linkItem} ${activeLink === 0 ? styles.active : ""
             }`}
           onClick={() => handleClick(0)}
         >
-          <Link to="/">
+          <Link to="/" >
             <img src={homeLogo} alt="home Logo" height={45} />
             Home
           </Link>
@@ -33,7 +33,8 @@ function Sidebar() {
         >
           <Link to="/shorts">
             {" "}
-            <img src={shortsLogo} alt="shorts Logo" height={45} />
+            <img src={shortsLogo} alt="shorts Logo" height={45} style={{paddingLeft: "10px"}} />
+
             Shorts
           </Link>
         </li>
@@ -44,7 +45,7 @@ function Sidebar() {
         >
           <Link to={loggedUser ? "/library" : "/login"}>
             {" "}
-            <img src={libraryLogo} alt="library Logo" height={45} />
+            <img src={libraryLogo} alt="library Logo" height={45} style={{paddingLeft: "10px"}}/>
             Library
           </Link>
         </li>
