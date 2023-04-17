@@ -52,6 +52,8 @@ function Profile() {
   const updateProfile = () => {
     currentUser.image = image;
     currentUser.nickname = nickname;
+    currentUser.password = password;
+    
     localStorage.setItem("LoggedUser", JSON.stringify(currentUser));
 
 
