@@ -1,15 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import {  Image } from "react-bootstrap";
 
-const ProfilePic = () => {
-  let loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));
+const ProfilePic = ({ loggedUser}) => {
+  const isUserLoggedIn = useSelector((state) => state.profile.isLoggedIn);
+  const profilePic = useSelector((state) => state.profile.profilePic);
 
-  return <div>
-    {loggedUser ? <Link to="/profile">Hello, {loggedUser.username}</Link>
-      : <Link to="/login">Login</Link>
-    }
-  </div>;
+  return (
+    <div>
+      {isUserLoggedIn ? (
+        <>
+          <Image
+            src={profilePic}
+            alt="Profile"
+            roundedCircle
+            width={30}
+            height={30}
+            className="navBar_profilePic"
+          />
+          <Link to="/profile">Hello, {loggedUser?.username}</Link>
+        </>
+      ) : (
+        <Link to="/login">Login</Link>
+      )}
+    </div>
+  );
 };
 
-
-export default ProfilePic
+export default ProfilePic;

@@ -10,6 +10,7 @@ const initialState = {
     ? currentUser.image
     : "https://upload.wikimedia.org/wikipedia/commons/3/30/Chuck_Norris_May_2015.jpg",
   username: "",
+  isLoggedIn: false
 };
 
 // // First, create the thunk
@@ -28,10 +29,14 @@ export const profileSlice = createSlice({
     changeProfilePic: (state, action) => {
       state.profilePic = action.payload;
     },
+    setIsUserLoggedIn: (state, action) => {
+      state.isLoggedIn = action.payload;
+    },
   },
 });
 
 // action creators
-export const { changeProfilePic } = profileSlice.actions;
+export const { changeProfilePic, setIsUserLoggedIn } = profileSlice.actions;
 
 export default profileSlice.reducer;
+

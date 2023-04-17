@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Container, Row, Col, Form, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { changeProfilePic, changeUserName } from "../../store/profileSlice";
+import { changeProfilePic, setIsUserLoggedIn } from "../../store/profileSlice";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 
@@ -12,9 +12,9 @@ function Profile() {
     currentUser ? currentUser.nickname : ""
   );
 
-  const [image, setImage] = useState(currentUser.image);
+  const [image, setImage] = useState(currentUser.image || '');
   const [password, setPassword] = useState();
-  const [userName, setUserName] = useState();
+ 
   // const [lastName, setLastName] = useState('Doe');
   // const [dob, setDob] = useState('');
   // const [sex, setSex] = useState('male');
@@ -48,7 +48,31 @@ function Profile() {
       console.error("Error converting file to base64:", error);
     };
   };
+
+  const updateProfile = () => {
+    currentUser.image = image;
+    currentUser.nickname = nickname;
+    localStorage.setItem("LoggedUser", JSON.stringify(currentUser));
+
+
+    const allUsers = JSON.parse(localStorage.getItem("AllUsers") || "[]");
+    const currentUserFromStorage = allUsers.find((user) => user.username === currentUser.username);
+    const filteredUsers = allUsers.filter(user => user.username !== currentUser.username)
+    const newUser = {
+      ...currentUserFromStorage,
+      ...currentUser
+    }
+    const newUsers = [...filteredUsers, newUser]
+
+    localStorage.setItem("AllUsers", JSON.stringify(newUsers));
+  }
   
+  const logOut = () => {
+    localStorage.removeItem("LoggedUser"); 
+    navigate("/");
+  
+    dispatch(setIsUserLoggedIn(false))
+  }
 
   return (
     <Container className="my-5">
@@ -62,7 +86,8 @@ function Profile() {
   width={150}
   height={150}
   className="profilePic"
-/>
+/>    
+<h3>{currentUser.username}</h3>
 
             <input
               type="file"
@@ -71,14 +96,6 @@ function Profile() {
               style={{ display: "none" }}
             />
           </label>
-          <Form.Group>
-            <Form.Control
-              type="text"
-              placeholder="User Name"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-            />
-          </Form.Group>
         </Col>
         <Col md={8}>
           <Form.Group>
@@ -120,41 +137,13 @@ function Profile() {
       </Row>
       <Button className="btn"
         variant="primary"
-        onClick={(e) => {
-          const allUsers = JSON.parse(localStorage.getItem("AllUsers") || "[]");
-
-
-
-
-
-
-          currentUser.image = image;
-          currentUser.nickname = nickname;
-          currentUser.username = userName;
-
-          localStorage.setItem("LoggedUser", JSON.stringify(currentUser));
-        
-        
-          allUsers.map((el) => {
-            if (el.username === currentUser.username) {
-              el = currentUser;
-              // el.image = image;
-              // el.nickname = nickname;
-            }
-          });
-
-          localStorage.setItem("AllUsers", JSON.stringify(allUsers));
-          console.log(allUsers);
-        }}
+        onClick={updateProfile}
       >
-        Update Profile {"."}
+        Update Profile 
 
-      </Button>{" "}
+      </Button>
 
-      <Button variant="primary" onClick={(e) => { 
-  localStorage.removeItem("LoggedUser"); 
-  navigate("/");
-}}>
+      <Button variant="primary" onClick={logOut}>
   Log Out
 </Button>
 
