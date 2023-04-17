@@ -6,6 +6,7 @@ import Videos from "../homePage/Videos";
 import { makeAPICall } from "../../utils/makeAPICall";
 import historyManager from "../../models/HistoryManager";
 import Comments from "./Comments/Comments";
+import AddToPlaylistBtn from "./AddToPlaylistBtn";
 
 import styles from "./VideoPlayerPage.module.scss";
 
@@ -55,7 +56,7 @@ const VideoPlayerPage = () => {
   }
 
   function showPlaylistsBlock() {
-    
+
     console.log("Show user's playlists");
   }
 
@@ -110,7 +111,8 @@ const VideoPlayerPage = () => {
                 {parseInt(likeCount).toLocaleString()} likes
               </span>
             </div>
-            <button onClick={showPlaylistsBlock} className={styles.addToPlaylistBtn} >Add to playlist</button>
+            {/* <button onClick={showPlaylistsBlock} className={styles.addToPlaylistBtn} >Add to playlist</button> */}
+            <AddToPlaylistBtn videoID={id}/>
             <div className="like-dislike-container">
               <button
                 className={`${styles.button} ${isLikeClicked ? styles.clicked : styles.notClicked

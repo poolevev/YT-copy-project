@@ -1,4 +1,4 @@
-class Playlist {
+export class Playlist {
     constructor(username, playlistID, playlistName, videos) {
         this.playlistID = playlistID;
         this.playlistName = playlistName;
@@ -26,15 +26,43 @@ class PlaylistsManager {
 
             this.allPlaylists.push(new Playlist(username, playlistID, playlistName, videos));
             localStorage.setItem("AllPlaylists", JSON.stringify(this.allPlaylists));
+            console.log("Playlist created")
         }
 
     }
 
-    addVideoToPlaylist = () => {
+    deletePlaylist = (username, playlistID) => {
+        let loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));
+        let isDeletionAvailable = loggedUser.username === username;
+        if (isDeletionAvailable) {
+            let playlistIndex = this.allPlaylists.findIndex(playlistItem => playlistItem.playlistID === playlistID)
+            this.allPlaylists.splice(playlistIndex, 1);
+            localStorage.setItem("AllPlaylists", JSON.stringify(this.allPlaylists));
+            console.log("Playlist deleted")
+        }
+
 
     }
 
-    removeVideoFromPlaylist = () => {
+    addVideoToPlaylist = (playlistID, videoID) => {
+        let currentPlaylist = this.allPlaylists.find(playlist => playlist.playlistID === playlistID);
+        let currentPlaylistIndex = this.allPlaylists.findIndex(playlist => playlist.playlistID === playlistID);
+        currentPlaylist.videos.push(videoID);
+        this.allPlaylists.splice(currentPlaylistIndex, 1, currentPlaylist);
+        localStorage.setItem("AllPlaylists", JSON.stringify(this.allPlaylists));
+        console.log("added to playlist")
+
+    }
+
+    removeVideoFromPlaylist = (playlistID, videoID) => {
+        let currentPlaylist = this.allPlaylists.find(playlist => playlist.playlistID === playlistID);
+        let currentPlaylistIndex = this.allPlaylists.findIndex(playlist => playlist.playlistID === playlistID);
+        let currentVideoIdIndex = currentPlaylist.videos.findIndex(videoId => videoId === videoID);
+        console.log(currentPlaylist);
+        currentPlaylist.videos.splice(currentVideoIdIndex, 1);
+        this.allPlaylists.splice(currentPlaylistIndex, 1, currentPlaylist);
+        localStorage.setItem("AllPlaylists", JSON.stringify(this.allPlaylists));
+        console.log("removed from the playlist")
 
     }
 
