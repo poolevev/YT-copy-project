@@ -8,7 +8,7 @@ let imageIsExist = currentUser ? currentUser.hasOwnProperty("image") : false;
 const initialState = {
   profilePic: imageIsExist
     ? currentUser.image
-    : "https://upload.wikimedia.org/wikipedia/commons/3/30/Chuck_Norris_May_2015.jpg",
+    : "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSeAzNngALaMgX_uPPT6wYYjXjszPQgPBCGu_r4Vj4U6hz7WlXj",
   username: "",
   isLoggedIn: false
 };
