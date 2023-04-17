@@ -81,7 +81,7 @@ const RegisterPage = () => {
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username">Username:</label>
-        <input
+        <input style={{marginLeft: "54px", marginBottom: "3px"}}
           type="text"
           id="username"
           value={username}
@@ -93,7 +93,7 @@ const RegisterPage = () => {
       </div>
       <div>
         <label htmlFor="password">Password:</label>
-        <input
+        <input style={{marginLeft: "58px", marginBottom: "3px"}}
           type="password"
           id="password"
           value={password}
@@ -109,7 +109,7 @@ const RegisterPage = () => {
       </div>
       <div>
         <label htmlFor="password-confirm">Confirm Password:</label>
-        <input
+        <input 
           type="password"
           id="password-confirm"
           value={passwordConfirm}
