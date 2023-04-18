@@ -40,6 +40,7 @@ const VideoPlayerPage = () => {
     setIsDislikeClicked(false);
 
   }
+
   function dislikeVideo() {
 
     if (isDislikeClicked) {
@@ -53,11 +54,6 @@ const VideoPlayerPage = () => {
     setIsDislikeClicked(!isDislikeClicked);
     setIsLikeClicked(false)
 
-  }
-
-  function showPlaylistsBlock() {
-
-    console.log("Show user's playlists");
   }
 
 
@@ -80,9 +76,8 @@ const VideoPlayerPage = () => {
 
   if (!videoDetail?.snippet) return <Loader />;
 
-  const {
-    snippet: { title, channelId, channelTitle },
-  } = videoDetail;
+  const { snippet: { title, channelId, channelTitle } } = videoDetail;
+
   // will be taken from local storage
   const viewCount = null;
   const likeCount = null;
