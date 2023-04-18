@@ -79,25 +79,31 @@ const VideoPlayerPage = () => {
   const { snippet: { title, channelId, channelTitle } } = videoDetail;
 
   // will be taken from local storage
-  const viewCount = null;
-  const likeCount = null;
+  const viewCount = 0;
+  const likeCount = 0;
 
   return (
     <div className={styles.container}>
-      <div className={styles.videoPlayerContainer}>
-        <div className={styles.videoPlayer}>
-          <ReactPlayer
-            url={`https://www.youtube.com/watch?v=${id}`}
-            className={styles.reactPlayer}
-            controls
-            width="130vh"
-            height="75vh"
-          />
-          <h5 className={styles.title}>{title}</h5>
-          <div className={styles.info}>
+      <div className={styles.playerCommentsContainer}>
+
+        <ReactPlayer
+          url={`https://www.youtube.com/watch?v=${id}`}
+          className={styles.reactPlayer}
+          //the size may be set using  state
+          controls
+        />
+        <h5 className={styles.title}>{title}</h5>
+
+        <div className={styles.info}>
+
+          <div className={styles.channelInfoContainer}>
             <Link to={`/channel/${channelId}`}>
-              <h6 className={styles.channelTitle}>{channelTitle}</h6>
+              <span>Logo</span>
+              <span className={styles.channelTitle}>{channelTitle}</span>
             </Link>
+          </div>
+
+          <div className={styles.btnsStatsContainer}>
             <div className={styles.stats}>
               <span className={styles.viewCount}>
                 {parseInt(viewCount).toLocaleString()} views
@@ -106,32 +112,34 @@ const VideoPlayerPage = () => {
                 {parseInt(likeCount).toLocaleString()} likes
               </span>
             </div>
-            {loggedUser ? <AddToPlaylistBtn videoID={id} /> : null}
-            {loggedUser ? <div className="like-dislike-container">
-              <button
-                className={`${styles.button} ${isLikeClicked ? styles.clicked : styles.notClicked
-                  }`}
-                onClick={likeVideo}
-              >
-                &#x1F44D;
-              </button>
-              <button
-                className={`${styles.button} ${isDislikeClicked ? styles.clicked : styles.notClicked
-                  }`}
-                onClick={dislikeVideo}
-              >
-                &#x1F44E;
-              </button>
-            </div> : null}
+            {loggedUser ?
+              <div className={styles.buttonsContainer}>
+                <button
+                  className={`${styles.button} ${isLikeClicked ? styles.clicked : styles.notClicked
+                    }`}
+                  onClick={likeVideo}
+                >
+                  &#x1F44D;
+                </button>
+                <button
+                  className={`${styles.button} ${isDislikeClicked ? styles.clicked : styles.notClicked
+                    }`}
+                  onClick={dislikeVideo}
+                >
+                  &#x1F44E;
+                </button>
+                <AddToPlaylistBtn videoID={id} />
+              </div>
+              : null}
           </div>
         </div>
         <Comments videoID={id} />
       </div>
-      <div className={styles.relatedVideosContainer}>
-        <div className={styles.relatedVideos}>
-          <Videos videos={videos} />
-        </div>
+
+      <div className={styles.relatedVideos}>
+        <Videos videos={videos} />
       </div>
+
     </div>
   );
 
