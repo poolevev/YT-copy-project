@@ -54,6 +54,7 @@ const RegisterPage = () => {
     if (valid) {
       const newUser = {
         username,
+        nickname: username,
         password,
       };
 
