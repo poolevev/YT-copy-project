@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Dropdown, Form, Button } from 'react-bootstrap';
+import React, { useState, useRef, useEffect } from 'react';
+import { Form, Button } from 'react-bootstrap';
 import styles from './AddToPlaylistBtn.module.scss';
 import playlistsManager from '../../models/PlaylistsManager';
 import { Playlist } from "../../models/PlaylistsManager"
@@ -44,61 +44,95 @@ const AddToPlaylistBtn = ({ videoID }) => {
         setShowCreatePlaylist(false);
     };
 
+    const buttonRef = useRef(null);
+    const createPlaylistRef = useRef(null);
+    const dropdownMenuRef = useRef(null);
+
+    useEffect(() => {
+
+        const handleClickOutside = (event) => {
+            if (
+                buttonRef.current &&
+                !buttonRef.current.contains(event.target) &&
+                dropdownMenuRef.current &&
+                !dropdownMenuRef.current.contains(event.target)
+            ) {
+                setShowDropdownMenu(false);
+            }
+
+            if (
+                buttonRef.current &&
+                !buttonRef.current.contains(event.target) &&
+                createPlaylistRef.current &&
+                !createPlaylistRef.current.contains(event.target)
+            ) {
+                setShowCreatePlaylist(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+
     return (
-        <span>
-            <Dropdown onClick={() => {
+        <span className={styles.container}>
+            <button ref={buttonRef} onClick={() => {
                 setShowDropdownMenu(!showDropdownMenu);
-            }}>
-                <Dropdown.Toggle variant="secondary" id="playlist-dropdown">
-                    Add to playlist
-                </Dropdown.Toggle>
+                setShowCreatePlaylist(false);
+            }}> Add to playlist </button>
 
-                {showDropdownMenu ? (<Dropdown.Menu >
+            {showDropdownMenu ? (<div ref={dropdownMenuRef} className={styles.menu}>
 
-                    {userPlaylists.length > 0 ? (
+                {userPlaylists.length > 0 ? (
+                    <>
+                        <span>Select the playlist</span>
+                        <ul>
+                            {userPlaylists.map((playlist) => (
+                                <li key={playlist.playlistName}>
+                                    <Form.Check
+                                        type="checkbox"
+                                        label={playlist.playlistName}
+                                        checked={Boolean(selectedPlaylists.find(playlistItem => playlistItem.playlistID === playlist.playlistID))}
+                                        onChange={() => {
+                                            handleSelectPlaylist(playlist);
+                                            setShowDropdownMenu(!showDropdownMenu);
+                                        }}
+                                    />
+                                </li>
+                            ))}
+                        </ul>
+                    </>) : (<span>No playlists yet</span>)}
 
-                        userPlaylists.map((playlist) => (
-                            <Dropdown.Item key={playlist.playlistName}>
-                                <Form.Check
-                                    type="checkbox"
-                                    label={playlist.playlistName}
-                                    checked={selectedPlaylists.find(playlistItem => playlistItem.playlistID === playlist.playlistID)}
-                                    onChange={() => handleSelectPlaylist(playlist)}
-                                />
-                            </Dropdown.Item>
-                        ))
-                    ) : (
-                        <span>No playlists yet</span>
-                    )}
+                <button className={styles.createPlaylistBtn}
+                    onClick={() => {
+                        setShowCreatePlaylist(!showCreatePlaylist);
+                        setSelectedPlaylists([]);
+                        setShowDropdownMenu(false);
+                    }}>Create new playlist</button>
 
-                    <Dropdown.Divider />
+            </div>) : null}
 
-                    <Dropdown.Item
-                        onClick={() => {
-                            setShowCreatePlaylist(true);
-                            setSelectedPlaylists([]);
-                            setShowDropdownMenu(false);
-                        }}
-                    >
-                        <button>Create new playlist</button>
-                    </Dropdown.Item>
-                </Dropdown.Menu>) : null}
-            </Dropdown>
-            {showCreatePlaylist && (
-                <div className={styles.createPlaylist}>
-                    <Form.Control
-                        type="text"
-                        placeholder="Enter playlist name"
-                        value={newPlaylistName}
-                        onChange={(e) => setNewPlaylistName(e.target.value)}
-                    />
-                    <Button variant="primary" onClick={handleCreatePlaylist}>
-                        Create
-                    </Button>
-                </div>
-            )}
+            {
+                showCreatePlaylist && (
+                    <div ref={createPlaylistRef} className={styles.createPlaylist}>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter playlist name"
+                            value={newPlaylistName}
+                            onChange={(e) => setNewPlaylistName(e.target.value)}
+                        />
+                        <button className={styles.createBtn} onClick={handleCreatePlaylist}>
+                            Create
+                        </button>
+                    </div>
+                )
+            }
 
-        </span>
+        </span >
     );
 };
 

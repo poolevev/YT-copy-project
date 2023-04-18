@@ -1,0 +1,20 @@
+.container {
+    position: relative;
+}
+
+.menu,
+.createPlaylist {
+    border-radius: 10px;
+    padding: 5px;
+    position: absolute;
+    z-index: 10;
+    background-color: #58a8d6;
+    text-align: center;
+}
+
+
+
+.createBtn,
+.createPlaylistBtn {
+    font-size: 10px;
+}
