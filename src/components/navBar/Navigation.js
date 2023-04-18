@@ -7,14 +7,15 @@ import ProfilePic from "./profilePic/ProfilePic";
 import logo from "../../img/logo.png";
 import LogoStyles from "../navBar/Logo.module.scss"; // Import the SCSS file
 import {  useDispatch } from "react-redux";
-import {  setIsUserLoggedIn } from "../../store/profileSlice";
+import {  updateUser } from "../../store/profileSlice";
 
 
 const Navigation = () => {
   const dispatch = useDispatch();
 
   let loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));
-  loggedUser && dispatch(setIsUserLoggedIn(true));
+  loggedUser && dispatch(updateUser(loggedUser));
+
 
   return (
 <div className={styles.navbar}>
@@ -30,7 +31,7 @@ const Navigation = () => {
       </Link>
     </div>
     <SearchBar />
-    <ProfilePic loggedUser={loggedUser}/>
+    <ProfilePic />
   </div>
   )
   
