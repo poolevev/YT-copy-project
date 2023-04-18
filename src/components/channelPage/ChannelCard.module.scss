@@ -1,0 +1,45 @@
+.channelCard {
+  border-radius: 20px;
+  height: 326px;
+  width: 356px;
+  margin: 0 auto;
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    width: 320px;
+  }
+
+  img {
+    border-radius: 50%;
+    height: 180px;
+    width: 180px;
+    margin: 20px 0;
+    border: 1px solid #e3e3e3;
+  }
+}
+
+.channelCardBody {
+  color: #fff;
+  text-align: center;
+
+  .card-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+  }
+
+  .card-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: gray;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .channelCard {
+    width: 100%;
+  }
+}
