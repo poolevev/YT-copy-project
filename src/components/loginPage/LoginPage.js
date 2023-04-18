@@ -50,7 +50,7 @@ const LoginPage = () => {
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username">Username:</label>
-        <input
+        <input  style={{marginBottom: "3px"}} 
           type="text"
           id="username"
           value={username}
@@ -60,7 +60,7 @@ const LoginPage = () => {
 
       <div>
         <label htmlFor="password">Password:</label>
-        <input
+        <input style={{marginLeft: "3px"}}
           type="password"
           id="password"
           value={password}

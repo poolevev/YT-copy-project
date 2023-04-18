@@ -79,7 +79,10 @@ function Profile() {
   return (
     <Container className="my-5">
       <Row>
-        <Col md={4} className="d-flex flex-column align-items-center">
+        <h2>
+          Click avatar to change it:
+        </h2>
+        <Col style={{paddingLeft: "40px"}}md={4} className="d-flex flex-column align-items-center">
           <label htmlFor="hiddenFileInput" style={{ cursor: "pointer" }}>
           <Image
   src={image || profilePic}
@@ -89,9 +92,9 @@ function Profile() {
   height={150}
   className="profilePic"
 />    
-<h3>{currentUser.username}</h3>
+<h3 style={{paddingLeft: "40px"}}>{currentUser.username}</h3>
 
-            <input
+            <input 
               type="file"
               id="hiddenFileInput"
               onChange={handleFileInputChange}
@@ -101,7 +104,7 @@ function Profile() {
         </Col>
         <Col md={8}>
           <Form.Group>
-            <Form.Control
+            <Form.Control style={{marginLeft: "20px"}}
               type="text"
               placeholder="Nickname"
               value={nickname}
@@ -109,7 +112,7 @@ function Profile() {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Control
+            <Form.Control style={{marginLeft: "20px",  marginBottom: "10px"}}
               type="password"
               placeholder="Password"
               value={password}
