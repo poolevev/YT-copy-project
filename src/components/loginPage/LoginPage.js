@@ -10,11 +10,12 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
 
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
+    setUsername(event.target.value.trim());
     setShowError(false);
   };
 

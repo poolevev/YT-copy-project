@@ -13,7 +13,7 @@ const RegisterPage = () => {
   const navigate = useNavigate();
 
   const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
+    setUsername(event.target.value.trim());
     setShowUsernameError(false);
   };
 
