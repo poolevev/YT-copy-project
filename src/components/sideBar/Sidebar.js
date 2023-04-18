@@ -16,39 +16,45 @@ function Sidebar() {
   return (
     <div className={styles.sidebar}>
       <ul className={styles.linkList}>
+      <Link to="/" >
         <li style={{paddingLeft: "20px"}}
           className={`${styles.linkItem} ${activeLink === 0 ? styles.active : ""
             }`}
           onClick={() => handleClick(0)}
         >
-          <Link to="/" >
+         
             <img src={homeLogo} alt="home Logo" height={45} />
             Home
-          </Link>
+         
         </li>
+        </Link>
+        <Link to="/shorts">
         <li
           className={`${styles.linkItem} ${activeLink === 1 ? styles.active : ""
             }`}
           onClick={() => handleClick(1)}
         >
-          <Link to="/shorts">
+         
             {" "}
             <img src={shortsLogo} alt="shorts Logo" height={45} style={{paddingLeft: "10px"}} />
 
             Shorts
-          </Link>
+       
         </li>
+        </Link>
+        <Link to={loggedUser ? "/library" : "/login"}>
         <li
           className={`${styles.linkItem} ${activeLink === 2 ? styles.active : ""
             }`}
           onClick={() => handleClick(2)}
         >
-          <Link to={loggedUser ? "/library" : "/login"}>
+         
             {" "}
             <img src={libraryLogo} alt="library Logo" height={45} style={{paddingLeft: "10px"}}/>
             Library
-          </Link>
+        
         </li>
+        </Link>
       </ul>
     </div>
   );
