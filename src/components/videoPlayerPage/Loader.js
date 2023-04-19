@@ -1,12 +1,15 @@
 import React from "react";
-import "./Loader.module.scss";
+import Spinner from 'react-bootstrap/Spinner';
+import styles from "./Loader.module.scss";
 
-const Loader = () => (
-  <div className="loader">
-    <div className="loading">
-      <h2>Loading...</h2>
+const Loader = () => {
+
+  return (
+    <div className={styles.loaderContainer}>
+      <Spinner animation="grow" variant="primary" />
+      <div classNmae={styles.loading}>Loading...</div>
     </div>
-  </div>
-);
+  )
+};
 
 export default Loader;

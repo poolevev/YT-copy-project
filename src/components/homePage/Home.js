@@ -16,7 +16,7 @@ const Home = () => {
 
   return (
     <div className={styles.homeWrapper}>
-    
+
       <div className={styles.videoContainer}>
         <Categories
           selectedCategory={selectedCategory}

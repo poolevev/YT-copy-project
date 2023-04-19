@@ -1,0 +1,46 @@
+
+class Category {
+    constructor(name, userName) {
+        this.name = name;
+        this.userName = userName;
+
+    }
+}
+
+class CategoriesManager {
+    constructor() {
+        if (!localStorage.getItem("AllCategories")) {
+            localStorage.setItem("AllCategories", JSON.stringify(this.allCategories));
+        } else {
+            this.allCategories = JSON.parse(localStorage.getItem("AllCategories"));
+        }
+    }
+
+    allCategories = [
+        { name: "All" },
+        { name: "React" },
+        { name: "IT Talents" },
+        { name: "Javascript" },
+        { name: "Music" },
+        { name: "Education" },
+        { name: "Movie" },
+        { name: "Live" },
+        { name: "Nature" },
+        { name: "Cars" },
+    ]
+
+    addCategory = (name, username) => {
+        if (this.allCategories.length < 20) {
+            this.allCategories.splice(5, 0, new Category(name, username));
+            localStorage.setItem("AllCategories", JSON.stringify(this.allCategories));
+        } else {
+            this.allCategories.splice(6, 1, new Category(name, username));
+            localStorage.setItem("AllCategories", JSON.stringify(this.allCategories));
+        }
+    }
+
+}
+
+const categoriesManager = new CategoriesManager();
+
+export default categoriesManager;

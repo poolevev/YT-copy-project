@@ -1,10 +1,16 @@
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: flex-start;
 
   .playerCommentsContainer {
+    margin-right: 50px;
+    max-width: 750px;
+
+    @media screen and (min-width: 600px) {
+      max-width: 600px;
+    }
 
     .title {
       color: #0a0000;
@@ -45,6 +51,12 @@
           display: flex;
         }
 
+        .addToPlaylistBtn {
+          &:hover {
+            background-color: #b6bcc0;
+          }
+        }
+
         .clicked {
           background-color: rgb(125, 128, 125);
           color: rgb(3, 3, 3);
@@ -67,10 +79,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 16px;
 
-    @media (min-width: 960px) {
-      padding: 8px;
+    @media (min-width: 600px) {
+      padding-left: 40px;
     }
   }
 

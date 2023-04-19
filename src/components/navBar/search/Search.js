@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import SearchIcon from "@mui/icons-material/Search";
 import styles from "./SearchBar.module.scss";
 
 const SearchBar = () => {
@@ -12,7 +11,14 @@ const SearchBar = () => {
 
     if (searchedVideos) {
       navigate(`/search/${searchedVideos}`);
-      setSearchedVideo("");
+    }
+  };
+
+  const onhandleClear = (event) => {
+    event.preventDefault();
+
+    if (searchedVideos) {
+      setSearchedVideo("")
     }
   };
 
@@ -24,8 +30,11 @@ const SearchBar = () => {
         value={searchedVideos}
         onChange={(e) => setSearchedVideo(e.target.value)}
       />
+      <button onClick={onhandleClear} className={styles.button} aria-label="search">
+        Clear
+      </button>
       <button className={styles.button} type="submit" aria-label="search">
-        <SearchIcon />
+        Search
       </button>
     </form>
   );

@@ -7,6 +7,7 @@ import { makeAPICall } from "../../utils/makeAPICall";
 import historyManager from "../../models/HistoryManager";
 import Comments from "./Comments/Comments";
 import AddToPlaylistBtn from "./AddToPlaylistBtn";
+import categoriesManager from "../../models/CategoriesManager";
 
 import styles from "./VideoPlayerPage.module.scss";
 
@@ -56,12 +57,19 @@ const VideoPlayerPage = () => {
 
   }
 
+  function addTagToCategories(tag, userName) {
+    categoriesManager.addCategory(tag, userName)
+    console.log("tag added")
+
+  }
+
 
   useEffect(() => {
     makeAPICall(`videos?part=snippet,statistics&id=${id}`).then((data) => {
       setVideoDetail(data.items[0]);
       videoSnippet = data.items[0].snippet
       setLikesVideoSnippet(videoSnippet);
+      addTagToCategories(videoSnippet.tags[0], loggedUser.username);
       addToHistory();
     }
     );
@@ -74,10 +82,13 @@ const VideoPlayerPage = () => {
     );
   }, [id]);
 
+
+
   if (!videoDetail?.snippet) return <Loader />;
 
-  const { snippet: { title, channelId, channelTitle } } = videoDetail;
+  const { snippet: { title, channelId, channelTitle, description } } = videoDetail;
 
+  console.log(videoDetail?.snippet)
   // will be taken from local storage
   const viewCount = 0;
   const likeCount = 0;
@@ -128,11 +139,12 @@ const VideoPlayerPage = () => {
                 >
                   &#x1F44E;
                 </button>
-                <AddToPlaylistBtn videoID={id} />
+                <AddToPlaylistBtn className={styles.addToPlaylistBtn} videoID={id} />
               </div>
               : null}
           </div>
         </div>
+        <p>{description}</p>
         <Comments videoID={id} />
       </div>
 

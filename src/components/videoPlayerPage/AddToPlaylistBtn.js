@@ -90,21 +90,21 @@ const AddToPlaylistBtn = ({ videoID }) => {
                 {userPlaylists.length > 0 ? (
                     <>
                         <span>Select the playlist</span>
-                        <ul>
-                            {userPlaylists.map((playlist) => (
-                                <li key={playlist.playlistName}>
-                                    <Form.Check
-                                        type="checkbox"
-                                        label={playlist.playlistName}
-                                        checked={Boolean(selectedPlaylists.find(playlistItem => playlistItem.playlistID === playlist.playlistID))}
-                                        onChange={() => {
-                                            handleSelectPlaylist(playlist);
-                                            setShowDropdownMenu(!showDropdownMenu);
-                                        }}
-                                    />
-                                </li>
-                            ))}
-                        </ul>
+
+                        {userPlaylists.map((playlist) => (
+                            <span key={playlist.playlistName}>
+                                <Form.Check
+                                    type="checkbox"
+                                    label={playlist.playlistName}
+                                    checked={Boolean(selectedPlaylists.find(playlistItem => playlistItem.playlistID === playlist.playlistID))}
+                                    onChange={() => {
+                                        handleSelectPlaylist(playlist);
+                                        setShowDropdownMenu(!showDropdownMenu);
+                                    }}
+                                />
+                            </span>
+                        ))}
+
                     </>) : (<span>No playlists yet</span>)}
 
                 <button className={styles.createPlaylistBtn}
