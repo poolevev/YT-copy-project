@@ -28,6 +28,12 @@ button {
   }
 }
 
+.buttonClear,
+.buttonMic {
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
 .buttonSrc {
   border-radius: 0 20px 20px 0;
   border-left: 1px solid #e3e3e3;
