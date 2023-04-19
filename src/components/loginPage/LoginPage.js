@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setIsUserLoggedIn } from "../../store/profileSlice";
+import { updateUser } from "../../store/profileSlice";
 
 
 import React, { useState } from "react";
@@ -43,7 +43,7 @@ const LoginPage = () => {
       setPassword("");
       navigate(`/`);
 
-      dispatch(setIsUserLoggedIn(true))
+      dispatch(updateUser(user))
     }
   };
 

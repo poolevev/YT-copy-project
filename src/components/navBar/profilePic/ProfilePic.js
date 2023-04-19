@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Image } from "react-bootstrap";
 
-const ProfilePic = ({ loggedUser }) => {
-  const isUserLoggedIn = useSelector((state) => state.profile.isLoggedIn);
+const ProfilePic = () => {
+  const user = useSelector((state) => state.profile);
   const profilePic = useSelector((state) => state.profile.profilePic);
 
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
-      {isUserLoggedIn ? (
+      {user.isLoggedIn ? (
         <>
           <Image
             src={profilePic}
@@ -20,7 +20,7 @@ const ProfilePic = ({ loggedUser }) => {
             className="navBar_profilePic"
             style={{ marginRight: "10px" }}
           />
-         <Link to="/profile">Hello, {loggedUser?.username}</Link>
+         <Link to="/profile">Hello, {user?.nickname}</Link>
         </>
       ) : (
         <Link to="/login">Login</Link>

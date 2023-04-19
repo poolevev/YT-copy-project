@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { changeProfilePic, setIsUserLoggedIn } from "../../store/profileSlice";
+import { changeProfilePic, logout, updateUser } from "../../store/profileSlice";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 
@@ -11,10 +11,15 @@ function Profile() {
   const [nickname, setNickname] = useState(
     currentUser ? currentUser.nickname : ""
   );
+  const [showPasswordError, setShowPasswordError] = useState(false);
+  const [showCurrentPasswordError, setShowCurrentPasswordError] =
+    useState(false);
 
-  const [image, setImage] = useState(currentUser.image || '');
-  const [password, setPassword] = useState();
- 
+  const [image, setImage] = useState(currentUser.image || "");
+  const [password, setPassword] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+
+
   // const [lastName, setLastName] = useState('Doe');
   // const [dob, setDob] = useState('');
   // const [sex, setSex] = useState('male');
@@ -25,76 +30,111 @@ function Profile() {
   // const [imageSrc, setImageSrc] = useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9IpC2U8VG2ZIvbjGospiXbQQ76X_kjB16dOetFwjdcQ&s")
   const profilePic = useSelector((state) => state.profile.profilePic);
 
+  const updateAllUsers = (updatedUser) => {
+    const allUsers = JSON.parse(localStorage.getItem("AllUsers") || "[]");
+    const currentUserFromStorage = allUsers.find(
+      (user) => user.username === updatedUser.username
+    );
+    const filteredUsers = allUsers.filter(
+      (user) => user.username !== updatedUser.username
+    );
+    const newUser = {
+      ...currentUserFromStorage,
+      ...updatedUser,
+    };
+    const newUsers = [...filteredUsers, newUser];
+
+    localStorage.setItem("AllUsers", JSON.stringify(newUsers));
+  };
+
   const handleFileInputChange = (event) => {
     const file = event.target.files[0];
-  
+
     const reader = new FileReader();
     reader.readAsDataURL(file);
-  
+
     reader.onload = () => {
       const base64String = reader.result;
       setImage(base64String);
       dispatch(changeProfilePic(base64String));
-  
+
       // Update currentUser object and localStorage with the base64 string
       const updatedUser = {
         ...currentUser,
         image: base64String,
       };
       localStorage.setItem("LoggedUser", JSON.stringify(updatedUser));
+      updateAllUsers(updatedUser);
     };
-  
+
     reader.onerror = (error) => {
       console.error("Error converting file to base64:", error);
     };
   };
 
-  const updateProfile = () => {
-    currentUser.image = image;
+  const updateNickname = () => {
     currentUser.nickname = nickname;
-    currentUser.password = password;
-    
+
     localStorage.setItem("LoggedUser", JSON.stringify(currentUser));
+    dispatch(updateUser(currentUser));
+    updateAllUsers(currentUser);
+  };
 
+  const updatePassword = () => {
+    let valid = true;
 
-    const allUsers = JSON.parse(localStorage.getItem("AllUsers") || "[]");
-    const currentUserFromStorage = allUsers.find((user) => user.username === currentUser.username);
-    const filteredUsers = allUsers.filter(user => user.username !== currentUser.username)
-    const newUser = {
-      ...currentUserFromStorage,
-      ...currentUser
+    if (currentPassword !== currentUser.password) {
+      setShowCurrentPasswordError(true);
+      valid = false;
+    }else {
+      setShowCurrentPasswordError(false);
     }
-    const newUsers = [...filteredUsers, newUser]
 
-    localStorage.setItem("AllUsers", JSON.stringify(newUsers));
-  }
-  
+    const passwordRegex =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{6,}$/;
+    if (!passwordRegex.test(password)) {
+      setShowPasswordError(true);
+      valid = false;
+    } else {
+      setShowPasswordError(false);
+    }
+
+    if (valid) {
+      currentUser.password = password;
+
+      localStorage.setItem("LoggedUser", JSON.stringify(currentUser));
+      updateAllUsers(currentUser);
+    }
+  };
+
   const logOut = () => {
-    localStorage.removeItem("LoggedUser"); 
+    localStorage.removeItem("LoggedUser");
     navigate("/");
-  
-    dispatch(setIsUserLoggedIn(false))
-  }
+
+    dispatch(logout());
+  };
 
   return (
     <Container className="my-5">
       <Row>
-        <h2>
-          Click avatar to change it:
-        </h2>
-        <Col style={{paddingLeft: "40px"}}md={4} className="d-flex flex-column align-items-center">
+        <h2>Click avatar to change it:</h2>
+        <Col
+          style={{ paddingLeft: "40px" }}
+          md={4}
+          className="d-flex flex-column align-items-center"
+        >
           <label htmlFor="hiddenFileInput" style={{ cursor: "pointer" }}>
-          <Image
-  src={image || profilePic}
-  alt="Profile"
-  roundedCircle
-  width={150}
-  height={150}
-  className="profilePic"
-/>    
-<h3 style={{paddingLeft: "40px"}}>{currentUser.username}</h3>
+            <Image
+              src={image || profilePic}
+              alt="Profile"
+              roundedCircle
+              width={150}
+              height={150}
+              className="profilePic"
+            />
+            <h3 style={{ paddingLeft: "40px" }}>{currentUser.username}</h3>
 
-            <input 
+            <input
               type="file"
               id="hiddenFileInput"
               onChange={handleFileInputChange}
@@ -104,21 +144,50 @@ function Profile() {
         </Col>
         <Col md={8}>
           <Form.Group>
-            <Form.Control style={{marginLeft: "20px"}}
+            <Form.Control
+              style={{ marginLeft: "20px" }}
               type="text"
               placeholder="Nickname"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
             />
+            <Button className="btn" variant="primary" onClick={updateNickname}>
+              Update Nickname
+            </Button>
           </Form.Group>
+
           <Form.Group>
-            <Form.Control style={{marginLeft: "20px",  marginBottom: "10px"}}
+            <Form.Control
+              style={{ marginLeft: "20px", marginBottom: "10px" }}
               type="password"
-              placeholder="Password"
-              value={password}
+              placeholder="Current Password"
+              onChange={(e) => setCurrentPassword(e.target.value)}
+            />
+            {showCurrentPasswordError && (
+              <span className="error">Password doesn't match</span>
+            )}
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Control
+              style={{ marginLeft: "20px", marginBottom: "10px" }}
+              type="password"
+              placeholder="New Password"
               onChange={(e) => setPassword(e.target.value)}
             />
+            {showPasswordError && (
+              <span className="error">
+                Password must be at least 6 characters long and contain at least
+                1 uppercase letter, 1 lowercase letter, 1 number, and 1 special
+                character
+              </span>
+            )}
+
+            <Button className="btn" variant="primary" onClick={updatePassword}>
+              Update Password
+            </Button>
           </Form.Group>
+
           {/* <Form.Group>
             <Form.Control
               type="date"
@@ -140,20 +209,10 @@ function Profile() {
           </Form.Group> */}
         </Col>
       </Row>
-      <Button className="btn"
-        variant="primary"
-        onClick={updateProfile}
-      >
-        Update Profile 
-
-      </Button>
 
       <Button variant="primary" onClick={logOut}>
-  Log Out
-</Button>
-
-    
-    
+        Log Out
+      </Button>
     </Container>
   );
 }
