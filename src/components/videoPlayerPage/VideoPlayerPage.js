@@ -23,6 +23,7 @@ const VideoPlayerPage = () => {
   const [moreVideos, setMoreVideos] = useState(null);
   let videoSnippet = null;
   const [fullDescription, setFullDescription] = useState(false);
+  const [logoLink, setLogoLink] = useState("../../img/logo.png")
 
 
   function addToHistory() {
@@ -82,6 +83,12 @@ const VideoPlayerPage = () => {
       setLikesVideoSnippet(videoSnippet);
       addTagToCategories(videoSnippet.tags[0], loggedUser.username);
       addToHistory();
+      makeAPICall(`channels?part=snippet&id=${data.items[0].snippet.channelId}`).then(
+        (data) => {
+          console.log(data?.items[0].snippet.thumbnails.default)
+          setLogoLink(data?.items[0].snippet.thumbnails.default.url)
+        }
+      );
     }
     );
 
@@ -92,15 +99,19 @@ const VideoPlayerPage = () => {
 
       }
     );
+
+
+
+
   }, [id]);
 
 
   if (!videoDetail?.snippet) return <Loader />;
-
-  const { snippet: { title, channelId, channelTitle, description } } = videoDetail;
+  console.log(videoDetail)
+  const { snippet: { title, channelId, channelTitle, description }, statistics: { viewCount, likeCount } } = videoDetail;
   const currentVideoArray = historyManager.allHistory.filter(videoHistory => videoHistory.videoID === id);
-  const viewCount = currentVideoArray.length;
-  const likeCount = currentVideoArray?.filter(video => video.isLiked === true).length
+  const localViewCount = currentVideoArray.length;
+  const localLikeCount = currentVideoArray?.filter(video => video.isLiked === true).length
   const regex = /\b(https?:\/\/\S+)\b/g;
 
 
@@ -120,7 +131,7 @@ const VideoPlayerPage = () => {
 
           <div className={styles.channelInfoContainer}>
             <Link to={`/channel/${channelId}`}>
-              <span>Logo</span>
+              <img className={styles.channelLogo} src={logoLink} alt={"Channel Logo"} />
               <span className={styles.channelTitle}>{channelTitle}</span>
             </Link>
           </div>
@@ -128,10 +139,10 @@ const VideoPlayerPage = () => {
           <div className={styles.btnsStatsContainer}>
             <div className={styles.stats}>
               <span className={styles.viewCount}>
-                {parseInt(viewCount).toLocaleString()} views
+                {parseInt(localViewCount).toLocaleString()} views
               </span>
               <span className={styles.likeCount}>
-                {parseInt(likeCount).toLocaleString()} likes
+                {parseInt(localLikeCount).toLocaleString()} likes
               </span>
             </div>
             {loggedUser ?

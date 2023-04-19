@@ -28,6 +28,11 @@
       .channelInfoContainer {
         display: flex;
 
+        .channelLogo {
+          border-radius: 50%;
+          width: 40px;
+        }
+
         .channelTitle {
           text-decoration: none;
           font-size: 16px;
