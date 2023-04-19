@@ -30,10 +30,12 @@ class CategoriesManager {
     ]
 
     addCategory = (name, username) => {
-        if (this.allCategories.length < 20) {
+        let existingCategory = this.allCategories.find(category => category.name === name);
+
+        if (this.allCategories.length < 20 && !existingCategory) {
             this.allCategories.splice(5, 0, new Category(name, username));
             localStorage.setItem("AllCategories", JSON.stringify(this.allCategories));
-        } else {
+        } else if (!existingCategory) {
             this.allCategories.splice(6, 1, new Category(name, username));
             localStorage.setItem("AllCategories", JSON.stringify(this.allCategories));
         }

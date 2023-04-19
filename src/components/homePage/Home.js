@@ -5,7 +5,7 @@ import { makeAPICall } from '../../utils/makeAPICall.js';
 import styles from './Home.module.scss';
 
 const Home = () => {
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState('Beautifull video');
   const [videos, setVideos] = useState(null);
 
   useEffect(() => {

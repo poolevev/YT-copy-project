@@ -28,7 +28,8 @@ ul li {
 button {
 	display: block;
 	font: inherit;
-	border: 1px solid gray;
 	cursor: pointer;
 	transition: .4s;
+	background-color: #f0eaea;
+
 }

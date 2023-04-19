@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./SearchBar.module.scss";
 import { BsMic, BsXLg, BsSearch } from "react-icons/bs"
@@ -6,7 +6,7 @@ import { BsMic, BsXLg, BsSearch } from "react-icons/bs"
 
 const SearchBar = () => {
   const [searchedVideos, setSearchedVideo] = useState("");
-  const [isClearIcon, setIsClearIcon] = useState(true);
+  const [showClearIcon, setShowClearIcon] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -19,7 +19,6 @@ const SearchBar = () => {
 
   const handleClear = (event) => {
     event.preventDefault();
-
     if (searchedVideos) {
       setSearchedVideo("")
     }
@@ -42,12 +41,15 @@ const SearchBar = () => {
         className={styles.input}
         placeholder="Search..."
         value={searchedVideos}
-        onChange={(e) => setSearchedVideo(e.target.value)}
+        onChange={(e) => {
+          setSearchedVideo(e.target.value);
+          setShowClearIcon(true);
+        }}
       />
       <button onClick={handleVoiceSearch} className={styles.buttonMic} aria-label="search">
         <BsMic />
       </button>
-      {isClearIcon && <button onClick={handleClear} className={styles.buttonClear} aria-label="search">
+      {showClearIcon && <button onClick={handleClear} className={styles.buttonClear} aria-label="search">
         <BsXLg />
       </button>}
       <button className={styles.buttonSrc} type="submit" aria-label="search">

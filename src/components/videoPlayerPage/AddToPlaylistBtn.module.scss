@@ -1,14 +1,16 @@
 .container {
     position: relative;
+    color: black;
 }
 
 .menu,
 .createPlaylist {
+    color: black;
     border-radius: 10px;
     padding: 5px;
     position: absolute;
     z-index: 10;
-    background-color: #58a8d6;
+    background-color: #f0eaea;
     text-align: center;
 }
 
@@ -16,8 +18,18 @@
 
 .createBtn,
 .createPlaylistBtn {
-    font-size: 10px;
-    &:hover{
-        background-color: #b6bcc0;
+    border-radius: 0 20px 20px 0;
+    font-size: 14px;
+    color: black;
+    color: rgb(141, 142, 143);
+
+    &:hover {
+        background-color: rgb(221, 218, 218);
+        ;
     }
+}
+
+.infoText {
+    color: black;
+
 }

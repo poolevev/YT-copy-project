@@ -1,5 +1,15 @@
+.loaderContainer {
+  height: 50%;
+  width: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .loading {
-font-weight: 500;
+  margin: 0 auto;
+  font-weight: 500;
   font-size: 18px;
   color: #050505;
 }

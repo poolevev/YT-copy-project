@@ -6,38 +6,32 @@ import CommentInput from "./CommentInput";
 const Comments = ({ videoID }) => {
 
     const [comments, setComments] = useState([]);
-    const [showMore, setShowMore] = useState(true);
     const loggedUser = JSON.parse(localStorage.getItem('LoggedUser'));
     const allComments = JSON.parse(localStorage.getItem('AllComments') || "[]");
-    const initialComments = allComments.filter(comment => comment.videoID === videoID);
+    const currentComments = allComments.filter(comment => comment.videoID === videoID);
+    const [showMore, setShowMore] = useState(currentComments.length > 3);
 
     useEffect(() => {
-
-        if (allComments.length) {
-
-            setComments(initialComments);
+        if (currentComments.length) {
+            setComments(currentComments.slice(0, 3));
         }
     }, []);
 
     const loadMore = () => {
         const newLength = comments.length + 3;
+        const newComments = currentComments.slice(0, newLength);
+        setComments(newComments);
 
-        if (allComments) {
-            const moreComments = initialComments.slice(0, newLength);
-            setComments(moreComments);
-
-            if (moreComments.length >= initialComments.length) {
-                setShowMore(false);
-            }
+        if (newComments.length >= currentComments.length) {
+            setShowMore(false);
         }
     }
 
-
     return (
         <div>
-            <h2> {comments.length} Comments</h2>
+            <h2> {currentComments.length} Comments</h2>
 
-            {loggedUser ? <CommentInput videoID={videoID} addNewComments = {setComments}/> : null}
+            {loggedUser ? <CommentInput videoID={videoID} addNewComments={setComments} /> : null}
 
             {comments.length > 0 ? (
                 <div>

@@ -6,8 +6,7 @@ const Loader = () => {
 
   return (
     <div className={styles.loaderContainer}>
-      <Spinner animation="grow" variant="primary" />
-      <div classNmae={styles.loading}>Loading...</div>
+      <Spinner className = {styles.loading} animation="grow" variant="dark" />
     </div>
   )
 };
