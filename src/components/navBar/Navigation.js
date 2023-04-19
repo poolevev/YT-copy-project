@@ -25,7 +25,7 @@ const Navigation = () => {
       <img
         src={logo}
         alt="xxx Logo"
-        height={45}
+        height={35}
         className={LogoStyles.logo}
       />
       </Link>
