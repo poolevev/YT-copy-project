@@ -3,8 +3,8 @@ import styles from './Videos.module.scss';
 import VideoCard from "./VideoCard"
 
 
-const Videos = ({ videos }) => {
-    const [videosNumber, setVideosNumber] = useState(9);
+const Videos = ({ videos, initialVideosNumber }) => {
+    const [videosNumber, setVideosNumber] = useState(initialVideosNumber || 9);
 
     useEffect(() => {
 

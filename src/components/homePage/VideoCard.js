@@ -3,10 +3,15 @@ import { Link } from 'react-router-dom';
 import { defaultThumbnailUrl, defaultVideoUrl, defaultVideoTitle, defaultChannelUrl, defaultChannelTitle } from '../../utils/defaultVideo';
 import styles from './VideoCard.module.scss';
 
-const VideoCard = ({ video: { id: { videoId }, snippet } }) => (
+const VideoCard = ({ video: { id: { videoId }, snippet } }) => {
+  const isShortsPage =  window.location.pathname === '/shorts';
+
+
+ return (
   <div className={styles.container}>
-    <div className={styles.card}>
+    <div className={isShortsPage ? styles.shortcard : styles.card}>
       <Link to={videoId ? `/video/${videoId}` : `/video/PVc1yFV0p40`}>
+     
         <img
           src={snippet?.thumbnails?.high?.url || defaultThumbnailUrl}
           alt={snippet?.title}
@@ -29,5 +34,6 @@ const VideoCard = ({ video: { id: { videoId }, snippet } }) => (
     </div>
   </div>
 );
+  }
 
 export default VideoCard;
