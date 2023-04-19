@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeProfilePic, logout, updateUser } from "../../store/profileSlice";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
+import styles from "./profile.module.scss"
 
 function Profile() {
   // State variables for the user's profile information
