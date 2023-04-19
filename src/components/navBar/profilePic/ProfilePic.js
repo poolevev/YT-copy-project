@@ -12,7 +12,7 @@ const ProfilePic = () => {
       {user.isLoggedIn ? (
         <>
           <Image
-            src={profilePic}
+            src={profilePic || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9IpC2U8VG2ZIvbjGospiXbQQ76X_kjB16dOetFwjdcQ&s"}
             alt="Profile"
             roundedCircle
             width={30}
