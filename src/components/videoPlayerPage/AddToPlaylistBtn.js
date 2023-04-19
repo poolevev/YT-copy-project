@@ -105,14 +105,14 @@ const AddToPlaylistBtn = ({ videoID }) => {
                             </span>
                         ))}
 
-                    </>) : (<span>No playlists yet</span>)}
+                    </>) : (<span className={styles.infoText}>No playlists yet</span>)}
 
                 <button className={styles.createPlaylistBtn}
                     onClick={() => {
                         setShowCreatePlaylist(!showCreatePlaylist);
                         setSelectedPlaylists([]);
                         setShowDropdownMenu(false);
-                    }}>Create new playlist</button>
+                    }}>Create new</button>
 
             </div>) : null}
 

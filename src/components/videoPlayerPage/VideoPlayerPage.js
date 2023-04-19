@@ -22,6 +22,7 @@ const VideoPlayerPage = () => {
   const [isDislikeClicked, setIsDislikeClicked] = useState(alreadyViewedVideo?.isLiked === false ? true : false);
   const [moreVideos, setMoreVideos] = useState(null);
   let videoSnippet = null;
+  const [fullDescription, setFullDescription] = useState(false);
 
 
   function addToHistory() {
@@ -68,6 +69,11 @@ const VideoPlayerPage = () => {
     setVideos(moreVideos);
   }
 
+  function handleFullDescription(description) {
+    setFullDescription(description);
+
+  }
+
 
   useEffect(() => {
     makeAPICall(`videos?part=snippet,statistics&id=${id}`).then((data) => {
@@ -92,10 +98,11 @@ const VideoPlayerPage = () => {
   if (!videoDetail?.snippet) return <Loader />;
 
   const { snippet: { title, channelId, channelTitle, description } } = videoDetail;
-
   const currentVideoArray = historyManager.allHistory.filter(videoHistory => videoHistory.videoID === id);
   const viewCount = currentVideoArray.length;
   const likeCount = currentVideoArray?.filter(video => video.isLiked === true).length
+  const regex = /\b(https?:\/\/\S+)\b/g;
+
 
   return (
     <div className={styles.container}>
@@ -148,7 +155,12 @@ const VideoPlayerPage = () => {
               : null}
           </div>
         </div>
-        <p>{description}</p>
+        <div>
+          {!fullDescription ? <p dangerouslySetInnerHTML={{ __html: (description.slice(0, 300).replace(regex, '<a href="$1">$1</a>')) }} /> : null}
+          {fullDescription ? <p dangerouslySetInnerHTML={{ __html: (fullDescription.replace(regex, '<a href="$1">$1</a>')) }} /> : null}
+          {!fullDescription ? <button onClick={() => handleFullDescription(description)}>Show more</button> : null}
+          {fullDescription ? <button onClick={() => handleFullDescription(false)}>Show less</button> : null}
+        </div>
         <Comments videoID={id} />
       </div>
 
