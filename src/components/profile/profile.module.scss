@@ -1,4 +1,12 @@
-// body {
-//     background-image: url("../../img/profileBackground.jpg");
-//     background-repeat: no-repeat;
-//   }
+.profileContainer{
+    background-image: url("../../img/profileBackground.jpg");
+    background-size: contain;
+
+height: 100vh;
+}
+
+text, span{
+   color:cyan 
+}
+
+  

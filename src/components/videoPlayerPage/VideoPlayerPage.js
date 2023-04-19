@@ -20,6 +20,7 @@ const VideoPlayerPage = () => {
   const [likesVideoSnippet, setLikesVideoSnippet] = useState(null);
   const [isLikeClicked, setIsLikeClicked] = useState(alreadyViewedVideo?.isLiked === true ? true : false);
   const [isDislikeClicked, setIsDislikeClicked] = useState(alreadyViewedVideo?.isLiked === false ? true : false);
+  const [moreVideos, setMoreVideos] = useState(null);
   let videoSnippet = null;
 
 
@@ -63,6 +64,10 @@ const VideoPlayerPage = () => {
 
   }
 
+  function handleShowMoreRelated() {
+    setVideos(moreVideos);
+  }
+
 
   useEffect(() => {
     makeAPICall(`videos?part=snippet,statistics&id=${id}`).then((data) => {
@@ -76,22 +81,21 @@ const VideoPlayerPage = () => {
 
     makeAPICall(`search?part=snippet&relatedToVideoId=${id}&type=video`).then(
       (data) => {
-        setVideos(data.items);
+        setMoreVideos(data.items);
+        setVideos(data.items.slice(0, 10));
 
       }
     );
   }, [id]);
 
 
-
   if (!videoDetail?.snippet) return <Loader />;
 
   const { snippet: { title, channelId, channelTitle, description } } = videoDetail;
 
-  console.log(videoDetail?.snippet)
-  // will be taken from local storage
-  const viewCount = 0;
-  const likeCount = 0;
+  const currentVideoArray = historyManager.allHistory.filter(videoHistory => videoHistory.videoID === id);
+  const viewCount = currentVideoArray.length;
+  const likeCount = currentVideoArray?.filter(video => video.isLiked === true).length
 
   return (
     <div className={styles.container}>
@@ -150,6 +154,7 @@ const VideoPlayerPage = () => {
 
       <div className={styles.relatedVideos}>
         <Videos videos={videos} />
+        <button onClick={handleShowMoreRelated}>Show more</button>
       </div>
 
     </div>

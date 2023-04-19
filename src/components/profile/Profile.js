@@ -116,12 +116,12 @@ function Profile() {
   };
 
   return (
-    <Container className="my-5">
+    <Container className={styles.profileContainer}>
       <Row>
-        <h2>Click avatar to change it:</h2>
+        <text>Click avatar to change it:</text>
         <Col
           style={{ paddingLeft: "40px" }}
-          md={4}
+          md={3}
           className="d-flex flex-column align-items-center"
         >
           <label htmlFor="hiddenFileInput" style={{ cursor: "pointer" }}>
@@ -133,7 +133,7 @@ function Profile() {
               height={150}
               className="profilePic"
             />
-            <h3 style={{ paddingLeft: "40px" }}>{currentUser.username}</h3>
+            <text style={{ paddingLeft: "40px" }}>{currentUser.username}</text>
 
             <input
               type="file"
@@ -143,12 +143,14 @@ function Profile() {
             />
           </label>
         </Col>
-        <Col md={8}>
+        <Col md={5}>
+          <text>Write down new nickname:</text>
           <Form.Group>
             <Form.Control
-              style={{ marginLeft: "20px" }}
+              // style={{ marginLeft: "20px" }}
               type="text"
               placeholder="Nickname"
+              
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
             />
@@ -156,10 +158,11 @@ function Profile() {
               Update Nickname
             </Button>
           </Form.Group>
+          <text>Change password if needed:</text>
 
           <Form.Group>
             <Form.Control
-              style={{ marginLeft: "20px", marginBottom: "10px" }}
+              style={{  marginBottom: "10px" }}
               type="password"
               placeholder="Current Password"
               onChange={(e) => setCurrentPassword(e.target.value)}
@@ -169,9 +172,10 @@ function Profile() {
             )}
           </Form.Group>
 
+         
           <Form.Group>
             <Form.Control
-              style={{ marginLeft: "20px", marginBottom: "10px" }}
+              style={{  marginBottom: "10px" }}
               type="password"
               placeholder="New Password"
               onChange={(e) => setPassword(e.target.value)}
@@ -210,10 +214,11 @@ function Profile() {
           </Form.Group> */}
         </Col>
       </Row>
+        <Button style={{ display: "block", width: "auto" }} variant="primary" onClick={logOut}>
+  Log out
 
-      <Button variant="primary" onClick={logOut}>
-        Log Out
       </Button>
+
     </Container>
   );
 }

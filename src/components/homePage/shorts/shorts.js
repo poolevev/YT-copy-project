@@ -16,7 +16,7 @@ const Shorts = () => {
 
   return (
     <div className={styles.videoContainerShorts}>
-      <Videos videos={videos} />
+      <Videos videos={videos} initialVideosNumber={30}/>
     </div>
   );
 };
