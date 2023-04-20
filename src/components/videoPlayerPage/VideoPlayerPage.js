@@ -118,9 +118,10 @@ const VideoPlayerPage = () => {
     <div className={styles.container}>
       <div className={styles.playerCommentsContainer}>
 
-        <ReactPlayer
+      <ReactPlayer 
           url={`https://www.youtube.com/watch?v=${id}`}
           className={styles.reactPlayer}
+          onReady={() => console.log('onReady')}
           //the size may be set using  state
           controls
         />

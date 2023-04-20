@@ -3,6 +3,8 @@ import { Container, Row, Col, Form, Image } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import styles from "./RegisterPage.module.scss";
+
 
 const RegisterPage = () => {
   const [username, setUsername] = useState("");
@@ -10,8 +12,8 @@ const RegisterPage = () => {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [showUsernameError, setShowUsernameError] = useState(false);
   const [showPasswordError, setShowPasswordError] = useState(false);
-  const [showPasswordConfirmError, setShowPasswordConfirmError] =
-    useState(false);
+  const [showPasswordConfirmError, setShowPasswordConfirmError] = useState(false);
+  const [showRegisterSuccessful, setShowRegisterSuccessful] = useState(false);
   const navigate = useNavigate();
 
   const handleUsernameChange = (event) => {
@@ -75,28 +77,32 @@ const RegisterPage = () => {
       setUsername("");
       setPassword("");
       setPasswordConfirm("");
-
+      setShowRegisterSuccessful (true)
+      setTimeout(() => {
       navigate(`/login`);
+    }, 2000);
     }
   };
 
   return (
-    <Container>
+    <Container className={styles.profileContainer}
+    style={{ marginTop: "50px"}}>
       <Row>
-        <Col>
+        <Col   style={{ marginTop: "60px", marginLeft: "500px" }}
+          md={3}
+          className="d-flex flex-column align-items-center">
           <form onSubmit={handleSubmit}>
             <div>
               <label htmlFor="username">Username:</label>
               <input
+               style={{ marginLeft: "5px" }}
                 type="text"
                 id="username"
                 value={username}
                 onChange={handleUsernameChange}
                 className="form-control"
               />
-              {showUsernameError && (
-                <span className="error">Please enter a username</span>
-              )}
+            
             </div>
             <div>
               <label htmlFor="password">Password:</label>
@@ -107,11 +113,7 @@ const RegisterPage = () => {
                 onChange={handlePasswordChange}
                 className="form-control"
               />
-              {showPasswordError && (
-                <span className="error">
-                  Password must be at least 6 characters long and contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character
-                </span>
-              )}
+             
             </div>
             <div>
               <label htmlFor="password-confirm">Confirm Password:</label>
@@ -122,14 +124,34 @@ const RegisterPage = () => {
                 onChange={handlePasswordConfirmChange}
                 className="form-control"
               />
-              {showPasswordConfirmError && (
-                <span className="error">Passwords do not match</span>
-              )}
+              
             </div>
 
-            <Link to="/login">Already have an account?</Link>
+            <Link style={{color:"rgb(93, 147, 177)" }} to="/login">Already have an account?</Link>
 
-            <Button type="submit">Register</Button>
+            <Button style={{ margin: "5px" }} type="submit">Register</Button>
+
+            <div style={{color:"rgb(93, 147, 177)", position: "absolute"}}>
+              <div>
+              {showUsernameError && (
+                  <div className="error"> • Please enter a username</div>
+                )}
+              {showPasswordError && (
+                  <div className="error">
+                     • Password must be at least 6 characters long and 
+                     <br/> contain at least 1 uppercase letter, 1 lowercase letter, 1 number,<br/> and 1 special character
+                  </div>
+                )}
+              {showPasswordConfirmError && (
+                  <div className="error"> • Passwords do not match</div>
+                )}
+              </div>
+              {showRegisterSuccessful && (
+                  <div className="error">Registration Successful!
+                  </div> )}
+            </div>
+
+
           </form>
         </Col>
       </Row>

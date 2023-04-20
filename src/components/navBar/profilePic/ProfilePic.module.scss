@@ -1,0 +1,14 @@
+.loginRegistrationNavbarButton {
+    background-color: #ffffff; // white background
+    color: #007bff; // blue text color
+    border: none; // remove button border
+    // border-radius: 30%; // set initial border radius to 50%
+    transition: background-color 0.7s, color 1s, border-radius 0.6s; // add transition effect
+  }
+  
+  .loginRegistrationNavbarButton:hover {
+    background-color: #007bff; // blue background on hover
+    color: #ffffff; // white text color on hover
+    // border-radius: 15%; // change border radius to 15% on hover
+  }
+  

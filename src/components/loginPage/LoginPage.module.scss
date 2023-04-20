@@ -2,7 +2,7 @@
   
   background-image: url("../../img/profileBackgroundBlurred.jpg");
   background-size:cover;
-
+ 
   padding: 10px 0px 50px 0px;
   border-radius: 10px;
   transition:  border-radius 5s ease-out;
@@ -30,6 +30,7 @@ profileText, label, span{
 
 .profileButton{
 background: rgb(63, 63, 68);
+margin: 5px;
 }
 
 .profileForms {
