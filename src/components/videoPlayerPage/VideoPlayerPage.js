@@ -8,7 +8,7 @@ import historyManager from "../../models/HistoryManager";
 import Comments from "./Comments/Comments";
 import AddToPlaylistBtn from "./AddToPlaylistBtn";
 import categoriesManager from "../../models/CategoriesManager";
-
+import { BiLike, BiDislike } from "react-icons/bi"
 import styles from "./VideoPlayerPage.module.scss";
 
 const VideoPlayerPage = () => {
@@ -106,7 +106,6 @@ const VideoPlayerPage = () => {
 
 
   if (!videoDetail?.snippet) return <Loader />;
-  console.log(videoDetail)
   const { snippet: { title, channelId, channelTitle, description }, statistics: { viewCount, likeCount } } = videoDetail;
   const currentVideoArray = historyManager.allHistory.filter(videoHistory => videoHistory.videoID === id);
   const localViewCount = currentVideoArray.length;
@@ -152,14 +151,14 @@ const VideoPlayerPage = () => {
                     }`}
                   onClick={likeVideo}
                 >
-                  &#x1F44D;
+                  <BiLike />
                 </button>
                 <button
                   className={`${styles.button} ${isDislikeClicked ? styles.clicked : styles.notClicked
                     }`}
                   onClick={dislikeVideo}
                 >
-                  &#x1F44E;
+                  <BiDislike />
                 </button>
                 <AddToPlaylistBtn className={styles.addToPlaylistBtn} videoID={id} />
               </div>
@@ -167,8 +166,8 @@ const VideoPlayerPage = () => {
           </div>
         </div>
         <div>
-          {!fullDescription ? <p dangerouslySetInnerHTML={{ __html: (description.slice(0, 300).replace(regex, '<a href="$1">$1</a>')) }} /> : null}
-          {fullDescription ? <p dangerouslySetInnerHTML={{ __html: (fullDescription.replace(regex, '<a href="$1">$1</a>')) }} /> : null}
+          {!fullDescription ? <p className={styles.descriptionText} dangerouslySetInnerHTML={{ __html: description.slice(0, 300).replace(regex, '<a href="$1">$1</a>') }} /> : null}
+          {fullDescription ? <p className={styles.descriptionText} dangerouslySetInnerHTML={{ __html: fullDescription.replace(regex, '<a href="$1">$1</a>') }} /> : null}
           {!fullDescription ? <button onClick={() => handleFullDescription(description)}>Show more</button> : null}
           {fullDescription ? <button onClick={() => handleFullDescription(false)}>Show less</button> : null}
         </div>

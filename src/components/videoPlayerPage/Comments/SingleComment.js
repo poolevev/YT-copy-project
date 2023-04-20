@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './SingleComment.module.scss';
 import commentsManager from '../../../models/CommentsManager';
+import { BiLike, BiDislike } from "react-icons/bi"
 
 const SingleComment = ({ comment }) => {
 
@@ -59,8 +60,8 @@ const SingleComment = ({ comment }) => {
             <h3>{comment.username}</h3>
             <p>{comment.text}</p>
 
-            <button className={`${styles.button} ${isLikeClicked ? styles.clicked : styles.notClicked}`} onClick={likeComment}>&#x1F44D;{likesNumber}</button>
-            <button className={`${styles.button} ${isDislikeClicked ? styles.clicked : styles.notClicked}`} onClick={dislikeComment}>&#x1F44E;</button>
+            <button className={`${styles.button} ${isLikeClicked ? styles.clicked : styles.notClicked}`} onClick={likeComment}><BiLike />{likesNumber}</button>
+            <button className={`${styles.button} ${isDislikeClicked ? styles.clicked : styles.notClicked}`} onClick={dislikeComment}><BiDislike /></button>
 
         </div>
     )
