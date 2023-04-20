@@ -27,7 +27,7 @@ const AddToPlaylistBtn = ({ videoID }) => {
             setSelectedPlaylists([...selectedPlaylists]);
             playlistsManager.removeVideoFromPlaylist(playlist.playlistID, videoID);
         } else {
-            playlist.videos.push(videoID);
+           playlist.videos.push(videoID);
             setSelectedPlaylists([...selectedPlaylists, playlist]);
             playlistsManager.addVideoToPlaylist(playlist.playlistID, videoID);
         }

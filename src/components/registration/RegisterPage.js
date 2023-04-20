@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Container, Row, Col, Form, Image } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -79,53 +81,59 @@ const RegisterPage = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="username">Username:</label>
-        <input style={{marginLeft: "54px", marginBottom: "3px"}}
-          type="text"
-          id="username"
-          value={username}
-          onChange={handleUsernameChange}
-        />
-        {showUsernameError && (
-          <span className="error">Please enter a username</span>
-        )}
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input style={{marginLeft: "58px", marginBottom: "3px"}}
-          type="password"
-          id="password"
-          value={password}
-          onChange={handlePasswordChange}
-        />
-        {showPasswordError && (
-          <span className="error">
-            Password must be at least 6 characters long and contain at least 1
-            uppercase letter, 1 lowercase letter, 1 number, and 1 special
-            character
-          </span>
-        )}
-      </div>
-      <div>
-        <label htmlFor="password-confirm">Confirm Password:</label>
-        <input 
-          type="password"
-          id="password-confirm"
-          value={passwordConfirm}
-          onChange={handlePasswordConfirmChange}
-        />
-        {showPasswordConfirmError && (
-          <span className="error">Passwords do not match</span>
-        )}
-      </div>
+    <Container>
+      <Row>
+        <Col>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                id="username"
+                value={username}
+                onChange={handleUsernameChange}
+                className="form-control"
+              />
+              {showUsernameError && (
+                <span className="error">Please enter a username</span>
+              )}
+            </div>
+            <div>
+              <label htmlFor="password">Password:</label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={handlePasswordChange}
+                className="form-control"
+              />
+              {showPasswordError && (
+                <span className="error">
+                  Password must be at least 6 characters long and contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character
+                </span>
+              )}
+            </div>
+            <div>
+              <label htmlFor="password-confirm">Confirm Password:</label>
+              <input
+                type="password"
+                id="password-confirm"
+                value={passwordConfirm}
+                onChange={handlePasswordConfirmChange}
+                className="form-control"
+              />
+              {showPasswordConfirmError && (
+                <span className="error">Passwords do not match</span>
+              )}
+            </div>
 
-      <Link to="/login">Already have an account?</Link>
+            <Link to="/login">Already have an account?</Link>
 
-      <button type="submit">Register</button>
-
-    </form>
+            <Button type="submit">Register</Button>
+          </form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

@@ -1,6 +1,6 @@
-a:link {
-  text-decoration: none;
-}
+// a:link {
+//   text-decoration: none;
+// }
 
 .sidebar {
   width: 90px;
@@ -18,16 +18,22 @@ a:link {
   line-height: 24px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: #333;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  border-radius: 40%;
+  
 
   &:hover {
-    background-color: #cecaca;
+    transition: 0.5s;
+    background-color: rgb(221, 218, 218);
+    border-radius: 30%;
   }
 
   &.active {
-    background-color: gray;
+    background-color: #f0eaea;
+    border-radius: 20%;
+    transition: background-color 1s ease;
+
   }
 
   &:first-child {

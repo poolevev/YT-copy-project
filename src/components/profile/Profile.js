@@ -131,7 +131,7 @@ function Profile() {
   return (
     <Container
       className={styles.profileContainer}
-      style={{ paddingTop: "250px" }}
+      style={{ marginTop: "220px" }}
     >
       <Row>
         <Col

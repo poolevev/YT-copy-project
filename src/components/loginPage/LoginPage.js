@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../store/profileSlice";
+import { Container, Row, Col, Form, Image } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 
 import React, { useState } from "react";
@@ -48,35 +50,37 @@ const LoginPage = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="username">Username:</label>
-        <input  style={{marginBottom: "3px"}} 
-          type="text"
-          id="username"
-          value={username}
-          onChange={handleUsernameChange}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input style={{marginLeft: "3px"}}
-          type="password"
-          id="password"
-          value={password}
-          onChange={handlePasswordChange}
-        />
-      </div>
-
-      {showError && <span className="error">Wrong password or username</span>}
-
-      <Link to="/register">Don't have an account yet?</Link>
-
-      <button type="submit">Login</button>
-
-    </form>
+    <Container>
+      <Row>
+        <Col>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="username">Username:</label>
+              <input 
+                type="text"
+                id="username"
+                value={username}
+                onChange={handleUsernameChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="password">Password:</label>
+              <input 
+                type="password"
+                id="password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+            </div>
+            {showError && <span className="error">Wrong password or username</span>}
+            <Link to="/register">Don't have an account yet?</Link>
+            <Button type="submit">Login</Button>
+          </form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
+
 
 export default LoginPage;

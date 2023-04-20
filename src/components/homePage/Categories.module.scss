@@ -8,7 +8,7 @@
 }
 
 .category_btn {
-    background: #e6e3e3;
+    background: rgba(0,0,0,0.05);
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -20,16 +20,13 @@
     }
 
     &:hover {
-        background: #a09f9f;
+        background-color: rgb(221, 218, 218);
     }
 }
 
 .selected {
-    background: rgb(126, 123, 123);
+    background-color: #f0eaea;
 
-    .category_name {
-        color: white;
-    }
 }
 
 .category_name {

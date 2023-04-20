@@ -16,44 +16,53 @@ function Sidebar() {
   return (
     <div className={styles.sidebar}>
       <ul className={styles.linkList}>
-      <Link to="/" >
-        <li style={{paddingLeft: "20px"}}
-          className={`${styles.linkItem} ${activeLink === 0 ? styles.active : ""
+        <Link to="/">
+          <li
+            style={{ paddingLeft: "20px",
+            //  paddingRight: "40px" 
+            }}
+            className={`${styles.linkItem} ${
+              activeLink === 0 ? styles.active : ""
             }`}
-          onClick={() => handleClick(0)}
-        >
-         
+            onClick={() => handleClick(0)}
+          >
             <img src={homeLogo} alt="home Logo" height={35} />
             Home
-         
-        </li>
+          </li>
         </Link>
         <Link to="/shorts">
-        <li
-          className={`${styles.linkItem} ${activeLink === 1 ? styles.active : ""
+          <li
+            className={`${styles.linkItem} ${
+              activeLink === 1 ? styles.active : ""
             }`}
-          onClick={() => handleClick(1)}
-        >
-         
+            onClick={() => handleClick(1)}
+          >
             {" "}
-            <img src={shortsLogo} alt="shorts Logo" height={35} style={{paddingLeft: "10px"}} />
-
+            <img
+              src={shortsLogo}
+              alt="shorts Logo"
+              height={35}
+              style={{ paddingLeft: "10px" }}
+            />
             Shorts
-       
-        </li>
+          </li>
         </Link>
         <Link to={loggedUser ? "/library" : "/login"}>
-        <li
-          className={`${styles.linkItem} ${activeLink === 2 ? styles.active : ""
+          <li
+            className={`${styles.linkItem} ${
+              activeLink === 2 ? styles.active : ""
             }`}
-          onClick={() => handleClick(2)}
-        >
-         
+            onClick={() => handleClick(2)}
+          >
             {" "}
-            <img src={libraryLogo} alt="library Logo" height={35} style={{paddingLeft: "10px"}}/>
+            <img
+              src={libraryLogo}
+              alt="library Logo"
+              height={35}
+              style={{ paddingLeft: "10px" }}
+            />
             Library
-        
-        </li>
+          </li>
         </Link>
       </ul>
     </div>

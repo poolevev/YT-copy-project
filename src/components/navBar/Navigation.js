@@ -28,6 +28,7 @@ const Navigation = () => {
         height={35}
         className={LogoStyles.logo}
       />
+      <h4>YouTude</h4>
       </Link>
     </div>
     <SearchBar />
