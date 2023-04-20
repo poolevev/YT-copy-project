@@ -85,8 +85,7 @@ const VideoPlayerPage = () => {
       addToHistory();
       makeAPICall(`channels?part=snippet&id=${data.items[0].snippet.channelId}`).then(
         (data) => {
-          console.log(data?.items[0].snippet.thumbnails.default)
-          setLogoLink(data?.items[0].snippet.thumbnails.default.url)
+          setLogoLink(data?.items[0].snippet.thumbnails.default.url);
         }
       );
     }

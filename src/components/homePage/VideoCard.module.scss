@@ -20,6 +20,7 @@
 }
 
 .cardContent {
+  display: flex;
   background-color: #dfdcdc;
   height: 80px;
   overflow: hidden;
@@ -29,6 +30,7 @@
 .cardTitle {
   font-weight: bold;
   color: #050505;
+
   &:hover {
     text-decoration: underline;
   }
@@ -51,4 +53,9 @@
   font-size: 14px;
   font-weight: bold;
   border-radius: 0 0 10px 10px;
+}
+
+.channelLogo {
+  border-radius: 50%;
+  width: 40px;
 }
