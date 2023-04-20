@@ -47,11 +47,12 @@ class PlaylistsManager {
     addVideoToPlaylist = (playlistID, videoID) => {
         let currentPlaylist = this.allPlaylists.find(playlist => playlist.playlistID === playlistID);
         let currentPlaylistIndex = this.allPlaylists.findIndex(playlist => playlist.playlistID === playlistID);
-        currentPlaylist.videos.push(videoID);
-        this.allPlaylists.splice(currentPlaylistIndex, 1, currentPlaylist);
-        localStorage.setItem("AllPlaylists", JSON.stringify(this.allPlaylists));
-        console.log("added to playlist")
-
+        if (!currentPlaylist.videos.includes(videoID)) {
+            currentPlaylist.videos.push(videoID);
+            this.allPlaylists.splice(currentPlaylistIndex, 1, currentPlaylist);
+            localStorage.setItem("AllPlaylists", JSON.stringify(this.allPlaylists));
+            console.log("added to playlist", `${playlistID}`)
+        }
     }
 
     removeVideoFromPlaylist = (playlistID, videoID) => {
@@ -62,7 +63,7 @@ class PlaylistsManager {
         currentPlaylist.videos.splice(currentVideoIdIndex, 1);
         this.allPlaylists.splice(currentPlaylistIndex, 1, currentPlaylist);
         localStorage.setItem("AllPlaylists", JSON.stringify(this.allPlaylists));
-        console.log("removed from the playlist")
+        console.log("removed from the playlist", `${playlistID}`)
 
     }
 

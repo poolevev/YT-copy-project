@@ -4,6 +4,7 @@ import styles from './AddToPlaylistBtn.module.scss';
 import playlistsManager from '../../models/PlaylistsManager';
 import { Playlist } from "../../models/PlaylistsManager"
 import { v4 as uuid } from 'uuid';
+import { useParams } from "react-router-dom";
 
 const AddToPlaylistBtn = ({ videoID }) => {
     const loggedUser = JSON.parse(localStorage.getItem('LoggedUser'));
@@ -11,15 +12,18 @@ const AddToPlaylistBtn = ({ videoID }) => {
     const userPlaylists = allPlaylists.filter(
         (playlist) => playlist.username === loggedUser?.username
     );
-    const [selectedPlaylists, setSelectedPlaylists] = useState(userPlaylists.filter((playlist) => playlist.videos.includes(videoID)));
+    const { id } = useParams();
+    const [selectedPlaylists, setSelectedPlaylists] = useState(userPlaylists.filter((playlist) => playlist.videos.includes(id)));
     const [showCreatePlaylist, setShowCreatePlaylist] = useState(false);
     const [showDropdownMenu, setShowDropdownMenu] = useState(false);
     const [newPlaylistName, setNewPlaylistName] = useState('');
-    console.log(selectedPlaylists)
+    
+    useEffect(() => {
+        setSelectedPlaylists(userPlaylists.filter((playlist) => playlist.videos.includes(id)))
+    }, [id])
 
     const handleSelectPlaylist = (playlist) => {
         let selectedPlaylistIndex = selectedPlaylists.findIndex(playlistItem => playlistItem.playlistID === playlist.playlistID);
-        console.log(selectedPlaylistIndex);
 
         if (selectedPlaylistIndex > -1) {
             console.log("videoId was in the list. remove");
@@ -27,7 +31,7 @@ const AddToPlaylistBtn = ({ videoID }) => {
             setSelectedPlaylists([...selectedPlaylists]);
             playlistsManager.removeVideoFromPlaylist(playlist.playlistID, videoID);
         } else {
-           playlist.videos.push(videoID);
+            //playlist.videos.push(videoID);
             setSelectedPlaylists([...selectedPlaylists, playlist]);
             playlistsManager.addVideoToPlaylist(playlist.playlistID, videoID);
         }
@@ -76,6 +80,8 @@ const AddToPlaylistBtn = ({ videoID }) => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
+
+
 
 
     return (

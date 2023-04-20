@@ -11,28 +11,26 @@ const EditPlaylistPage = () => {
   const currentPlaylist = allPlaylists.find(playlist => playlist.playlistID === playlistID);
   const [videos, setVideos] = useState([]);
 
-  const handleVideoRemove = (videoID) => {
-
-    playlistsManager.removeVideoFromPlaylist(playlistID, videoID);
-    const newAllPlaylists = JSON.parse(localStorage.getItem("AllPlaylists") || "[]");
-    const newCurrentPlaylist = newAllPlaylists.find(playlist => playlist.playlistID === playlistID);
-    setVideos([]);
-    newCurrentPlaylist?.videos.map(videoID => {
-      makeAPICall(`videos?part=snippet&id=${videoID}`).then((data) =>
-        setVideos([...videos, data.items[0]])
-      )
-    })
-  }
-
+  console.log(currentPlaylist?.videos)
   useEffect(() => {
-    currentPlaylist?.videos.map(videoID => {
-      makeAPICall(`videos?part=snippet&id=${videoID}`).then((data) =>
-        setVideos([...videos, data.items[0]])
-      )
+    currentPlaylist?.videos.forEach(videoID => {
+      makeAPICall(`videos?part=snippet&id=${videoID}`).then((data) => {
+        setVideos(prevVideos => [...prevVideos, data.items[0]])
+      })
     })
   }, []);
 
-  if (videos.length === 0) {
+  console.log(videos)
+
+  const handleVideoRemove = (videoID) => {
+
+    playlistsManager.removeVideoFromPlaylist(playlistID, videoID);
+    const newVideos = videos.filter(video => video.id !== videoID);
+    setVideos(newVideos);
+  }
+
+
+  if (videos?.length === 0) {
     return (
       <div>
         <h2>Playlist {currentPlaylist.playlistName}</h2>
@@ -46,9 +44,9 @@ const EditPlaylistPage = () => {
       <h2>Playlist {currentPlaylist.playlistName}</h2>
       <div className={styles.cardContainer}>
         {videos?.map(item => (
-          <div key={item.id}>
+          <div key={item?.id}>
             <VideoCard video={item} />
-            <button onClick={() => handleVideoRemove(item.id)} >Remove video</button>
+            <button onClick={() => handleVideoRemove(item?.id)} >Remove video</button>
           </div>
         ))}
       </div>
