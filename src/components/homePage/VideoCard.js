@@ -46,7 +46,8 @@ const VideoCard = ({
           isShortsPage && setRenderPlayer(false);
         }}
         //the size may be set using  state
-        controls
+        muted={true}
+        playing={true}
         id="short-player"
       />
     );
