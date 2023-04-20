@@ -1,0 +1,52 @@
+.profileContainer{
+  
+  background-image: url("../../img/profileBackgroundBlurred.jpg");
+  background-size:cover;
+
+  padding: 10px 0px 50px 0px;
+  border-radius: 10px;
+  transition:  border-radius 5s ease-out;
+
+  &:hover {
+    border-radius: 200px ;
+   
+
+  }
+}
+
+profileText, label, span{
+ color:rgb(93, 147, 177);
+
+}
+
+.profile_image_container {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+  align-items: center;
+
+} 
+
+.profileButton{
+background: rgb(63, 63, 68);
+}
+
+.profileForms {
+width: 250px !important;
+}
+
+
+
+// .profileContainer:before {
+//   content: "";
+//   position: absolute;
+//   top: 0;
+//   left: 200px;
+//   right: 0;
+//   bottom: 0;
+//   background-image: url("../../img/profileBackground.jpg");
+//   background-size: contain;
+//   filter: blur(5px); /* adjust the blur amount as needed */
+//   z-index: -1;
+// }

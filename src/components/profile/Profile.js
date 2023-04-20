@@ -13,10 +13,12 @@ function Profile() {
     currentUser ? currentUser.nickname : ""
   );
   const [showPasswordError, setShowPasswordError] = useState(false);
-  const [showCurrentPasswordError, setShowCurrentPasswordError] = useState(false);
+  const [showCurrentPasswordError, setShowCurrentPasswordError] =
+    useState(false);
   const [showNicknameError, setShowNicknameError] = useState(false);
   const [showNicknameSuccess, setShowNicknameSuccess] = useState(false);
-  const [showPasswordChangeSuccess, setShowPasswordChangeSuccess] = useState(false);
+  const [showPasswordChangeSuccess, setShowPasswordChangeSuccess] =
+    useState(false);
 
   const [image, setImage] = useState(currentUser.image || "");
   const [password, setPassword] = useState("");
@@ -84,7 +86,7 @@ function Profile() {
       setShowNicknameError(false);
       setShowNicknameSuccess(true);
     } else {
-        setShowNicknameSuccess(false);
+      setShowNicknameSuccess(false);
       setShowNicknameError(true);
     }
   };
@@ -104,7 +106,7 @@ function Profile() {
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{6,}$/;
     if (!passwordRegex.test(password)) {
       setShowPasswordError(true);
-       setShowPasswordChangeSuccess(false);
+      setShowPasswordChangeSuccess(false);
       valid = false;
     } else {
       setShowPasswordError(false);
@@ -116,8 +118,8 @@ function Profile() {
       localStorage.setItem("LoggedUser", JSON.stringify(currentUser));
       updateAllUsers(currentUser);
       setShowPasswordError(false);
-         setShowCurrentPasswordError(false);
-         setShowPasswordChangeSuccess(true);
+      setShowCurrentPasswordError(false);
+      setShowPasswordChangeSuccess(true);
     }
   };
 
@@ -131,11 +133,11 @@ function Profile() {
   return (
     <Container
       className={styles.profileContainer}
-      style={{ marginTop: "220px" }}
+      style={{ marginTop: "50px" }}
     >
       <Row>
         <Col
-          style={{ paddingLeft: "40px" }}
+          style={{ paddingLeft: "40px", paddingTop: "35px"}}
           md={3}
           className="d-flex flex-column align-items-center"
         >
@@ -146,7 +148,11 @@ function Profile() {
           <label htmlFor="hiddenFileInput" style={{ cursor: "pointer" }}>
             <div class={styles.profile_image_container}>
               <Image
-                src={image || profilePic || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9IpC2U8VG2ZIvbjGospiXbQQ76X_kjB16dOetFwjdcQ&s"}
+                src={
+                  image ||
+                  profilePic ||
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9IpC2U8VG2ZIvbjGospiXbQQ76X_kjB16dOetFwjdcQ&s"
+                }
                 alt="Profile"
                 roundedCircle
                 width={150}
@@ -159,14 +165,16 @@ function Profile() {
               </profileText>
 
               <Button
-                style={{ display: "block", width: "auto" }}
+                className={styles.profileButton}
+                
+                style={{ display: "block", width: "auto"}}
                 variant="primary"
                 onClick={logOut}
+
               >
                 Log out
               </Button>
             </div>
-
             <input
               type="file"
               id="hiddenFileInput"
@@ -175,12 +183,14 @@ function Profile() {
             />
           </label>
         </Col>
-        <Col md={5}>
+
+        <Col style={{ marginTop: "35px", marginLeft: "130px" }} md={5}>
           <profileText>
             Write down new nickname (can't be the same):
           </profileText>
           <Form.Group>
             <Form.Control
+            className={styles.profileForms}
               style={{ marginBottom: "10px" }}
               type="text"
               placeholder="Nickname"
@@ -190,7 +200,7 @@ function Profile() {
 
             <Button
               style={{ marginRight: "5px", marginBottom: "10px" }}
-              className="btn"
+              className={styles.profileButton}
               variant="primary"
               onClick={updateNickname}
             >
@@ -202,18 +212,16 @@ function Profile() {
               </profileText>
             )}
 
-{showNicknameSuccess && (
-              <profileText className="error">
-               Nickname changed.
-              </profileText>
+            {showNicknameSuccess && (
+              <profileText className="error">Nickname changed.</profileText>
             )}
-
           </Form.Group>
           <profileText>Change password if needed:</profileText>
 
           <Form.Group>
-            <Form.Control
+            <Form.Control 
               style={{ marginBottom: "10px" }}
+              className={styles.profileForms}
               type="password"
               placeholder="Current Password"
               onChange={(e) => setCurrentPassword(e.target.value)}
@@ -221,14 +229,19 @@ function Profile() {
           </Form.Group>
 
           <Form.Group>
-            <Form.Control
+            <Form.Control 
+             className={styles.profileForms}
               style={{ marginBottom: "10px" }}
               type="password"
               placeholder="New Password"
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <Button className="btn" variant="primary" onClick={updatePassword}>
+            <Button
+              className={styles.profileButton}
+              variant="primary"
+              onClick={updatePassword}
+            >
               Update Password
             </Button>
             <div></div>
@@ -240,19 +253,15 @@ function Profile() {
             <div></div>
             {showPasswordError && (
               <profileText className="error">
-                • New Password must be at least 6 characters long and contain at
-                least 1 uppercase letter, 1 lowercase letter, 1 number, and 1
+                • New Password must be at least 6 characters long and contain
+                at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1
                 special character
               </profileText>
-
             )}
 
-              {showPasswordChangeSuccess && (
-              <profileText className="error">
-               Password changed!
-              </profileText>
+            {showPasswordChangeSuccess && (
+              <profileText className="error">Password changed!</profileText>
             )}
-
           </Form.Group>
 
           {/* <Form.Group>
