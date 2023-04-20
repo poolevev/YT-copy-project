@@ -7,7 +7,9 @@ import { BsMic, BsXLg, BsSearch } from "react-icons/bs"
 const SearchBar = () => {
   const [searchedVideos, setSearchedVideo] = useState("");
   const [showClearIcon, setShowClearIcon] = useState(false);
+  const [isListening, setIsListening] = useState(false);
   const navigate = useNavigate();
+ 
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,26 +34,35 @@ const SearchBar = () => {
       setSearchedVideo(transcript);
       navigate(`/search/${transcript}`);
     };
+    recognition.onstart = () => {
+      setIsListening(true);
+      document.querySelector('input').setAttribute('placeholder', 'Speak now! English only!');
+    };
+    recognition.onend = () => {
+      setIsListening(false);
+      document.querySelector('input').setAttribute('placeholder', 'Search...');
+    };
     recognition.start();
   };
+  
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <input
-        className={styles.input}
-        placeholder="Search..."
-        value={searchedVideos}
-        onChange={(e) => {
-          setSearchedVideo(e.target.value);
-          setShowClearIcon(true);
-        }}
-      />
+    <input
+  className={styles.input}
+  placeholder={isListening ? "Speak now!" : "Search..."}
+  value={searchedVideos}
+  onChange={(e) => {
+    setSearchedVideo(e.target.value);
+    setShowClearIcon(true);
+  }}
+/>
       {showClearIcon && <button onClick={handleClear} className={styles.buttonClear} aria-label="search">
         <BsXLg />
       </button>}
-      <button onClick={handleVoiceSearch} className={styles.buttonMic} aria-label="search">
-        <BsMic />
-      </button>
+      <button onClick={handleVoiceSearch} className={`${styles.buttonMic} ${isListening ? styles.listening : ""}`} aria-label="search">
+  <BsMic />
+</button>
 
       <button className={styles.buttonSrc} type="submit" aria-label="search">
         <BsSearch />
