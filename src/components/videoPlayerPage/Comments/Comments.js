@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Comments.module.scss';
 import SingleComment from "./SingleComment";
 import CommentInput from "./CommentInput";
+import { useParams } from "react-router-dom";
 
 const Comments = ({ videoID }) => {
 
@@ -10,12 +11,15 @@ const Comments = ({ videoID }) => {
     const allComments = JSON.parse(localStorage.getItem('AllComments') || "[]");
     const currentComments = allComments.filter(comment => comment.videoID === videoID);
     const [showMore, setShowMore] = useState(currentComments.length > 3);
+    const { id } = useParams();
 
     useEffect(() => {
         if (currentComments.length) {
             setComments(currentComments.slice(0, 3));
+        } else {
+            setComments([]);
         }
-    }, []);
+    }, [id]);
 
     const loadMore = () => {
         const newLength = comments.length + 3;

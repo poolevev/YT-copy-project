@@ -165,8 +165,8 @@ const VideoPlayerPage = () => {
           </div>
         </div>
         <div>
-          {!fullDescription ? <p dangerouslySetInnerHTML={{ __html: (description.slice(0, 300).replace(regex, '<a href="$1">$1</a>')) }} /> : null}
-          {fullDescription ? <p dangerouslySetInnerHTML={{ __html: (fullDescription.replace(regex, '<a href="$1">$1</a>')) }} /> : null}
+          {!fullDescription ? <p className={styles.descriptionText} dangerouslySetInnerHTML={{ __html: description.slice(0, 300).replace(regex, '<a href="$1">$1</a>') }} /> : null}
+          {fullDescription ? <p className={styles.descriptionText} dangerouslySetInnerHTML={{ __html: fullDescription.replace(regex, '<a href="$1">$1</a>') }} /> : null}
           {!fullDescription ? <button onClick={() => handleFullDescription(description)}>Show more</button> : null}
           {fullDescription ? <button onClick={() => handleFullDescription(false)}>Show less</button> : null}
         </div>
