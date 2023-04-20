@@ -8,12 +8,12 @@
 }
 
 .category_btn {
-    background: rgba(0,0,0,0.05);
+    background: rgba(0, 0, 0, 0.05);
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
-    padding: 3px 5px;
+    padding: 4px 8px;
 
     &:focus {
         outline: none;
@@ -25,13 +25,13 @@
 }
 
 .selected {
-    background-color: #f0eaea;
+    background-color: #7c7b7b;
 
 }
 
 .category_name {
     color: black;
-    font-weight: bold;
-    text-transform: uppercase;
+    font-weight: 500;
+    text-transform: capitalize;
     transition: color 0.2s ease-in-out;
 }

@@ -1,45 +1,37 @@
 .channelCard {
   border-radius: 20px;
-  height: 326px;
-  width: 356px;
+  background-color: #ffffff23;
+  max-height: 270px;
+  max-width: 256px;
   margin: 0 auto;
   text-align: center;
 
-  @media screen and (min-width: 768px) {
-    width: 320px;
-  }
 
   img {
     border-radius: 50%;
     height: 180px;
     width: 180px;
-    margin: 20px 0;
+    margin: 10px 0;
     border: 1px solid #e3e3e3;
   }
 }
 
 .channelCardBody {
-  color: #fff;
+
+  color: rgb(66, 65, 65);
   text-align: center;
 
-  .card-title {
+  .channelCardTitle {
+    color: rgb(48, 48, 48);
     font-size: 1rem;
     font-weight: bold;
     margin-bottom: 0.3rem;
-    display: flex;
-    align-items: center;
     text-transform: capitalize;
   }
 
-  .card-text {
+  .channelCardText {
+    color: rgb(66, 65, 65);
     font-size: 0.875rem;
     font-weight: 500;
-    color: gray;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .channelCard {
-    width: 100%;
   }
 }

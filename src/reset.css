@@ -19,7 +19,7 @@ a {
 
 a:hover {
 	color: black;
-	
+
 }
 
 img {
@@ -34,7 +34,9 @@ button {
 	display: block;
 	font: inherit;
 	cursor: pointer;
+	padding: 5px;
 	transition: .4s;
-	background-color: #f0eaea;
+	background-color: rgba(0, 0, 0, 0.05);
+	border: none;
 
 }

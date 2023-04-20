@@ -18,8 +18,9 @@ const VideoCard = ({
   },
 }) => {
   const isShortsPage = window.location.pathname === "/shorts";
-  const [logoLink, setLogoLink] = useState(null);
+  //const [logoLink, setLogoLink] = useState(null);
 
+  // to many request,
   // useEffect(() => {
   //   makeAPICall(`channels?part=snippet&id=${snippet.channelId}`).then(
   //     (data) => {
@@ -48,7 +49,7 @@ const VideoCard = ({
             }
             className={styles.channelLogoLink}
           >
-            <img className={styles.channelLogo} src={logoLink} alt={"Logo"} />
+            <img className={styles.channelLogo} src={snippet?.thumbnails.default.url || defaultThumbnailUrl} alt={"Logo"} />
           </Link>
         </div>
         <div className={styles.cardText}>

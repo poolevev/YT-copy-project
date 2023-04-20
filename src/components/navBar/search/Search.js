@@ -46,12 +46,13 @@ const SearchBar = () => {
           setShowClearIcon(true);
         }}
       />
-      <button onClick={handleVoiceSearch} className={styles.buttonMic} aria-label="search">
-        <BsMic />
-      </button>
       {showClearIcon && <button onClick={handleClear} className={styles.buttonClear} aria-label="search">
         <BsXLg />
       </button>}
+      <button onClick={handleVoiceSearch} className={styles.buttonMic} aria-label="search">
+        <BsMic />
+      </button>
+
       <button className={styles.buttonSrc} type="submit" aria-label="search">
         <BsSearch />
       </button>
