@@ -23,7 +23,7 @@ function Sidebar() {
           onClick={() => handleClick(0)}
         >
          
-            <img src={homeLogo} alt="home Logo" height={45} />
+            <img src={homeLogo} alt="home Logo" height={35} />
             Home
          
         </li>
@@ -36,7 +36,7 @@ function Sidebar() {
         >
          
             {" "}
-            <img src={shortsLogo} alt="shorts Logo" height={45} style={{paddingLeft: "10px"}} />
+            <img src={shortsLogo} alt="shorts Logo" height={35} style={{paddingLeft: "10px"}} />
 
             Shorts
        
@@ -50,7 +50,7 @@ function Sidebar() {
         >
          
             {" "}
-            <img src={libraryLogo} alt="library Logo" height={45} style={{paddingLeft: "10px"}}/>
+            <img src={libraryLogo} alt="library Logo" height={35} style={{paddingLeft: "10px"}}/>
             Library
         
         </li>
