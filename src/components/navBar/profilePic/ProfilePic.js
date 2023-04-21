@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Image } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { BiUserCircle } from "react-icons/bi";
+import { MdOutlineAppRegistration } from 'react-icons/md';
 import styles from "./ProfilePic.module.scss";
 
 const ProfilePic = () => {
@@ -34,15 +35,14 @@ const ProfilePic = () => {
         </>
       ) : (
         <Link>
-          <Link to="/login">
-           
+        <Link to="/login">
           <Button className={styles.loginRegistrationNavbarButton}><bi class="bi bi-person-circle"></bi> Login</Button>
-          </Link>
-          <span> </span>
-          <Link to="/register">
-          <Button className={styles.loginRegistrationNavbarButton}>Registration</Button>
-          </Link>
         </Link>
+        <span> </span>
+        <Link to="/register">
+          <Button className={styles.loginRegistrationNavbarButton}><MdOutlineAppRegistration /> Registration</Button>
+        </Link>
+      </Link>
 
         // <Link to="/register">Register</Link>
       )}

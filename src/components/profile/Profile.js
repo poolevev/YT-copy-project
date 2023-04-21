@@ -29,6 +29,7 @@ function Profile() {
   // const [dob, setDob] = useState('');
   // const [sex, setSex] = useState('male');
 
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -179,8 +180,9 @@ function Profile() {
               </Button>
 
               {showLogOutSuccessful && (
-              <span className="logOutSuccessful">Logging out now...</span>
-            )}
+  <span className="logOutSuccessful" style={{ color: 'rgb(79, 194, 102)' }}>Logging out now...</span>
+)}
+
 
             </div>
             <input
@@ -202,7 +204,7 @@ function Profile() {
               style={{ marginBottom: "10px" }}
               type="text"
               placeholder="Nickname"
-              value={nickname}
+              value={nickname.trim()}
               onChange={(e) => setNickname(e.target.value)}
             />
 

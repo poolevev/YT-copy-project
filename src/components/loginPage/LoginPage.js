@@ -69,7 +69,7 @@ const LoginPage = () => {
         >
           <form onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="username">Username:</label>
+              <label style={{color:"rgb(3, 140, 252)"}} htmlFor="username">Username:</label>
               <input
                 style={{ marginLeft: "5px" }}
                 type="text"
@@ -79,7 +79,7 @@ const LoginPage = () => {
               />
             </div>
             <div>
-              <label htmlFor="password">Password:</label>
+              <label style={{color:"rgb(3, 140, 252)"}} htmlFor="password">Password:</label>
               <input
                 style={{ marginLeft: "10px" }}
                 type="password"
@@ -90,15 +90,15 @@ const LoginPage = () => {
             </div>
            
             <Link style={{color:"rgb(93, 147, 177)" }} to="/register">Don't have an account yet?</Link>
-            <Button className={styles.profileButton} type="submit">
+            <Button style={{ margin: "5px"}} className={styles.profileButton} type="submit">
               Login
             </Button>
             <div style={{display: "flex", position: "absolute"}}>
             {showError && (
-              <span className="error">Wrong password or username</span>
+              <span  style={{color:"rgb(240, 7, 34)" }} className="error">•  Wrong password or username</span>
             )}
              {showLoginSuccessful && (
-              <span className="loginSuccessful">You are logged in!</span>
+              <span  style={{color:"rgb(79, 194, 102)" }} className="loginSuccessful">You are logged in!</span>
             )}
             </div>
           </form>

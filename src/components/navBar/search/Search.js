@@ -50,7 +50,7 @@ const SearchBar = () => {
     <form className={styles.form} onSubmit={handleSubmit}>
     <input
   className={styles.input}
-  placeholder={isListening ? "Speak now!" : "Search..."}
+  placeholder={isListening ? "Speak now! English only!" : "Search..."}
   value={searchedVideos}
   onChange={(e) => {
     setSearchedVideo(e.target.value);
