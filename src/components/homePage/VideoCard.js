@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   defaultThumbnailUrl,
@@ -7,6 +7,7 @@ import {
   defaultChannelUrl,
   defaultChannelTitle,
 } from "../../utils/defaultVideo";
+import ReactPlayer from "react-player";
 
 import { makeAPICall } from "../../utils/makeAPICall";
 import styles from "./VideoCard.module.scss";
@@ -20,6 +21,8 @@ const VideoCard = ({
   const isShortsPage = window.location.pathname === "/shorts";
   //const [logoLink, setLogoLink] = useState(null);
 
+  const [renderPlayer, setRenderPlayer] = useState(false);
+
   // to many request,
   // useEffect(() => {
   //   makeAPICall(`channels?part=snippet&id=${snippet.channelId}`).then(
@@ -29,52 +32,85 @@ const VideoCard = ({
   //   );
   // },[]);
 
-  return (
-    <div className={isShortsPage ? styles.shortcard : styles.card}>
-      <Link to={videoId ? `/video/${videoId}` : `/video/PVc1yFV0p40`}>
-        <img
-          src={snippet?.thumbnails?.high?.url || defaultThumbnailUrl}
-          alt={snippet?.title}
-          className={styles.cardMedia}
-          style={{ objectFit: "cover" }}
-        />
-      </Link>
-      <div className={styles.cardContent}>
-        <div className={styles.cardLogo}>
-          <Link
-            to={
-              snippet?.channelId
-                ? `/channel/${snippet?.channelId}`
-                : defaultChannelUrl
-            }
-            className={styles.channelLogoLink}
-          >
-            <img className={styles.channelLogo} src={snippet?.thumbnails.default.url || defaultThumbnailUrl} alt={"Logo"} />
-          </Link>
-        </div>
-        <div className={styles.cardText}>
-          <Link to={videoId ? `/video/${videoId}` : defaultVideoUrl}>
-            <div className={styles.cardTitle}>
-              {`${snippet?.title.slice(0, 60)}...` ||
-                defaultVideoTitle.slice(0, 60)}
-            </div>
-          </Link>
-          <Link
-            to={
-              snippet?.channelId
-                ? `/channel/${snippet?.channelId}`
-                : defaultChannelUrl
-            }
-            className={styles.channelLink}
-          >
-            <div className={styles.channelTitle}>
-              {snippet?.channelTitle || defaultChannelTitle}
-            </div>
-          </Link>
+  if (renderPlayer) {
+    return (
+      <ReactPlayer
+        url={`https://www.youtube.com/watch?v=${videoId}`}
+        // width="150px"
+        // height="300px"
+         width="200px"
+        height="400px"
+        controls={false}
+        className={styles.reactPlayer}
+        onPause={() => {
+          isShortsPage && setRenderPlayer(false);
+        }}
+        //the size may be set using  state
+        muted={true}
+        playing={true}
+        id="short-player"
+      />
+    );
+  } else {
+    return (
+      <div
+        className={isShortsPage ? styles.shortcard : styles.card}
+        onClick={() => {
+          isShortsPage && setRenderPlayer(true);
+        }}
+      >
+        <Link
+          to={videoId ? `/video/${videoId}` : `/video/PVc1yFV0p40`}
+          onClick={(e) => isShortsPage && e.preventDefault()}
+        >
+          <img
+            src={snippet?.thumbnails?.high?.url || defaultThumbnailUrl}
+            alt={snippet?.title}
+            className={styles.cardMedia}
+            style={{ objectFit: "cover" }}
+          />
+        </Link>
+        <div className={styles.cardContent}>
+          <div className={styles.cardLogo}>
+            <Link
+              to={
+                snippet?.channelId
+                  ? `/channel/${snippet?.channelId}`
+                  : defaultChannelUrl
+              }
+              className={styles.channelLogoLink}
+            >
+              <img
+                className={styles.channelLogo}
+                src={snippet?.thumbnails.default.url || defaultThumbnailUrl}
+                alt={"Logo"}
+              />
+            </Link>
+          </div>
+          <div className={styles.cardText}>
+            <Link to={videoId ? `/video/${videoId}` : defaultVideoUrl}>
+              <div className={styles.cardTitle}>
+                {`${snippet?.title.slice(0, 60)}...` ||
+                  defaultVideoTitle.slice(0, 60)}
+              </div>
+            </Link>
+            <Link
+              to={
+                snippet?.channelId
+                  ? `/channel/${snippet?.channelId}`
+                  : defaultChannelUrl
+              }
+              className={styles.channelLink}
+            >
+              <div className={styles.channelTitle}>
+                {snippet?.channelTitle || defaultChannelTitle}
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default VideoCard;

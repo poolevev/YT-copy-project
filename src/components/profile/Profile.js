@@ -19,8 +19,9 @@ function Profile() {
   const [showNicknameSuccess, setShowNicknameSuccess] = useState(false);
   const [showPasswordChangeSuccess, setShowPasswordChangeSuccess] =
     useState(false);
+    const [showLogOutSuccessful, setShowLogOutSuccessful] = useState(false);
 
-  const [image, setImage] = useState(currentUser.image || "");
+  const [image, setImage] = useState(currentUser?.image || "");
   const [password, setPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
 
@@ -125,8 +126,10 @@ function Profile() {
 
   const logOut = () => {
     localStorage.removeItem("LoggedUser");
+    setShowLogOutSuccessful(true)
+    setTimeout(() => {
     navigate("/");
-
+  }, 2000);
     dispatch(logout());
   };
 
@@ -161,7 +164,7 @@ function Profile() {
                 border={"3px solid cyan"}
               />
               <profileText style={{ fontSize: "30px" }}>
-                {currentUser.username}
+                {currentUser?.username}
               </profileText>
 
               <Button
@@ -174,6 +177,11 @@ function Profile() {
               >
                 Log out
               </Button>
+
+              {showLogOutSuccessful && (
+              <span className="logOutSuccessful">Logging out now...</span>
+            )}
+
             </div>
             <input
               type="file"

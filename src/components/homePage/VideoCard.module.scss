@@ -1,9 +1,45 @@
 .container {}
 
 .shortcard {
-  width: 150px;
+  // width: 150px;
+  // height: 300px;
+  width:200px;
+  height:400px;
   box-shadow: none;
   border-radius: 10px;
+  .cardMedia {
+    width:200px;
+    height:400px;
+    border-radius: 50px;
+    transition:  border-radius 0.8s ease-out;
+    &:hover {
+      border-radius: 10px;
+      transition: 0.6s;
+      }}
+
+  
+  .channelLogo {
+    display: none;
+    border-radius: 50%;
+    width: 40px;
+  }
+  .cardText {
+    display: none;
+    flex-direction: column;
+    .cardTitle {
+      display: none;
+      color:red;
+      border: 1px solid red;
+    }
+
+    .channelTitle {
+      display: none;
+      padding: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 0 0 10px 10px;
+    }
+  }
 }
 
 .card {
