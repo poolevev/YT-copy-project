@@ -1,6 +1,40 @@
 .cardContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.categoryTitle {
+  margin: 20px;
+}
+
+
+.btnContainer {
+  display: flex;
+  justify-content: end;
+}
+
+.showMoreBtn {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0 10px;
+  border-radius: 20px;
+
+  &:hover {
+    background-color: rgb(221, 218, 218);
+  }
+}
+
+.cardBtn{
+  font-size: 14;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0 10px;
+  border-radius: 20px;
+
+  &:hover {
+    background-color: rgb(221, 218, 218);
+  }
+
 }

@@ -22,7 +22,8 @@ const VideoPlayerPage = () => {
   const [isDislikeClicked, setIsDislikeClicked] = useState(alreadyViewedVideo?.isLiked === false ? true : false);
   const [moreVideos, setMoreVideos] = useState(null);
   let videoSnippet = null;
-  const [fullDescription, setFullDescription] = useState(false);
+  const [descriptionText, setDescriptionText] = useState("");
+  const [isFullDescription, setFullDescription] = useState(false);
   const [logoLink, setLogoLink] = useState("../../img/logo.png")
 
 
@@ -82,6 +83,7 @@ const VideoPlayerPage = () => {
       videoSnippet = data.items[0].snippet
       setLikesVideoSnippet(videoSnippet);
       addTagToCategories(videoSnippet.tags[0], loggedUser.username);
+      setDescriptionText(videoSnippet.description)
       addToHistory();
       makeAPICall(`channels?part=snippet&id=${data.items[0].snippet.channelId}`).then(
         (data) => {
@@ -106,7 +108,7 @@ const VideoPlayerPage = () => {
 
 
   if (!videoDetail?.snippet) return <Loader />;
-  const { snippet: { title, channelId, channelTitle, description }, statistics: { viewCount, likeCount } } = videoDetail;
+  const { snippet: { title, channelId, channelTitle } } = videoDetail;
   const currentVideoArray = historyManager.allHistory.filter(videoHistory => videoHistory.videoID === id);
   const localViewCount = currentVideoArray.length;
   const localLikeCount = currentVideoArray?.filter(video => video.isLiked === true).length
@@ -150,14 +152,14 @@ const VideoPlayerPage = () => {
                     }`}
                   onClick={likeVideo}
                 >
-                  <BiLike />
+                  <BiLike className={styles.likeBtn} />
                 </button>
                 <button
                   className={`${styles.button} ${isDislikeClicked ? styles.clicked : styles.notClicked
                     }`}
                   onClick={dislikeVideo}
                 >
-                  <BiDislike />
+                  <BiDislike className={styles.likeBtn} />
                 </button>
                 <AddToPlaylistBtn className={styles.addToPlaylistBtn} videoID={id} />
               </div>
@@ -165,17 +167,17 @@ const VideoPlayerPage = () => {
           </div>
         </div>
         <div>
-          {!fullDescription ? <p className={styles.descriptionText} dangerouslySetInnerHTML={{ __html: description.slice(0, 300).replace(regex, '<a href="$1">$1</a>') }} /> : null}
-          {fullDescription ? <p className={styles.descriptionText} dangerouslySetInnerHTML={{ __html: fullDescription.replace(regex, '<a href="$1">$1</a>') }} /> : null}
-          {!fullDescription ? <button onClick={() => handleFullDescription(description)}>Show more</button> : null}
-          {fullDescription ? <button onClick={() => handleFullDescription(false)}>Show less</button> : null}
+          {!isFullDescription ? <p className={styles.descriptionText} dangerouslySetInnerHTML={{ __html: `${descriptionText.slice(0, 300).replace(regex, '<a href="$1">$1</a>')}...` }} /> : null}
+          {isFullDescription ? <p className={styles.descriptionText} dangerouslySetInnerHTML={{ __html: isFullDescription.replace(regex, '<a href="$1">$1</a>') }} /> : null}
+          {!isFullDescription ? <button className={styles.showMoreBtn} onClick={() => handleFullDescription(descriptionText)}>Show more</button> : null}
+          {isFullDescription ? <button className={styles.showMoreBtn} onClick={() => handleFullDescription(false)}>Show less</button> : null}
         </div>
         <Comments videoID={id} />
       </div>
 
       <div className={styles.relatedVideos}>
-        <Videos videos={videos} />
-        <button onClick={handleShowMoreRelated}>Show more</button>
+        <Videos videos={videos} related={true}/>
+        <button className={styles.showMoreBtn} onClick={handleShowMoreRelated}>Show more</button>
       </div>
 
     </div>

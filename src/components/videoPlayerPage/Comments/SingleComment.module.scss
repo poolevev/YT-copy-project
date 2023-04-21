@@ -2,14 +2,18 @@
     color: black;
 }
 
+.buttonsContainer {
+    display: flex;
+  }
+
 .clicked {
-    background-color: rgb(125, 128, 125);
-    color: rgb(3, 3, 3);
+    border-radius: 15px;
+    padding-top: 5px;
 
 }
 
 .notClicked {
-    background-color: rgb(226, 233, 226);
-    color: rgb(3, 3, 3);
+    background-color: transparent;
+    border-radius: 10px;
 
 }

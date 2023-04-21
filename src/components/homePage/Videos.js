@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Videos.module.scss';
 import VideoCard from "./VideoCard"
+import RelatedVideoCard from '../videoPlayerPage/RelatedVideos/RelatedVideoCard';
 
 
-const Videos = ({ videos, initialVideosNumber }) => {
+const Videos = ({ videos, initialVideosNumber, related }) => {
     const [videosNumber, setVideosNumber] = useState(initialVideosNumber || 9);
 
     useEffect(() => {
@@ -25,9 +26,15 @@ const Videos = ({ videos, initialVideosNumber }) => {
 
         <div className={styles.container}>
             {videos?.slice(0, videosNumber).map((item, index) => (
+
                 <div key={index}>
                     {item.id.videoId && <VideoCard video={item} />}
                 </div>
+                // related === true ?
+                //     <div key={index}>
+                //         {item.id.videoId && <RelatedVideoCard video={item} />}
+                //     </div> : null
+
             ))}
         </div>
     );

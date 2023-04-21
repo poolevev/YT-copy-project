@@ -3,3 +3,18 @@
     gap: 10px;
     flex-wrap: wrap;
 }
+
+.categoryTitle {
+    margin: 20px;
+}
+
+.showMoreBtn {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0 10px;
+    border-radius: 20px;
+
+    &:hover {
+        background-color: rgb(221, 218, 218);
+    }
+}

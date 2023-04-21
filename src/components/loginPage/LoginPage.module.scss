@@ -1,21 +1,23 @@
-.profileContainer{
-  
+.profileContainer {
+
   background-image: url("../../img/profileBackgroundBlurred.jpg");
-  background-size:cover;
+  background-size: cover;
 
   padding: 10px 0px 50px 0px;
   border-radius: 10px;
-  transition:  border-radius 5s ease-out;
+  transition: border-radius 5s ease-out;
 
   &:hover {
-    border-radius: 200px ;
-   
+    border-radius: 200px;
+
 
   }
 }
 
-profileText, label, span{
- color:rgb(93, 147, 177);
+profileText,
+label,
+span {
+  color: rgb(61, 60, 60);
 
 }
 
@@ -26,14 +28,14 @@ profileText, label, span{
   height: 300px;
   align-items: center;
 
-} 
+}
 
-.profileButton{
-background: rgb(63, 63, 68);
+.profileButton {
+  background: rgb(63, 63, 68);
 }
 
 .profileForms {
-width: 250px !important;
+  width: 250px !important;
 }
 
 

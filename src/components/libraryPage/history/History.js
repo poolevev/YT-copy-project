@@ -28,7 +28,7 @@ const History = () => {
 
   return (
     <div>
-      <h2>History</h2>
+      <h3 className={styles.categoryTitle} >History</h3>
       {history.length > 0 ? (
         <div>
           <div className={styles.container}>
@@ -39,7 +39,7 @@ const History = () => {
             ))}
           </div>
           {showMore && (
-            <button onClick={loadMore}>Show More</button>
+            <button className = {styles.showMoreBtn}  onClick={loadMore}>Show More</button>
           )}
         </div>
       ) : (

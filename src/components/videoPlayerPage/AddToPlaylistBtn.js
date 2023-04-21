@@ -17,7 +17,7 @@ const AddToPlaylistBtn = ({ videoID }) => {
     const [showCreatePlaylist, setShowCreatePlaylist] = useState(false);
     const [showDropdownMenu, setShowDropdownMenu] = useState(false);
     const [newPlaylistName, setNewPlaylistName] = useState('');
-    
+
     useEffect(() => {
         setSelectedPlaylists(userPlaylists.filter((playlist) => playlist.videos.includes(id)))
     }, [id])
@@ -25,27 +25,30 @@ const AddToPlaylistBtn = ({ videoID }) => {
     const handleSelectPlaylist = (playlist) => {
         let selectedPlaylistIndex = selectedPlaylists.findIndex(playlistItem => playlistItem.playlistID === playlist.playlistID);
 
+
         if (selectedPlaylistIndex > -1) {
             console.log("videoId was in the list. remove");
             selectedPlaylists.splice(selectedPlaylistIndex, 1)
-            setSelectedPlaylists([...selectedPlaylists]);
+            setSelectedPlaylists(prev => [...selectedPlaylists]);
             playlistsManager.removeVideoFromPlaylist(playlist.playlistID, videoID);
         } else {
             //playlist.videos.push(videoID);
-            setSelectedPlaylists([...selectedPlaylists, playlist]);
+            setSelectedPlaylists(prev => [...prev, playlist]);
             playlistsManager.addVideoToPlaylist(playlist.playlistID, videoID);
         }
     };
 
     const handleCreatePlaylist = () => {
         const playlistID = uuid();
-        console.log(`Creating playlist: ${newPlaylistName}`);
-        playlistsManager.createPlaylist(loggedUser.username, playlistID, newPlaylistName, [videoID]);
-        playlistsManager.addVideoToPlaylist(playlistID, videoID);
-        setSelectedPlaylists([...selectedPlaylists, new Playlist(loggedUser.username, playlistID, newPlaylistName, [videoID])]);
-        console.log(selectedPlaylists)
-        setNewPlaylistName('');
-        setShowCreatePlaylist(false);
+        if (newPlaylistName.length) {
+            console.log(`Creating playlist: ${newPlaylistName}`);
+            playlistsManager.createPlaylist(loggedUser.username, playlistID, newPlaylistName, [videoID]);
+            playlistsManager.addVideoToPlaylist(playlistID, videoID);
+            setSelectedPlaylists(prev => [...prev, new Playlist(loggedUser.username, playlistID, newPlaylistName, [videoID])]);
+            console.log(selectedPlaylists)
+            setNewPlaylistName('');
+            setShowCreatePlaylist(false);
+        }
     };
 
     const buttonRef = useRef(null);
@@ -86,7 +89,7 @@ const AddToPlaylistBtn = ({ videoID }) => {
 
     return (
         <span className={styles.container}>
-            <button ref={buttonRef} onClick={() => {
+            <button className={styles.addToPlayListMainBtn} ref={buttonRef} onClick={() => {
                 setShowDropdownMenu(!showDropdownMenu);
                 setShowCreatePlaylist(false);
             }}> Add to playlist </button>
@@ -95,7 +98,7 @@ const AddToPlaylistBtn = ({ videoID }) => {
 
                 {userPlaylists.length > 0 ? (
                     <>
-                        <span>Select the playlist</span>
+                        <span className={styles.selectText}>Select the playlist</span>
 
                         {userPlaylists.map((playlist) => (
                             <span key={playlist.playlistName}>
@@ -125,9 +128,10 @@ const AddToPlaylistBtn = ({ videoID }) => {
             {
                 showCreatePlaylist && (
                     <div ref={createPlaylistRef} className={styles.createPlaylist}>
-                        <Form.Control
+                        <Form.Control className={styles.inputPlaylist}
                             type="text"
-                            placeholder="Enter playlist name"
+                            required
+                            placeholder="New playlist"
                             value={newPlaylistName}
                             onChange={(e) => setNewPlaylistName(e.target.value)}
                         />

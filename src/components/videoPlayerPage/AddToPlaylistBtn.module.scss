@@ -3,33 +3,57 @@
     color: black;
 }
 
+.addToPlayListMainBtn {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0 10px;
+    border-radius: 20px;
+
+    &:hover {
+        background-color: rgb(221, 218, 218);
+    }
+
+}
+
 .menu,
 .createPlaylist {
     color: black;
     border-radius: 10px;
-    padding: 5px;
+    padding: 5px 15px;
     position: absolute;
     z-index: 10;
-    background-color: #f0eaea;
-    text-align: center;
+    background-color: #e7e7e7;
+    text-align: left;
 }
 
 
 
 .createBtn,
 .createPlaylistBtn {
-    border-radius: 0 20px 20px 0;
+    border-radius: 20px;
     font-size: 14px;
-    color: black;
-    color: rgb(141, 142, 143);
+    margin: 0 auto;
 
     &:hover {
         background-color: rgb(221, 218, 218);
-        ;
+
     }
 }
 
 .infoText {
-    color: black;
+    color: rgb(61, 60, 60);
+
+}
+
+.selectText {
+    color: rgb(61, 60, 60);
+    font-size: 14px;
+}
+
+.inputPlaylist {
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid rgb(221, 218, 218);
 
 }

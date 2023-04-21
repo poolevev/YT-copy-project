@@ -17,7 +17,7 @@ class PlaylistsManager {
         }
     }
 
-    allPlaylists = [{ username: "user1", playlistID: "23723y", playlistName: "favorites", videos: [] }];
+    allPlaylists = [];
 
     createPlaylist = (username, playlistID, playlistName, videos = []) => {
         let loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));

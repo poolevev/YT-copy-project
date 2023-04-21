@@ -13,6 +13,7 @@
     }
 
     .title {
+      padding: 10px 10px 0 15px;
       color: #0a0000;
       font-weight: bold;
       font-size: 18px;
@@ -30,10 +31,11 @@
 
         .channelLogo {
           border-radius: 50%;
-          width: 40px;
+          width: 45px;
         }
 
         .channelTitle {
+          padding-left: 10px;
           text-decoration: none;
           font-size: 16px;
           font-weight: bold;
@@ -53,15 +55,21 @@
 
         .stats {
           display: flex;
-          gap: 20px;
+          gap: 10px;
           align-items: center;
           opacity: 0.7;
           font-size: 16px;
         }
 
+        .likeCount {
+          color: rgb(61, 60, 60);
+          margin-right: 10px;
+        }
+
         .buttonsContainer {
           display: flex;
         }
+
 
         .addToPlaylistBtn {
           &:hover {
@@ -70,14 +78,15 @@
         }
 
         .clicked {
-          background-color: rgb(125, 128, 125);
-          color: rgb(3, 3, 3);
+
+          border-radius: 15px;
+          padding-top: 5px;
 
         }
 
         .notClicked {
-          background-color: rgb(226, 233, 226);
-          color: rgb(3, 3, 3);
+          background-color: transparent;
+          border-radius: 10px;
 
         }
       }
@@ -94,6 +103,17 @@
 
     @media (min-width: 600px) {
       padding-left: 40px;
+    }
+  }
+
+  .showMoreBtn {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0 10px;
+    border-radius: 20px;
+
+    &:hover {
+      background-color: rgb(221, 218, 218);
     }
   }
 

@@ -15,16 +15,38 @@ const LibraryVideoCard = ({ video: { videoID, snippet } }) => (
             />
         </Link>
         <div className={styles.cardContent}>
-            <Link to={videoID ? `/video/${videoID}` : defaultVideoUrl}>
-                <span className={styles.cardTitle}>
-                    {snippet?.title.slice(0, 60) || defaultVideoTitle.slice(0, 60)}
-                </span>
-            </Link>
-            <Link to={snippet?.channelId ? `/channel/${snippet?.channelId}` : defaultChannelUrl} className={styles.channelLink}>
-                <span className={styles.channelTitle}>
-                    {snippet?.channelTitle || defaultChannelTitle}
-                </span>
-            </Link>
+            <div className={styles.cardLogo}>
+                <Link
+                    to={
+                        snippet?.channelId
+                            ? `/channel/${snippet?.channelId}`
+                            : defaultChannelUrl
+                    }
+                    className={styles.channelLogoLink}
+                >
+                    <img className={styles.channelLogo} src={snippet?.thumbnails.default.url || defaultThumbnailUrl} alt={"Logo"} />
+                </Link>
+            </div>
+            <div className={styles.cardText}>
+                <Link to={videoID ? `/video/${videoID}` : defaultVideoUrl}>
+                    <div className={styles.cardTitle}>
+                        {`${snippet?.title.slice(0, 60)}...` ||
+                            defaultVideoTitle.slice(0, 60)}
+                    </div>
+                </Link>
+                <Link
+                    to={
+                        snippet?.channelId
+                            ? `/channel/${snippet?.channelId}`
+                            : defaultChannelUrl
+                    }
+                    className={styles.channelLink}
+                >
+                    <div className={styles.channelTitle}>
+                        {snippet?.channelTitle || defaultChannelTitle}
+                    </div>
+                </Link>
+            </div>
         </div>
     </div>
 );

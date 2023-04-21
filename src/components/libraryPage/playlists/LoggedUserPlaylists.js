@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./LoggedUserPlaylists.module.scss"
 import playlistsManager from "../../../models/PlaylistsManager";
+import Card from 'react-bootstrap/Card';
 
 const LoggedUserPlaylists = () => {
   const [playlists, setPlaylists] = useState([]);
@@ -48,28 +49,38 @@ const LoggedUserPlaylists = () => {
 
   return (
     <div >
-      <h2>Playlists</h2>
+      <h3 className={styles.categoryTitle}>Playlists</h3>
       <div className={styles.cardContainer}>
         {playlists.map((playlist) => (
           <div key={playlist.playlistID}>
-            <h4>Playlist image</h4>
-            <h5>{playlist.playlistName}</h5>
-            <p>{playlist.videos.length} Videos</p>
-            {loggedUser ? <Link to={`/editPlaylistPage/${playlist.playlistID}`}><button >Edit playlist</button></Link>
-              : <Link to="/login">Login</Link>
-            }
-            <button onClick={() => handlePlaylistDeletion(playlist.username, playlist.playlistID)} >Delete playlist</button>
+            <Card style={{ width: '18rem', border: "none" }}>
+              <Card.Img variant="top" src="../../../img/logo2.png" />
+              <Card.Body>
+                <Card.Title>{playlist.playlistName}</Card.Title>
+                <Card.Text>
+                  <p>{playlist.videos.length} Videos</p>
+                </Card.Text>
+                <div className={styles.btnContainer}>
+                  {loggedUser ? <Link to={`/editPlaylistPage/${playlist.playlistID}`}><button className={styles.cardBtn}  >Edit</button></Link>
+                    : <Link to="/login">Login</Link>
+                  }
+                  <button className={styles.cardBtn} onClick={() => handlePlaylistDeletion(playlist.username, playlist.playlistID)} >Delete</button>
+                </div>
 
+              </Card.Body>
+            </Card>
           </div>
         ))}
       </div>
-      {showMore && (
-        <button onClick={handleShowMore}>
-          Show more
-        </button>
-      )}
+      {
+        showMore && (
+          <button className={styles.showMoreBtn} onClick={handleShowMore}>
+            Show more
+          </button>
+        )
+      }
 
-    </div>
+    </div >
   );
 };
 
