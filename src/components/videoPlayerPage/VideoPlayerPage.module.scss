@@ -41,53 +41,73 @@
           font-weight: bold;
           color: #080808;
         }
-
-        .descriptionText a {
-          font-weight: 700;
-          color: rgb(41, 98, 173);
-          transition: .4s;
-
-        }
       }
 
-      .btnsStatsContainer {
+
+      .buttonsContainer {
         display: flex;
 
-        .stats {
+
+
+        .likeDislikeContainer {
           display: flex;
-          gap: 10px;
-          align-items: center;
-          opacity: 0.7;
-          font-size: 16px;
-        }
+          border-radius: 20px;
 
-        .likeCount {
-          color: rgb(61, 60, 60);
-          margin-right: 10px;
-        }
+          .likeBtn {
+            padding: 0 10px;
+            border-right: 1px solid gray;
+            border-radius: 20px 0 0 20px;
 
-        .buttonsContainer {
-          display: flex;
-        }
+            &:hover {
+              background-color: #b6bcc0;
+            }
 
+            .likeCount {
+              color: rgb(61, 60, 60);
+            }
+
+          }
+
+          .dislikeBtn {
+            border-left: 1px solid rgb(173, 169, 169);
+            padding: 0 10px;
+            border-radius: 0 20px 20px 0;
+
+            &:hover {
+              background-color: #b6bcc0;
+            }
+            
+          }
+
+          .clicked {
+            background-color: #a1a5a8;
+
+          }
+
+          .notClicked {}
+
+        }
 
         .addToPlaylistBtn {
           &:hover {
             background-color: #b6bcc0;
           }
         }
+      }
+    }
 
-        .clicked {
+    .descriptionTextContainer {
+      margin-top: 10px;
+      border-radius: 15px;
+      background-color: #E5E5E5;
+      padding: 10px 5px 10px 15px;
 
-          border-radius: 15px;
-          padding-top: 5px;
+      .descriptionText {
 
-        }
-
-        .notClicked {
-          background-color: transparent;
-          border-radius: 10px;
-
+        &:a {
+          font-weight: 700;
+          color: rgb(41, 98, 173);
+          transition: .4s;
         }
       }
     }

@@ -1,9 +1,10 @@
 
 class Comment {
-  constructor(videoID, commentID, username, text, usersReactions = []) {
+  constructor(videoID, commentID, username, nickname, text, usersReactions = []) {
     this.videoID = videoID;
     this.commentID = commentID;
     this.username = username;
+    this.nickname = nickname;
     this.text = text;
     this.usersReactions = usersReactions;
   }
@@ -26,8 +27,8 @@ class CommentsManager {
   }
   allComments = [];
 
-  createComment = (videoID, commentID, username, text) => {
-    this.allComments.unshift(new Comment(videoID, commentID, username, text));
+  createComment = (videoID, commentID, username, nickname, text) => {
+    this.allComments.unshift(new Comment(videoID, commentID, username, nickname, text));
     localStorage.setItem("AllComments", JSON.stringify(this.allComments));
   };
 

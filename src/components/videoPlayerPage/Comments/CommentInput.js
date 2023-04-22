@@ -9,7 +9,12 @@ function CommentInput({ videoID, addNewComments }) {
     let commentID = uuid();
 
     const handleCommentChange = (event) => {
-        setCommentText(event.target.value);
+        let text = event.target.value.trimStart();
+        if (text.length > 0) {
+            setCommentText(text);
+        } else {
+            setCommentText('');
+        }
     };
 
     const handleCommentClear = () => {
@@ -17,7 +22,7 @@ function CommentInput({ videoID, addNewComments }) {
     };
 
     const handleCommentSubmit = () => {
-        commentsManager.createComment(videoID, commentID, loggedUser.username, commentText);
+        commentsManager.createComment(videoID, commentID, loggedUser.username, loggedUser.nickname, commentText.trimEnd());
         const allComments = JSON.parse(localStorage.getItem('AllComments') || "[]");
         const currentVideoComments = allComments.filter(comment => comment.videoID === videoID);
         addNewComments(currentVideoComments);
@@ -30,7 +35,10 @@ function CommentInput({ videoID, addNewComments }) {
                 value={commentText}
                 onChange={handleCommentChange}
                 placeholder="Add a comment..."
+
             />
+
+
             {commentText && (
                 <div className={styles.buttons}>
                     <button onClick={handleCommentClear} disabled={!commentText}>
@@ -39,6 +47,8 @@ function CommentInput({ videoID, addNewComments }) {
                     <button onClick={handleCommentSubmit}>Comment</button>
                 </div>
             )}
+
+            <hr className={styles.hrLine}></hr>
         </div>
     );
 }

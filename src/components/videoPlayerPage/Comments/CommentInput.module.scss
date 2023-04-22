@@ -1,6 +1,7 @@
 .commentInput {
     position: relative;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
 
     textarea {
         width: 100%;
@@ -17,41 +18,45 @@
         }
     }
 
+    .hrLine{
+        padding-top:5px;
+        margin-top: -5px;
+    }
+
     .buttons {
         position: absolute;
-        bottom: 0;
+        bottom: -35px;
         right: 0;
         display: flex;
 
         button {
-            padding: 0.5rem 1rem;
+            padding: 0.3rem 1rem;
             margin-left: 0.5rem;
             border: none;
-            border-radius: 0.5rem;
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.2s ease;
-
+            border-radius: 20px;
             &:disabled {
                 opacity: 0.5;
                 cursor: not-allowed;
             }
 
             &:first-of-type {
-                background-color: #ccc;
+                background-color: transparent;
                 color: #333;
 
                 &:hover {
-                    background-color: #999;
+                    background-color: rgb(221, 218, 218);
                 }
             }
 
             &:last-of-type {
-                background-color: rgb(188, 188, 190);
+                background-color: #065FD4;
                 color: #fff;
 
                 &:hover {
-                    background-color: rgb(176, 176, 179);
+                    background-color: #0651b3;;
                 }
             }
         }

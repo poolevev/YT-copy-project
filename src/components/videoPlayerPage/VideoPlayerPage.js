@@ -119,7 +119,7 @@ const VideoPlayerPage = () => {
     <div className={styles.container}>
       <div className={styles.playerCommentsContainer}>
 
-      <ReactPlayer 
+        <ReactPlayer
           url={`https://www.youtube.com/watch?v=${id}`}
           className={styles.reactPlayer}
           onReady={() => console.log('onReady')}
@@ -138,36 +138,36 @@ const VideoPlayerPage = () => {
           </div>
 
           <div className={styles.btnsStatsContainer}>
-            <div className={styles.stats}>
-              <span className={styles.viewCount}>
-                {parseInt(localViewCount).toLocaleString()} views
-              </span>
-              <span className={styles.likeCount}>
-                {parseInt(localLikeCount).toLocaleString()} likes
-              </span>
-            </div>
+
             {loggedUser ?
               <div className={styles.buttonsContainer}>
-                <button
-                  className={`${styles.button} ${isLikeClicked ? styles.clicked : styles.notClicked
-                    }`}
-                  onClick={likeVideo}
-                >
-                  <BiLike className={styles.likeBtn} />
-                </button>
-                <button
-                  className={`${styles.button} ${isDislikeClicked ? styles.clicked : styles.notClicked
-                    }`}
-                  onClick={dislikeVideo}
-                >
-                  <BiDislike className={styles.likeBtn} />
-                </button>
+                <div className={styles.likeDislikeContainer}>
+                  <button
+                    className={`${styles.likeBtn} ${isLikeClicked ? styles.clicked : styles.notClicked
+                      }`}
+                    onClick={likeVideo}
+                  >
+                    <BiLike/>
+                    <span className={styles.likeCount}> {parseInt(localLikeCount).toLocaleString()}
+                    </span>
+                  </button>
+                  <button
+                    className={`${styles.dislikeBtn} ${isDislikeClicked ? styles.clicked : styles.notClicked
+                      }`}
+                    onClick={dislikeVideo}
+                  >
+                    <BiDislike className={styles.dislikeBtnIcon} />
+                  </button>
+                </div>
                 <AddToPlaylistBtn className={styles.addToPlaylistBtn} videoID={id} />
               </div>
               : null}
           </div>
         </div>
-        <div>
+        <div className={styles.descriptionTextContainer} >
+          <span className={styles.viewCount}>
+            {parseInt(localViewCount).toLocaleString()} views
+          </span>
           {!isFullDescription ? <p className={styles.descriptionText} dangerouslySetInnerHTML={{ __html: `${descriptionText.slice(0, 300).replace(regex, '<a href="$1">$1</a>')}...` }} /> : null}
           {isFullDescription ? <p className={styles.descriptionText} dangerouslySetInnerHTML={{ __html: isFullDescription.replace(regex, '<a href="$1">$1</a>') }} /> : null}
           {!isFullDescription ? <button className={styles.showMoreBtn} onClick={() => handleFullDescription(descriptionText)}>Show more</button> : null}
@@ -177,7 +177,7 @@ const VideoPlayerPage = () => {
       </div>
 
       <div className={styles.relatedVideos}>
-        <Videos videos={videos} related={true}/>
+        <Videos videos={videos} related={true} />
         <button className={styles.showMoreBtn} onClick={handleShowMoreRelated}>Show more</button>
       </div>
 

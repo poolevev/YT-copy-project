@@ -57,10 +57,10 @@ const SingleComment = ({ comment }) => {
     return (
         <div className={styles.card}>
 
-            <h4>{comment.username}</h4>
-            <p>{comment.text}</p>
+            <h6>{comment.nickname}</h6>
+            <p className={styles.commentText}>{comment.text}</p>
             <div className={styles.buttonsContainer}>
-                <button className={`${styles.button} ${isLikeClicked ? styles.clicked : styles.notClicked}`} onClick={likeComment}><BiLike />{likesNumber}</button>
+                <button className={`${styles.button} ${isLikeClicked ? styles.clicked : styles.notClicked}`} onClick={likeComment}><BiLike />  {likesNumber}</button>
                 <button className={`${styles.button} ${isDislikeClicked ? styles.clicked : styles.notClicked}`} onClick={dislikeComment}><BiDislike /></button>
             </div>
         </div>

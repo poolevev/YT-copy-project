@@ -32,7 +32,6 @@ const AddToPlaylistBtn = ({ videoID }) => {
             setSelectedPlaylists(prev => [...selectedPlaylists]);
             playlistsManager.removeVideoFromPlaylist(playlist.playlistID, videoID);
         } else {
-            //playlist.videos.push(videoID);
             setSelectedPlaylists(prev => [...prev, playlist]);
             playlistsManager.addVideoToPlaylist(playlist.playlistID, videoID);
         }
@@ -42,10 +41,9 @@ const AddToPlaylistBtn = ({ videoID }) => {
         const playlistID = uuid();
         if (newPlaylistName.length) {
             console.log(`Creating playlist: ${newPlaylistName}`);
-            playlistsManager.createPlaylist(loggedUser.username, playlistID, newPlaylistName, [videoID]);
+            playlistsManager.createPlaylist(loggedUser.username, playlistID, newPlaylistName.trimEnd(), [videoID]);
             playlistsManager.addVideoToPlaylist(playlistID, videoID);
             setSelectedPlaylists(prev => [...prev, new Playlist(loggedUser.username, playlistID, newPlaylistName, [videoID])]);
-            console.log(selectedPlaylists)
             setNewPlaylistName('');
             setShowCreatePlaylist(false);
         }
@@ -133,7 +131,7 @@ const AddToPlaylistBtn = ({ videoID }) => {
                             required
                             placeholder="New playlist"
                             value={newPlaylistName}
-                            onChange={(e) => setNewPlaylistName(e.target.value)}
+                            onChange={(e) => setNewPlaylistName(e.target.value.trimStart())}
                         />
                         <button className={styles.createBtn} onClick={handleCreatePlaylist}>
                             Create

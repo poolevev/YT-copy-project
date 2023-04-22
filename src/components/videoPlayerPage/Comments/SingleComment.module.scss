@@ -1,10 +1,19 @@
 .card {
     color: black;
+    max-width: 600px;
+    border-radius: 15px;
+    background-color: #f7f4f47e;
+    padding: 10px;
+}
+
+.commentText {
+    padding:5px 5px 0;
+    word-wrap: break-word;
 }
 
 .buttonsContainer {
     display: flex;
-  }
+}
 
 .clicked {
     border-radius: 15px;
