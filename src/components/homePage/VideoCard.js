@@ -8,9 +8,9 @@ import {
   defaultChannelTitle,
 } from "../../utils/defaultVideo";
 import ReactPlayer from "react-player";
-
 import { makeAPICall } from "../../utils/makeAPICall";
 import styles from "./VideoCard.module.scss";
+import { BiTime } from "react-icons/bi"
 
 const VideoCard = ({
   video: {
@@ -20,7 +20,7 @@ const VideoCard = ({
 }) => {
   const isShortsPage = window.location.pathname === "/shorts";
   //const [logoLink, setLogoLink] = useState(null);
-
+  const dateString = snippet.publishedAt;
   const [renderPlayer, setRenderPlayer] = useState(false);
 
   // to many request,
@@ -32,13 +32,48 @@ const VideoCard = ({
   //   );
   // },[]);
 
+  function getTimeDifference(dateString) {
+    const date = new Date(dateString);
+    const now = new Date();
+
+    const diffTime = Math.abs(now - date);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays < 1) {
+      const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
+      return `${diffHours} hour${getSuffix(diffHours)}`;
+    } else if (diffDays < 7) {
+      return `${diffDays} day${getSuffix(diffDays)}`;
+    } else if (diffDays < 365) {
+      const diffMonths = Math.ceil(diffDays / 30);
+      return `${diffMonths} month${getSuffix(diffMonths)}`;
+    } else {
+      const diffYears = Math.ceil(diffDays / 365);
+      return `${diffYears} year${getSuffix(diffYears)}`;
+    }
+  }
+
+  function getSuffix(number) {
+    if (number % 10 === 1 && number % 100 !== 11) {
+      return "";
+    } else if (
+      [2, 3, 4].includes(number % 10) &&
+      ![12, 13, 14].includes(number % 100)
+    ) {
+      return "s";
+    } else {
+      return "s";
+    }
+  }
+
+
   if (renderPlayer) {
     return (
       <ReactPlayer
         url={`https://www.youtube.com/watch?v=${videoId}`}
         // width="150px"
         // height="300px"
-         width="200px"
+        width="200px"
         height="400px"
         controls={false}
         className={styles.reactPlayer}
@@ -54,7 +89,7 @@ const VideoCard = ({
   } else {
     return (
       <div
-        className={isShortsPage ? styles.shortcard : styles.card}
+        className={isShortsPage ? styles.shortcard : styles.cardVideo}
         onClick={() => {
           isShortsPage && setRenderPlayer(true);
         }}
@@ -106,6 +141,8 @@ const VideoCard = ({
                 {snippet?.channelTitle || defaultChannelTitle}
               </div>
             </Link>
+            <span className={styles.addedAgo}><BiTime /> {getTimeDifference(dateString)} ago</span>
+
           </div>
         </div>
       </div>

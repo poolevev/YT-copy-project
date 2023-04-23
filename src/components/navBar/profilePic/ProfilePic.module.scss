@@ -1,6 +1,7 @@
 .loginRegistrationNavbarButton {
     background-color: #ffffff; // white background
-    color: #007bffd0; // blue text color
+    color: #0f0f0f; // blue text color
+    font-weight: 500;
     border: none; // remove button border
     // border-radius: 30%; // set initial border radius to 50%
     transition: background-color 1s, color 0.5s, border-radius 1s; // add transition effect

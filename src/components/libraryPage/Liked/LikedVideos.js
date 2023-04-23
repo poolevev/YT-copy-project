@@ -25,7 +25,7 @@ const LikedVideos = () => {
 
   return (
     <div>
-      <h3  className={styles.categoryTitle}>Liked</h3>
+      <h3 className={styles.categoryTitle}>Liked</h3>
       {likedVideos.length > 0 ? (
         <div>
           <div className={styles.container}>
@@ -35,11 +35,12 @@ const LikedVideos = () => {
               </div>
             ))}
           </div>
-          {showMore && <button className = {styles.showMoreBtn} onClick={handleShowMore}>Show more</button>}
+          {showMore && <button className={styles.showMoreBtn} onClick={handleShowMore}>Show more</button>}
         </div>
       ) : (
         <span>No liked videos yet</span>
       )}
+      <hr></hr>
     </div>
   );
 }

@@ -45,6 +45,7 @@ const History = () => {
       ) : (
         <span>No history yet</span>
       )}
+      <hr></hr>
     </div>
   );
 }

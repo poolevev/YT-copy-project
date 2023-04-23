@@ -1,0 +1,22 @@
+.playlistCard {
+
+    .btnContainer {
+        margin-top: -20px;
+        display: flex;
+        justify-content: end;
+    }
+
+
+    .cardBtn {
+        font-size: 14;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: 0 10px;
+        border-radius: 20px;
+
+        &:hover {
+            background-color: rgb(221, 218, 218);
+        }
+
+    }
+}

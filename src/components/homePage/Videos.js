@@ -6,10 +6,11 @@ import VideoCard from "./VideoCard"
 
 const Videos = ({ videos, initialVideosNumber }) => {
     const [videosNumber, setVideosNumber] = useState(initialVideosNumber || 9);
+    const [noMore, setNoMore] = useState(false);
 
     useEffect(() => {
 
-        setVideosNumber(prev => prev + 7);
+        setVideosNumber(prev => prev + 9);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
 
@@ -22,20 +23,20 @@ const Videos = ({ videos, initialVideosNumber }) => {
         }
     };
 
+    if (videosNumber === 50) {
+        setNoMore(true);
+    }
+
     return (
 
         <div className={styles.container}>
             {videos?.slice(0, videosNumber).map((item, index) => (
 
-                <div key={index}>
+                (<div key={index}>
                     {item.id.videoId && <VideoCard video={item} />}
                 </div>
-                // related === true ?
-                //     <div key={index}>
-                //         {item.id.videoId && <RelatedVideoCard video={item} />}
-                //     </div> : null
-
-            ))}
+                //{noMore && (<span className={styles.noMoreVideos} > No more videos </span>)}
+            )))}
         </div>
     );
 }

@@ -22,14 +22,14 @@ const ProfilePic = () => {
             }
             alt="Profile"
             roundedCircle
-            width={30}
-            height={30}
+            width={37}
+            height={37}
             className="navBar_profilePic"
             style={{ marginRight: "10px" }}
           />
           <Link to="/profile">
           <Button className={styles.loginRegistrationNavbarButton}>
-            Hello, {user?.nickname}
+            {user?.nickname}
             </Button>
             </Link>
         </>

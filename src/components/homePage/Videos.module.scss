@@ -1,7 +1,12 @@
 .container {
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 20px 15px;
+
+    .noMoreVideos{
+        
+    }
 }
