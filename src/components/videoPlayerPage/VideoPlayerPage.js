@@ -4,11 +4,13 @@ import ReactPlayer from "react-player";
 import Loader from "./Loader"
 import Videos from "../homePage/Videos";
 import { makeAPICall } from "../../utils/makeAPICall";
+import { getTimeDifference } from "../../utils/getTimeDifference";
 import historyManager from "../../models/HistoryManager";
 import Comments from "./Comments/Comments";
 import AddToPlaylistBtn from "./AddToPlaylistBtn";
 import categoriesManager from "../../models/CategoriesManager";
-import { BiLike, BiDislike } from "react-icons/bi"
+import { AiOutlineLike, AiOutlineDislike, AiTwotoneLike, AiTwotoneDislike } from "react-icons/ai";
+import { BiTime } from "react-icons/bi"
 import styles from "./VideoPlayerPage.module.scss";
 
 const VideoPlayerPage = () => {
@@ -24,7 +26,8 @@ const VideoPlayerPage = () => {
   let videoSnippet = null;
   const [descriptionText, setDescriptionText] = useState("");
   const [isFullDescription, setFullDescription] = useState(false);
-  const [logoLink, setLogoLink] = useState("../../img/logo.png")
+  const [logoLink, setLogoLink] = useState("../../img/logo.png");
+  const [dateString, setDateString] = useState(null);
 
 
   function addToHistory() {
@@ -83,7 +86,9 @@ const VideoPlayerPage = () => {
       videoSnippet = data.items[0].snippet
       setLikesVideoSnippet(videoSnippet);
       addTagToCategories(videoSnippet.tags[0], loggedUser.username);
-      setDescriptionText(videoSnippet.description)
+      setDescriptionText(videoSnippet.description);
+      setDateString(videoSnippet.publishedAt)
+
       addToHistory();
       makeAPICall(`channels?part=snippet&id=${data.items[0].snippet.channelId}`).then(
         (data) => {
@@ -100,9 +105,6 @@ const VideoPlayerPage = () => {
 
       }
     );
-
-
-
 
   }, [id]);
 
@@ -143,20 +145,18 @@ const VideoPlayerPage = () => {
               <div className={styles.buttonsContainer}>
                 <div className={styles.likeDislikeContainer}>
                   <button
-                    className={`${styles.likeBtn} ${isLikeClicked ? styles.clicked : styles.notClicked
-                      }`}
+                    className={`${styles.likeBtn}`}
                     onClick={likeVideo}
                   >
-                    <BiLike/>
+                    {!isLikeClicked ? <AiOutlineLike /> : <AiTwotoneLike />}
                     <span className={styles.likeCount}> {parseInt(localLikeCount).toLocaleString()}
                     </span>
                   </button>
                   <button
-                    className={`${styles.dislikeBtn} ${isDislikeClicked ? styles.clicked : styles.notClicked
-                      }`}
+                    className={`${styles.dislikeBtn}`}
                     onClick={dislikeVideo}
                   >
-                    <BiDislike className={styles.dislikeBtnIcon} />
+                    {!isDislikeClicked ? <AiOutlineDislike className={styles.dislikeBtnIcon} /> : <AiTwotoneDislike />}
                   </button>
                 </div>
                 <AddToPlaylistBtn className={styles.addToPlaylistBtn} videoID={id} />
@@ -166,7 +166,7 @@ const VideoPlayerPage = () => {
         </div>
         <div className={styles.descriptionTextContainer} >
           <span className={styles.viewCount}>
-            {parseInt(localViewCount).toLocaleString()} views
+            {parseInt(localViewCount).toLocaleString()} views   <BiTime /> {getTimeDifference(dateString)} ago
           </span>
           {!isFullDescription ? <p className={styles.descriptionText} dangerouslySetInnerHTML={{ __html: `${descriptionText.slice(0, 300).replace(regex, '<a href="$1">$1</a>')}...` }} /> : null}
           {isFullDescription ? <p className={styles.descriptionText} dangerouslySetInnerHTML={{ __html: isFullDescription.replace(regex, '<a href="$1">$1</a>') }} /> : null}
