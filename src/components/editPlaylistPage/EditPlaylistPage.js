@@ -20,7 +20,6 @@ const EditPlaylistPage = () => {
     })
   }, []);
 
-  console.log(videos)
 
   const handleVideoRemove = (videoID) => {
 
@@ -33,8 +32,9 @@ const EditPlaylistPage = () => {
   if (videos?.length === 0) {
     return (
       <div>
-        <h2>Playlist {currentPlaylist.playlistName}</h2>
-        <h4>Empty playlist</h4>
+        <h2 className={styles.playlistTitle}>Playlist {currentPlaylist.playlistName}</h2>
+        <hr></hr>
+        <h4 className={styles.emptyPlaylistText}>Empty playlist</h4>
       </div>
     )
   }
@@ -42,11 +42,12 @@ const EditPlaylistPage = () => {
   return (
     <div >
       <h2>Playlist {currentPlaylist.playlistName}</h2>
+      <hr></hr>
       <div className={styles.cardContainer}>
         {videos?.map(item => (
           <div key={item?.id}>
             <VideoCard video={item} />
-            <button onClick={() => handleVideoRemove(item?.id)} >Remove video</button>
+            <button className={styles.removeFromPlaylistBtn} onClick={() => handleVideoRemove(item?.id)} >Remove from playlist</button>
           </div>
         ))}
       </div>

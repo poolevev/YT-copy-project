@@ -13,7 +13,7 @@ import ChannelPage from "./components/channelPage/ChannelPage"
 import Shorts from './components/homePage/shorts/shorts';
 
 import styles from './App.module.scss';
-import { Columns } from 'react-bootstrap-icons';
+
 
 
 function App() {
@@ -35,11 +35,11 @@ function App() {
             <Route path='/channel/:id' element={<ChannelPage />} />
             <Route path='/shorts' element={<Shorts />} />
             <Route path='*' element={
- <div style={{ display: 'flex',flexDirection: "column", justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-  <h2>Page not found</h2>
- <img width="300px" src="https://s3.amazonaws.com/images.seroundtable.com/youtube-404-1409831247.png" alt="Page not found" />
-</div>
-} />
+              <div style={{ display: 'flex', flexDirection: "column", justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                <h2>Page not found</h2>
+                <img width="300px" src="https://s3.amazonaws.com/images.seroundtable.com/youtube-404-1409831247.png" alt="Page not found" />
+              </div>
+            } />
 
 
           </Routes>

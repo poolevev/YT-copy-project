@@ -3,3 +3,22 @@
     flex-wrap: wrap;
     gap: 10px;
 }
+
+.playlistTitle {
+    margin: 10px 0 0 20px;
+}
+
+.emptyPlaylistText {
+    margin-left: 30px;
+}
+
+.removeFromPlaylistBtn {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0 10px;
+    border-radius: 20px;
+
+    &:hover {
+        background-color: rgb(221, 218, 218);
+    }
+}
