@@ -43,7 +43,7 @@ const LoggedUserPlaylists = () => {
       <div className={styles.cardContainer}>
         {playlists.map((playlist) => (
 
-          <PlaylistCard playlist={playlist} setPlaylists={setPlaylists} />
+          <PlaylistCard key={playlist.playlistID} playlist={playlist} setPlaylists={setPlaylists} />
 
         ))}
       </div>

@@ -17,6 +17,8 @@
 
 .menu,
 .createPlaylist {
+    //max-width: 200px;
+    margin-top: 5px;
     color: #000000;
     border-radius: 10px;
     padding: 5px 15px;
@@ -24,7 +26,12 @@
     z-index: 10;
     background-color: #e7e7e7;
     text-align: left;
-    border:1px solid rgba(128, 128, 128, 0.753);
+    border: 1px solid rgba(128, 128, 128, 0.753);
+    word-wrap: break-word;
+
+    .playlistNameText {
+        word-wrap: break-word;
+    }
 }
 
 
@@ -56,5 +63,7 @@
     font-size: 14px;
     border-radius: 5px;
     border: 1px solid rgb(221, 218, 218);
+    margin-bottom: 5px;
+    word-wrap: break-word;
 
 }

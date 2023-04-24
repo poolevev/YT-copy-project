@@ -4,14 +4,15 @@
     border-radius: 15px;
     background-color: #f7f4f47e;
     padding: 10px;
+    display: flex;
 }
 
-.logoNicknameContainer {
+.logoNContainer {
     display: flex;
 }
 
 .commentText {
-    padding: 5px 5px 0;
+    padding: 0 5px 0;
     word-wrap: break-word;
 }
 

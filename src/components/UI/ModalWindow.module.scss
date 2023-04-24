@@ -1,0 +1,30 @@
+.sureText {
+    font-weight: 500;
+    padding-bottom: 10px;
+}
+
+.modalDeleteBtn {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0 10px;
+    border-radius: 20px;
+    background-color: rgb(192, 191, 191);
+    transition: 0.4s ease-in-out;
+
+    &:hover {
+        background-color: rgb(247, 139, 139);
+    }
+}
+
+.modalCancelBtn {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0 10px;
+    border-radius: 20px;
+    background-color: rgb(221, 218, 218);
+    transition: 0.4s ease-in-out;
+
+    &:hover {
+        background-color: rgb(192, 191, 191);
+    }
+}

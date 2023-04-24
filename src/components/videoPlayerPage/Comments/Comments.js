@@ -47,7 +47,7 @@ const Comments = ({ videoID }) => {
                         ))}
                     </div>
                     {showMore && (
-                        <button onClick={loadMore}>Show More</button>
+                        <button style={{borderRadius:"20px"}} onClick={loadMore}>Show More</button>
                     )}
                 </div>
             ) : (

@@ -74,7 +74,7 @@ const SearchBar = () => {
     };
     recognition.start();
   };
-  //"AIzaSyBl33jUdCXd1qPVXd7gKaz5H2RNW8Bqegs" //'AIzaSyCtiszcgPf6MsKzfjOIAj98Y6-i6e9R2Bw';
+  // keys "AIzaSyBl33jUdCXd1qPVXd7gKaz5H2RNW8Bqegs" //'AIzaSyCtiszcgPf6MsKzfjOIAj98Y6-i6e9R2Bw';
   const searchSuggestionsCallback = (e) => {
     const query = e.target.value;
     const apiKey = "AIzaSyBl33jUdCXd1qPVXd7gKaz5H2RNW8Bqegs";
@@ -96,7 +96,6 @@ const SearchBar = () => {
     setShowClearIcon(true);
     //debounce(searchSuggestionsCallback(event), 500)
   };
-
 
   return (
     <div className={styles.formWrapper}>

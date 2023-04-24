@@ -58,16 +58,17 @@ const SingleComment = ({ comment }) => {
 
     return (
         <div className={styles.card}>
-            {console.log(loggedUser)}
-            <div className={styles.logoNicknameContainer}>
-            <img className={styles.userLogo} alt="logo" scr={loggedUser.image || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9IpC2U8VG2ZIvbjGospiXbQQ76X_kjB16dOetFwjdcQ&s"}/>
-            <h6>{comment.nickname}</h6>
+
+            <img className={styles.userLogo} alt="logo" scr={loggedUser.image || "https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"} />
+            <div>
+                <strong>{comment.nickname}</strong>
+                <p className={styles.commentText}>{comment.text}</p>
+                <div className={styles.buttonsContainer}>
+                    <button className={`${styles.button} ${isLikeClicked ? styles.clicked : styles.notClicked}`} onClick={likeComment}><BiLike />  {likesNumber}</button>
+                    <button className={`${styles.button} ${isDislikeClicked ? styles.clicked : styles.notClicked}`} onClick={dislikeComment}><BiDislike /></button>
+                </div>
             </div>
-            <p className={styles.commentText}>{comment.text}</p>
-            <div className={styles.buttonsContainer}>
-                <button className={`${styles.button} ${isLikeClicked ? styles.clicked : styles.notClicked}`} onClick={likeComment}><BiLike />  {likesNumber}</button>
-                <button className={`${styles.button} ${isDislikeClicked ? styles.clicked : styles.notClicked}`} onClick={dislikeComment}><BiDislike /></button>
-            </div>
+
         </div>
     )
 };
