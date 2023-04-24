@@ -1,4 +1,5 @@
 import axios from "axios";
+//const MAIN_URL = 'https://www.googleapis.com/youtube/v3';
 const MAIN_URL = 'https://youtube-v31.p.rapidapi.com';
 
 const options = {
@@ -13,7 +14,8 @@ const options = {
         //'X-RapidAPI-Key': 'f9dec24c6amsh9d0d81c9fb1df61p1dfe88jsnf6a91051e4a9',
         //'X-RapidAPI-Key': 'e143712db3mshab93a043c0ca014p15a4abjsne50f12a1f5bd',
 
-       
+       //youtube original key
+       //AIzaSyCtiszcgPf6MsKzfjOIAj98Y6-i6e9R2Bw
 
          //Alex
         // 'X-RapidAPI-Key': 'd201e1ab14mshb36b5b04cd15b5ep12fbd6jsn48a0ccb7000a',
