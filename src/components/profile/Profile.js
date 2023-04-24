@@ -6,6 +6,10 @@ import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import styles from "./profile.module.scss";
 
+
+import commentsManager from "../../models/CommentsManager";
+
+
 function Profile() {
   // State variables for the user's profile information
   const currentUser = JSON.parse(localStorage.getItem("LoggedUser"));
@@ -79,19 +83,24 @@ function Profile() {
   };
 
   const updateNickname = () => {
-    if (currentUser.nickname != nickname) {
+    if (currentUser.nickname !== nickname) {
+      const oldNickname = currentUser.nickname;
       currentUser.nickname = nickname;
-
+  
       localStorage.setItem("LoggedUser", JSON.stringify(currentUser));
       dispatch(updateUser(currentUser));
       updateAllUsers(currentUser);
       setShowNicknameError(false);
       setShowNicknameSuccess(true);
+  
+      // update nickname in all comments made by the current user
+      commentsManager.updateNickname(oldNickname, nickname);
     } else {
       setShowNicknameSuccess(false);
       setShowNicknameError(true);
     }
   };
+  
 
   const updatePassword = () => {
     let valid = true;

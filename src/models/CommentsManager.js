@@ -71,6 +71,17 @@ class CommentsManager {
       }
     }
   }
+
+
+  updateNickname = (oldNickname, newNickname) => {
+    this.allComments.forEach(comment => {
+      if (comment.nickname === oldNickname) {
+        comment.nickname = newNickname;
+      }
+    });
+    localStorage.setItem("AllComments", JSON.stringify(this.allComments));
+  };
+  
 }
 
 const commentsManager = new CommentsManager();
