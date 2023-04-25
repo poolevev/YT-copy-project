@@ -1,12 +1,14 @@
 export function getTimeDifference(dateString) {
     const date = new Date(dateString);
     const now = new Date();
-
     const diffTime = Math.abs(now - date);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
+    const diffMinutes = Math.ceil(diffTime / (1000 * 60));
 
-    if (diffDays < 1) {
-        const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
+    if (diffMinutes < 60) {
+        return `${diffMinutes} minute${getSuffix(diffMinutes)}`;
+    } else if (diffHours < 24) {
         return `${diffHours} hour${getSuffix(diffHours)}`;
     } else if (diffDays < 7) {
         return `${diffDays} day${getSuffix(diffDays)}`;

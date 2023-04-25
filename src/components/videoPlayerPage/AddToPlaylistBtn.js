@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import styles from './AddToPlaylistBtn.module.scss';
 import playlistsManager from '../../models/PlaylistsManager';
 import { Playlist } from "../../models/PlaylistsManager"
@@ -31,7 +31,7 @@ const AddToPlaylistBtn = ({ videoID }) => {
 
 
         if (selectedPlaylistIndex > -1) {
-            console.log("videoId was in the list. remove");
+
             selectedPlaylists.splice(selectedPlaylistIndex, 1)
             setSelectedPlaylists(prev => [...selectedPlaylists]);
             playlistsManager.removeVideoFromPlaylist(playlist.playlistID, videoID);
@@ -48,7 +48,7 @@ const AddToPlaylistBtn = ({ videoID }) => {
     const handleCreatePlaylist = () => {
         const playlistID = uuid();
         if (newPlaylistName.length) {
-            console.log(`Creating playlist: ${newPlaylistName}`);
+
             playlistsManager.createPlaylist(loggedUser.username, playlistID, newPlaylistName.trimEnd(), [videoID]);
             playlistsManager.addVideoToPlaylist(playlistID, videoID);
             setSelectedPlaylists(prev => [...prev, new Playlist(loggedUser.username, playlistID, newPlaylistName, [videoID])]);
@@ -146,7 +146,7 @@ const AddToPlaylistBtn = ({ videoID }) => {
                             onChange={(e) => setNewPlaylistName(e.target.value.trimStart())}
                         />
                         <button className={styles.createBtn} onClick={handleCreatePlaylist}>
-                            Create
+                            Create and add
                         </button>
                     </div>
                 )

@@ -26,7 +26,6 @@ class PlaylistsManager {
 
             this.allPlaylists.push(new Playlist(username, playlistID, playlistName, videos));
             localStorage.setItem("AllPlaylists", JSON.stringify(this.allPlaylists));
-            console.log("Playlist created")
         }
 
     }
@@ -38,7 +37,6 @@ class PlaylistsManager {
             let playlistIndex = this.allPlaylists.findIndex(playlistItem => playlistItem.playlistID === playlistID)
             this.allPlaylists.splice(playlistIndex, 1);
             localStorage.setItem("AllPlaylists", JSON.stringify(this.allPlaylists));
-            console.log("Playlist deleted")
         }
 
 
@@ -51,7 +49,6 @@ class PlaylistsManager {
             currentPlaylist.videos.push(videoID);
             this.allPlaylists.splice(currentPlaylistIndex, 1, currentPlaylist);
             localStorage.setItem("AllPlaylists", JSON.stringify(this.allPlaylists));
-            console.log("added to playlist", `${playlistID}`)
         }
     }
 
@@ -63,7 +60,6 @@ class PlaylistsManager {
         currentPlaylist.videos.splice(currentVideoIdIndex, 1);
         this.allPlaylists.splice(currentPlaylistIndex, 1, currentPlaylist);
         localStorage.setItem("AllPlaylists", JSON.stringify(this.allPlaylists));
-        console.log("removed from the playlist", `${playlistID}`)
 
     }
 

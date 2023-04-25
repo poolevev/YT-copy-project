@@ -38,18 +38,18 @@
     position: relative;
 
     .cardLogo {
-        width: 50px;
+        width: 40px;
         margin: 10px 10px 0 0;
+        object-fit: cover;
 
         .channelLogo {
             border-radius: 50%;
-            width: 50px;
-
 
         }
     }
 
     .cardText {
+        width: 270px;
         display: flex;
         flex-direction: column;
 

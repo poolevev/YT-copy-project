@@ -25,7 +25,7 @@ const LikedVideos = () => {
 
   return (
     <div>
-      <h3 className={styles.categoryTitle}>Liked</h3>
+      <h5 className={styles.categoryTitle}>Liked</h5>
       {likedVideos.length > 0 ? (
         <div>
           <div className={styles.container}>

@@ -33,7 +33,7 @@ const Comments = ({ videoID }) => {
 
     return (
         <div>
-            <h4 className={styles.title} > {currentComments.length} Comments</h4>
+            <h6 className={styles.title} > {currentComments.length} Comments</h6>
 
             {loggedUser ? <CommentInput videoID={videoID} addNewComments={setComments} /> : null}
 

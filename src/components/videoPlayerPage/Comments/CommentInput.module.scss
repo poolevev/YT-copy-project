@@ -1,65 +1,70 @@
 .commentInput {
     position: relative;
     margin-top: 1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+    display: flex;
 
-
-    textarea {
+    .textPart {
         width: 100%;
-        min-height: 5rem;
-        padding: 1rem;
-        border: none;
-        border-radius: 0.5rem;
-        background-color: #f2f2f2;
-        font-size: 1rem;
-        resize: none;
 
-        &:focus {
-            outline: none;
-        }
-    }
-
-    .hrLine {
-        padding-top: 5px;
-        margin-top: -5px;
-    }
-
-    .buttons {
-        position: absolute;
-        bottom: -35px;
-        right: 0;
-        display: flex;
-
-        button {
-            padding: 0.3rem 1rem;
-            margin-left: 0.5rem;
+        textarea {
+            width: 100%;
+            min-height: 15px;
+            padding: 0 1rem;
             border: none;
+            border-radius: 0.5rem;
+            background-color: #f2f2f2;
             font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border-radius: 20px;
+            resize: none;
 
-            &:disabled {
-                opacity: 0.5;
-                cursor: not-allowed;
+            &:focus {
+                outline: none;
             }
+        }
 
-            &:first-of-type {
-                background-color: transparent;
-                color: #333;
+        .hrLine {
+            padding-top: 5px;
+            margin-top: -5px;
+            margin-bottom: 2px;
+        }
 
-                &:hover {
-                    background-color: rgb(221, 218, 218);
+        .buttons {
+            position: absolute;
+            bottom: -35px;
+            right: 0;
+            display: flex;
+
+            button {
+                padding: 0.3rem 1rem;
+                margin-left: 0.5rem;
+                border: none;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                border-radius: 20px;
+
+                &:disabled {
+                    opacity: 0.5;
+                    cursor: not-allowed;
                 }
-            }
 
-            &:last-of-type {
-                background-color: #065FD4;
-                color: #fff;
+                &:first-of-type {
+                    background-color: transparent;
+                    color: #333;
 
-                &:hover {
-                    background-color: #0651b3;
-                    ;
+                    &:hover {
+                        background-color: rgb(221, 218, 218);
+                    }
+                }
+
+                &:last-of-type {
+                    background-color: #065FD4;
+                    color: #fff;
+
+                    &:hover {
+                        background-color: #0651b3;
+                        ;
+                    }
                 }
             }
         }

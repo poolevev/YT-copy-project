@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styles from './SingleComment.module.scss';
 import commentsManager from '../../../models/CommentsManager';
-import { BiLike, BiDislike } from "react-icons/bi";
-import { useDispatch, useSelector } from "react-redux";
+import { AiOutlineLike, AiOutlineDislike, AiTwotoneLike, AiTwotoneDislike } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import { getTimeDifference } from '../../../utils/getTimeDifference';
 
 const SingleComment = ({ comment }) => {
 
@@ -13,6 +14,7 @@ const SingleComment = ({ comment }) => {
     const [likesNumber, setLikesNumber] = useState(comment.usersReactions?.filter(reactionObj => reactionObj.reaction === "Like").length)
     const isReactionPossible = (loggedUser && comment.username !== loggedUser?.username);
     const profilePic = useSelector((state) => state.profile.profilePic);
+    const formattedDate = getTimeDifference(comment.creationTime);
 
 
     function likeComment() {
@@ -57,15 +59,16 @@ const SingleComment = ({ comment }) => {
     }
 
     return (
-        <div className={styles.card}>
-
-            <img className={styles.userLogo} alt="logo" scr={loggedUser.image || "https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"} />
-            <div>
-                <strong>{comment.nickname}</strong>
+        <div className={styles.singleCommentCard}>
+            <div style={{ minWidth: "60px" }}>
+                <img className={styles.userLogo} alt="logo" scr={loggedUser.image || "https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"} />
+            </div>
+            <div className={styles.commentPart} style={{ wordWrap: "break-word" }}>
+                <b>{comment.nickname}</b><small style={{ color: "gray" }}>  {formattedDate} ago</small>
                 <p className={styles.commentText}>{comment.text}</p>
                 <div className={styles.buttonsContainer}>
-                    <button className={`${styles.button} ${isLikeClicked ? styles.clicked : styles.notClicked}`} onClick={likeComment}><BiLike />  {likesNumber}</button>
-                    <button className={`${styles.button} ${isDislikeClicked ? styles.clicked : styles.notClicked}`} onClick={dislikeComment}><BiDislike /></button>
+                    <button className={styles.commentLikeBtn} onClick={likeComment}>{!isLikeClicked ? <AiOutlineLike /> : <AiTwotoneLike />}  {likesNumber}</button>
+                    <button className={styles.commentDislikeBtn} onClick={dislikeComment}>{!isDislikeClicked ? <AiOutlineDislike /> : <AiTwotoneDislike />}</button>
                 </div>
             </div>
 

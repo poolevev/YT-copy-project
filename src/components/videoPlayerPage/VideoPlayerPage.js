@@ -66,7 +66,6 @@ const VideoPlayerPage = () => {
 
   function addTagToCategories(tag, userName) {
     categoriesManager.addCategory(tag, userName)
-    console.log("tag added")
 
   }
 
@@ -101,7 +100,7 @@ const VideoPlayerPage = () => {
     makeAPICall(`search?part=snippet&relatedToVideoId=${id}&type=video`).then(
       (data) => {
         setMoreVideos(data.items);
-        setVideos(data.items.slice(0, 10));
+        setVideos(data.items.slice(0, 7));
 
       }
     );
@@ -110,6 +109,7 @@ const VideoPlayerPage = () => {
 
 
   if (!videoDetail?.snippet) return <Loader />;
+  
   const { snippet: { title, channelId, channelTitle } } = videoDetail;
   const currentVideoArray = historyManager.allHistory.filter(videoHistory => videoHistory.videoID === id);
   const localViewCount = currentVideoArray.length;
@@ -156,7 +156,7 @@ const VideoPlayerPage = () => {
                     className={`${styles.dislikeBtn}`}
                     onClick={dislikeVideo}
                   >
-                    {!isDislikeClicked ? <AiOutlineDislike className={styles.dislikeBtnIcon} /> : <AiTwotoneDislike />}
+                    {!isDislikeClicked ? <AiOutlineDislike /> : <AiTwotoneDislike />}
                   </button>
                 </div>
                 <AddToPlaylistBtn className={styles.addToPlaylistBtn} videoID={id} />

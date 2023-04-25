@@ -7,6 +7,7 @@ class Comment {
     this.nickname = nickname;
     this.text = text;
     this.usersReactions = usersReactions;
+    this.creationTime = new Date();
   }
 }
 

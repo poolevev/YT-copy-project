@@ -28,7 +28,7 @@ const History = () => {
 
   return (
     <div>
-      <h3 className={styles.categoryTitle} >History</h3>
+      <h5 className={styles.categoryTitle} >History</h5>
       {history.length > 0 ? (
         <div>
           <div className={styles.container}>

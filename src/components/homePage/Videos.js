@@ -6,7 +6,6 @@ import VideoCard from "./VideoCard"
 
 const Videos = ({ videos, initialVideosNumber }) => {
     const [videosNumber, setVideosNumber] = useState(initialVideosNumber || 9);
-    const [noMore, setNoMore] = useState(false);
 
     useEffect(() => {
 
@@ -23,10 +22,6 @@ const Videos = ({ videos, initialVideosNumber }) => {
         }
     };
 
-    if (videosNumber === 50) {
-        setNoMore(true);
-    }
-
     return (
 
         <div className={styles.container}>
@@ -35,8 +30,9 @@ const Videos = ({ videos, initialVideosNumber }) => {
                 (<div key={index}>
                     {item.id.videoId && <VideoCard video={item} />}
                 </div>
-                //{noMore && (<span className={styles.noMoreVideos} > No more videos </span>)}
-            )))}
+
+                )))}
+            {videosNumber >= 49 ? <div className={styles.noMoreVideos} > <b>No more videos</b> </div> : null}
         </div>
     );
 }

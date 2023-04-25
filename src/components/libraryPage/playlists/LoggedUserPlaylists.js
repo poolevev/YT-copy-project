@@ -29,8 +29,9 @@ const LoggedUserPlaylists = () => {
     if (userPlaylists.length === 0) {
       return (
         <div>
-          <h2>Playlists</h2>
+          <h5 style={{ margin: "0 20px 10px" }}>Playlists</h5>
           <span>No playlists yet</span>
+          <hr></hr>
         </div>
       )
     }
@@ -39,7 +40,7 @@ const LoggedUserPlaylists = () => {
 
   return (
     <div className={styles.playlistsCategoryContainer}>
-      <h3 className={styles.categoryTitle}>Playlists</h3>
+      <h5 className={styles.categoryTitle}>Playlists</h5>
       <div className={styles.cardContainer}>
         {playlists.map((playlist) => (
 

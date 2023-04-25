@@ -36,25 +36,27 @@ function CommentInput({ videoID, addNewComments }) {
 
     return (
         <div className={styles.commentInput}>
-            <ToastAlert  className={styles.alertToast} show={showToast} close={() => setShowToast(false)} text={toastText} />
-            <textarea
-                value={commentText}
-                onChange={handleCommentChange}
-                placeholder="Add a comment..."
+            <div className={styles.logoPart}>User Logo</div>
+            <div className={styles.textPart}>
+                <ToastAlert className={styles.alertToast} show={showToast} close={() => setShowToast(false)} text={toastText} />
+                <textarea
+                    value={commentText}
+                    onChange={handleCommentChange}
+                    placeholder="Add a comment..."
 
-            />
+                />
 
-            {commentText && (
-                <div className={styles.buttons}>
-                    <button onClick={handleCommentClear} disabled={!commentText}>
-                        Clear
-                    </button>
-                    <button onClick={handleCommentSubmit}>Comment</button>
-                </div>
-            )}
+                {commentText && (
+                    <div className={styles.buttons}>
+                        <button onClick={handleCommentClear} disabled={!commentText}>
+                            Clear
+                        </button>
+                        <button onClick={handleCommentSubmit}>Comment</button>
+                    </div>
+                )}
 
-            <hr className={styles.hrLine}></hr>
-
+                <hr className={styles.hrLine}></hr>
+            </div>
         </div>
     );
 }

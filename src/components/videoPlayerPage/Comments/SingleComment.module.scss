@@ -1,39 +1,34 @@
-.card {
+.singleCommentCard {
     color: black;
     max-width: 600px;
     border-radius: 15px;
     background-color: #f7f4f47e;
-    padding: 10px;
+    padding: 0 10px;
     display: flex;
-}
 
-.logoNContainer {
-    display: flex;
-}
+    .commentPart {
+        .commentText {
+            padding: 0 5px 0;
+            margin-bottom: 0;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
 
-.commentText {
-    padding: 0 5px 0;
-    word-wrap: break-word;
-}
+        .buttonsContainer {
+            display: flex;
+            border-radius: 20px;
 
-.buttonsContainer {
-    display: flex;
-}
+            .commentLikeBtn,
+            .commentDislikeBtn {
+                background-color: white;
+            }
+        }
+    }
 
-.clicked {
-    border-radius: 15px;
-    padding-top: 5px;
 
-}
-
-.notClicked {
-    background-color: transparent;
-    border-radius: 10px;
-
-}
-
-.userLogo {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    .userLogo {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
 }

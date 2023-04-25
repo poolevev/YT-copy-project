@@ -21,16 +21,18 @@
     margin-top: 5px;
     color: #000000;
     border-radius: 10px;
-    padding: 5px 15px;
+    padding: 10px 15px;
     position: absolute;
     z-index: 10;
     background-color: #e7e7e7;
     text-align: left;
     border: 1px solid rgba(128, 128, 128, 0.753);
     word-wrap: break-word;
+    word-break: break-all;
 
     .playlistNameText {
-        word-wrap: break-word;
+        word-break: break-all;
+        font-weight: 500;
     }
 }
 
@@ -41,6 +43,7 @@
     border-radius: 20px;
     font-size: 14px;
     margin: 0 auto;
+    margin-top: 10px;
 
     &:hover {
         background-color: rgb(221, 218, 218);
@@ -65,5 +68,6 @@
     border: 1px solid rgb(221, 218, 218);
     margin-bottom: 5px;
     word-wrap: break-word;
+    word-break: break-all;
 
 }

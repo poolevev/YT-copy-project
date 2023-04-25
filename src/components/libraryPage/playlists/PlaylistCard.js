@@ -11,11 +11,13 @@ const PlaylistCard = ({ playlist, setPlaylists }) => {
     const loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));
     const [videoCard, setVideoCard] = useState(null);
     const [modalShow, setModalShow] = useState(false);
-    useEffect(() => {
-        makeAPICall(`videos?part=snippet&id=${playlist.videos[0]}`).then((data) =>
-            setVideoCard(data.items[0].snippet.thumbnails.standard.url)
-        );
 
+    useEffect(() => {
+        if (playlist.videos.length > 0) {
+            makeAPICall(`videos?part=snippet&id=${playlist.videos[0]}`).then((data) =>
+                setVideoCard(data?.items[0]?.snippet.thumbnails.standard.url)
+            );
+        }
     }, []);
 
     const handlePlaylistEdition = () => {
