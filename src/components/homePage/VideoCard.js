@@ -7,6 +7,8 @@ import styles from "./VideoCard.module.scss";
 import { BiTime } from "react-icons/bi";
 import { getTimeDifference } from "../../utils/getTimeDifference";
 
+import Loader from "../videoPlayerPage/Loader"
+
 const VideoCard = ({
   video: {
     id: { videoId },
@@ -17,6 +19,7 @@ const VideoCard = ({
   //const [logoLink, setLogoLink] = useState(null);
   const dateString = snippet.publishedAt;
   const [renderPlayer, setRenderPlayer] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   // to many request,
   // useEffect(() => {
@@ -29,20 +32,27 @@ const VideoCard = ({
 
   if (renderPlayer) {
     return (
-      <ReactPlayer
-        url={`https://www.youtube.com/watch?v=${videoId}`}
-        width="200px"
-        height="400px"
-        controls={false}
-        className={styles.reactPlayer}
-        onPause={() => {
-          isShortsPage && setRenderPlayer(false);
-        }}
-        //the size may be set using  state
-        muted={true}
-        playing={true}
-        id="short-player"
-      />
+      <div className={styles.videoContainer}>
+        <ReactPlayer
+  url={`https://www.youtube.com/watch?v=${videoId}`}
+  width="300px"
+  height="600px"
+  controls={true}
+  className={styles.reactPlayer}
+  onPause={() => {
+    isShortsPage && setRenderPlayer(false);
+  }}
+  muted={true}
+  playing={true}
+  id="short-player"
+  onPlay={() => setIsPlaying(true)}
+/>
+{!isPlaying && (
+  <div className={styles.loaderContainer}>
+    <Loader className={styles.loaderShorts} />
+  </div>
+)}
+      </div>
     );
   } else {
     return (
