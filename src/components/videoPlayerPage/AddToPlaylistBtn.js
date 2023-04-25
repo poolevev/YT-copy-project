@@ -5,6 +5,8 @@ import playlistsManager from '../../models/PlaylistsManager';
 import { Playlist } from "../../models/PlaylistsManager"
 import { v4 as uuid } from 'uuid';
 import { useParams } from "react-router-dom";
+import ToastAlert from '../UI/ToastAlert';
+import { BiAddToQueue } from "react-icons/bi"
 
 const AddToPlaylistBtn = ({ videoID }) => {
     const loggedUser = JSON.parse(localStorage.getItem('LoggedUser'));
@@ -17,6 +19,8 @@ const AddToPlaylistBtn = ({ videoID }) => {
     const [showCreatePlaylist, setShowCreatePlaylist] = useState(false);
     const [showDropdownMenu, setShowDropdownMenu] = useState(false);
     const [newPlaylistName, setNewPlaylistName] = useState('');
+    const [showToast, setShowToast] = useState(false);
+    const [toastText, setToastText] = useState("");
 
     useEffect(() => {
         setSelectedPlaylists(userPlaylists.filter((playlist) => playlist.videos.includes(id)))
@@ -31,9 +35,13 @@ const AddToPlaylistBtn = ({ videoID }) => {
             selectedPlaylists.splice(selectedPlaylistIndex, 1)
             setSelectedPlaylists(prev => [...selectedPlaylists]);
             playlistsManager.removeVideoFromPlaylist(playlist.playlistID, videoID);
+            setShowToast(true);
+            setToastText(`Removed from the playlist: ${playlist.playlistName}`)
         } else {
             setSelectedPlaylists(prev => [...prev, playlist]);
             playlistsManager.addVideoToPlaylist(playlist.playlistID, videoID);
+            setShowToast(true);
+            setToastText(`Added to the playlist: ${playlist.playlistName}`)
         }
     };
 
@@ -46,6 +54,8 @@ const AddToPlaylistBtn = ({ videoID }) => {
             setSelectedPlaylists(prev => [...prev, new Playlist(loggedUser.username, playlistID, newPlaylistName, [videoID])]);
             setNewPlaylistName('');
             setShowCreatePlaylist(false);
+            setShowToast(true);
+            setToastText(`Added to the created playlist: ${newPlaylistName}`);
         }
     };
 
@@ -90,7 +100,7 @@ const AddToPlaylistBtn = ({ videoID }) => {
             <button className={styles.addToPlayListMainBtn} ref={buttonRef} onClick={() => {
                 setShowDropdownMenu(!showDropdownMenu);
                 setShowCreatePlaylist(false);
-            }}> Add to playlist </button>
+            }}><BiAddToQueue /> Add to playlist </button>
 
             {showDropdownMenu ? (<div ref={dropdownMenuRef} className={styles.menu}>
 
@@ -101,12 +111,14 @@ const AddToPlaylistBtn = ({ videoID }) => {
                         {userPlaylists.map((playlist) => (
                             <span key={playlist.playlistName}>
                                 <Form.Check
+                                    className={styles.playlistNameText}
                                     type="checkbox"
                                     label={playlist.playlistName}
                                     checked={Boolean(selectedPlaylists.find(playlistItem => playlistItem.playlistID === playlist.playlistID))}
                                     onChange={() => {
                                         handleSelectPlaylist(playlist);
                                         setShowDropdownMenu(!showDropdownMenu);
+
                                     }}
                                 />
                             </span>
@@ -122,7 +134,7 @@ const AddToPlaylistBtn = ({ videoID }) => {
                     }}>Create new</button>
 
             </div>) : null}
-
+            <ToastAlert show={showToast} close={() => setShowToast(false)} text={toastText} />
             {
                 showCreatePlaylist && (
                     <div ref={createPlaylistRef} className={styles.createPlaylist}>

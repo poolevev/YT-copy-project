@@ -4,14 +4,15 @@ import styles from "./EditPlaylistPage.module.scss";
 import { makeAPICall } from "../../utils/makeAPICall";
 import VideoCard from "../homePage/VideoCard";
 import playlistsManager from '../../models/PlaylistsManager';
+import ModalWindow from '../UI/ModalWindow';
 
 const EditPlaylistPage = () => {
   const { playlistID } = useParams();
   const allPlaylists = JSON.parse(localStorage.getItem("AllPlaylists") || "[]");
   const currentPlaylist = allPlaylists.find(playlist => playlist.playlistID === playlistID);
   const [videos, setVideos] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
 
-  console.log(currentPlaylist?.videos)
   useEffect(() => {
     currentPlaylist?.videos.forEach(videoID => {
       makeAPICall(`videos?part=snippet&id=${videoID}`).then((data) => {
@@ -47,11 +48,22 @@ const EditPlaylistPage = () => {
         {videos?.map(item => (
           <div key={item?.id}>
             <VideoCard video={item} />
-            <button className={styles.removeFromPlaylistBtn} onClick={() => handleVideoRemove(item?.id)} >Remove from playlist</button>
+
+            <button className={styles.removeFromPlaylistBtn} onClick={() => setModalShow(true)} >Remove from playlist</button>
+            <ModalWindow
+              show={modalShow}
+              text={"The video will be deleted from the playlist"}
+              deleteclick={() => {
+                handleVideoRemove(item?.id)
+              }}
+              onHide={() => {
+                setModalShow(false);
+              }}
+            />
           </div>
         ))}
       </div>
-      {console.log(videos)}
+
     </div>
   );
 }

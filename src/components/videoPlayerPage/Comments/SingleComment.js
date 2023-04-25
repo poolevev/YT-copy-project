@@ -83,6 +83,7 @@ const SingleComment = ({ comment }) => {
     }
   }
 
+// <<<<<<< HEAD
   return (
     <div className={styles.card}>
       {/* {console.log(
@@ -120,6 +121,23 @@ const SingleComment = ({ comment }) => {
       </div>
     </div>
   );
+// =======
+//     return (
+//         <div className={styles.card}>
+
+//             <img className={styles.userLogo} alt="logo" scr={loggedUser.image || "https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"} />
+//             <div>
+//                 <strong>{comment.nickname}</strong>
+//                 <p className={styles.commentText}>{comment.text}</p>
+//                 <div className={styles.buttonsContainer}>
+//                     <button className={`${styles.button} ${isLikeClicked ? styles.clicked : styles.notClicked}`} onClick={likeComment}><BiLike />  {likesNumber}</button>
+//                     <button className={`${styles.button} ${isDislikeClicked ? styles.clicked : styles.notClicked}`} onClick={dislikeComment}><BiDislike /></button>
+//                 </div>
+//             </div>
+
+//         </div>
+//     )
+// >>>>>>> 914b09fd1c0108ae0620cb46dca3d296f2d3286a
 };
 
 export default SingleComment;
