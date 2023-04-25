@@ -1,17 +1,11 @@
 import React, { useRef } from "react";
 import categoriesManager from "../../models/CategoriesManager";
 import styles from "./Categories.module.scss";
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai"
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 const Categories = ({ selectedCategory, setSelectedCategory }) => {
   const loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));
-  const allCategories = JSON.parse(
-    localStorage.getItem("AllCategories") || categoriesManager.allCategories
-  );
-  const userCategories = allCategories.filter(
-    (category) =>
-      category.username === loggedUser?.username ||
-      category.username === undefined
-  );
+  const allCategories = JSON.parse(localStorage.getItem("AllCategories") || categoriesManager.allCategories);
+  const userCategories = allCategories.filter((category) => category.username === loggedUser?.username || category.username === undefined);
 
   const containerRef = useRef(null);
 
@@ -23,11 +17,7 @@ const Categories = ({ selectedCategory, setSelectedCategory }) => {
   return (
     <div className={styles.categories_container}>
       <div className={styles.scroll_button_container_left}>
-        <button
-          className={styles.scroll_button}
-          onClick={() => handleScroll(-100)}
-          style={{ left: 0 }}
-        >
+        <button className={styles.scroll_button} onClick={() => handleScroll(-100)} style={{ left: 0 }}>
           {<AiOutlineArrowLeft />}
         </button>
       </div>
@@ -35,8 +25,7 @@ const Categories = ({ selectedCategory, setSelectedCategory }) => {
         {userCategories.map((category) => (
           <button
             key={category.name}
-            className={`${styles.category_btn} ${selectedCategory === category.name ? styles.selected : ""
-              }`}
+            className={`${styles.category_btn} ${selectedCategory === category.name ? styles.selected : ""}`}
             onClick={() => setSelectedCategory(category.name)}
           >
             <span className={styles.category_name}>{category.name}</span>
@@ -44,15 +33,11 @@ const Categories = ({ selectedCategory, setSelectedCategory }) => {
         ))}
       </div>
       <div className={styles.scroll_button_container_right}>
-        <button
-          className={styles.scroll_button}
-          onClick={() => handleScroll(100)}
-          style={{ right: 0 }}
-        >
+        <button className={styles.scroll_button} onClick={() => handleScroll(100)} style={{ right: 0 }}>
           {<AiOutlineArrowRight />}
         </button>
       </div>
-    </div >
+    </div>
   );
 };
 

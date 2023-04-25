@@ -8,33 +8,30 @@
   margin-left: 150px;
   background-position: 0px 15px;
 
-
   &:hover {
     border-radius: 200px;
   }
 }
 
-profileText{
-   color:rgb(93, 147, 177) 
+profileText {
+  color: rgb(93, 147, 177);
 }
 
 .profile_image_container {
-    display: flex !important;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 300px;
-    align-items: center;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+  align-items: center;
+}
 
-} 
-
-.profileButton{
+.profileButton {
   background: rgb(63, 63, 68);
 }
 
 .profileForms {
   width: 250px !important;
 }
-
 
 // .profileContainer:before {
 //   content: "";

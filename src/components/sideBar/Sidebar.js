@@ -18,12 +18,11 @@ function Sidebar() {
       <ul className={styles.linkList}>
         <Link to="/">
           <li
-            style={{ paddingLeft: "20px",
-            //  paddingRight: "40px" 
+            style={{
+              paddingLeft: "20px",
+              //  paddingRight: "40px"
             }}
-            className={`${styles.linkItem} ${
-              activeLink === 0 ? styles.active : ""
-            }`}
+            className={`${styles.linkItem} ${activeLink === 0 ? styles.active : ""}`}
             onClick={() => handleClick(0)}
           >
             <img src={homeLogo} alt="home Logo" height={35} />
@@ -31,36 +30,16 @@ function Sidebar() {
           </li>
         </Link>
         <Link to="/shorts">
-          <li
-            className={`${styles.linkItem} ${
-              activeLink === 1 ? styles.active : ""
-            }`}
-            onClick={() => handleClick(1)}
-          >
+          <li className={`${styles.linkItem} ${activeLink === 1 ? styles.active : ""}`} onClick={() => handleClick(1)}>
             {" "}
-            <img
-              src={shortsLogo}
-              alt="shorts Logo"
-              height={35}
-              style={{ paddingLeft: "10px" }}
-            />
+            <img src={shortsLogo} alt="shorts Logo" height={35} style={{ paddingLeft: "10px" }} />
             Shorts
           </li>
         </Link>
         <Link to={loggedUser ? "/library" : "/login"}>
-          <li
-            className={`${styles.linkItem} ${
-              activeLink === 2 ? styles.active : ""
-            }`}
-            onClick={() => handleClick(2)}
-          >
+          <li className={`${styles.linkItem} ${activeLink === 2 ? styles.active : ""}`} onClick={() => handleClick(2)}>
             {" "}
-            <img
-              src={libraryLogo}
-              alt="library Logo"
-              height={35}
-              style={{ paddingLeft: "10px" }}
-            />
+            <img src={libraryLogo} alt="library Logo" height={35} style={{ paddingLeft: "10px" }} />
             Library
           </li>
         </Link>

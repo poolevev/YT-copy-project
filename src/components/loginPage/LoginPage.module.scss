@@ -1,5 +1,4 @@
 .profileContainer {
-
   background-image: url("../../img/profileBackgroundBlurred.jpg");
   background-size: cover;
 
@@ -10,19 +9,14 @@
 
   &:hover {
     border-radius: 200px;
-
-
   }
 
   profileText,
   label,
   span {
     color: rgb(61, 60, 60);
-
   }
 }
-
-
 
 .profile_image_container {
   display: flex !important;
@@ -30,7 +24,6 @@
   justify-content: space-between;
   height: 300px;
   align-items: center;
-
 }
 
 .profileButton {
@@ -40,8 +33,6 @@
 .profileForms {
   width: 250px !important;
 }
-
-
 
 // .profileContainer:before {
 //   content: "";

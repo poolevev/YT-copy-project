@@ -22,10 +22,8 @@
   border-radius: 40%;
 
   transition: border-radius 0.7s ease-out, background-color 0.7s ease-out;
-  
 
   &:hover {
-    
     // background-color: rgb(221, 218, 218);
     background-color: rgb(221, 218, 218);
     border-radius: 30%;
@@ -36,7 +34,6 @@
     background-color: #f0eaea;
     border-radius: 20%;
     transition: background-color 1s ease;
-
   }
 
   &:first-child {

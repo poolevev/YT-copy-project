@@ -10,29 +10,23 @@
     align-items: center;
     border-radius: 20px;
     border: 1px solid rgb(221, 218, 218);
-    ;
     padding-left: 1rem;
     box-shadow: none;
     margin-right: 2rem;
 
     &:active {
       border: 1px solid rgba(80, 132, 245, 0.767);
-
     }
   }
-
 
   .input {
     flex: 1;
     border: none;
     outline: none;
-
   }
-
 
   .buttonClear,
   .buttonMic {
-
     border-radius: 50%;
     background-color: transparent;
     padding-left: 8px;
@@ -52,7 +46,6 @@
     &:hover {
       background-color: rgb(221, 218, 218);
     }
-
   }
 
   .listening {

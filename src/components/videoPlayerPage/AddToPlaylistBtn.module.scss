@@ -1,73 +1,67 @@
 .container {
-    position: relative;
-    color: black;
+  position: relative;
+  color: black;
 }
 
 .addToPlayListMainBtn {
-    padding-left: 10px;
-    padding-right: 10px;
-    margin: 0 10px;
-    border-radius: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0 10px;
+  border-radius: 20px;
 
-    &:hover {
-        background-color: rgb(221, 218, 218);
-    }
-
+  &:hover {
+    background-color: rgb(221, 218, 218);
+  }
 }
 
 .menu,
 .createPlaylist {
-    //max-width: 200px;
-    margin-top: 5px;
-    color: #000000;
-    border-radius: 10px;
-    padding: 10px 15px;
-    position: absolute;
-    z-index: 10;
-    background-color: #e7e7e7;
-    text-align: left;
-    border: 1px solid rgba(128, 128, 128, 0.753);
-    word-wrap: break-word;
+  //max-width: 200px;
+  margin-top: 5px;
+  color: #000000;
+  border-radius: 10px;
+  padding: 10px 15px;
+  position: absolute;
+  z-index: 10;
+  background-color: #e7e7e7;
+  text-align: left;
+  border: 1px solid rgba(128, 128, 128, 0.753);
+  word-wrap: break-word;
+  word-break: break-all;
+
+  .playlistNameText {
     word-break: break-all;
-
-    .playlistNameText {
-        word-break: break-all;
-        font-weight: 500;
-    }
+    font-weight: 500;
+  }
 }
-
-
 
 .createBtn,
 .createPlaylistBtn {
-    border-radius: 20px;
-    font-size: 14px;
-    margin: 0 auto;
-    margin-top: 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  margin: 0 auto;
+  margin-top: 10px;
 
-    &:hover {
-        background-color: rgb(221, 218, 218);
-
-    }
+  &:hover {
+    background-color: rgb(221, 218, 218);
+  }
 }
 
 .infoText {
-    color: rgb(61, 60, 60);
-
+  color: rgb(61, 60, 60);
 }
 
 .selectText {
-    color: rgb(61, 60, 60);
-    font-size: 14px;
+  color: rgb(61, 60, 60);
+  font-size: 14px;
 }
 
 .inputPlaylist {
-    padding: 5px 10px;
-    font-size: 14px;
-    border-radius: 5px;
-    border: 1px solid rgb(221, 218, 218);
-    margin-bottom: 5px;
-    word-wrap: break-word;
-    word-break: break-all;
-
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid rgb(221, 218, 218);
+  margin-bottom: 5px;
+  word-wrap: break-word;
+  word-break: break-all;
 }

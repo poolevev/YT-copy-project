@@ -1,5 +1,4 @@
 .logo {
-
   filter: hue-rotate(0deg); // start with 0 degree hue rotation
 
   // Define the animation
@@ -11,9 +10,8 @@
     }
     100% {
       filter: hue-rotate(360deg); // end with 360 degree hue rotation
-      
     }
-   
   }
   padding: 0px 20px 0px 0px;
-  font-weight: 900;}
+  font-weight: 900;
+}

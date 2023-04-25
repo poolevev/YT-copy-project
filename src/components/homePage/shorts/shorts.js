@@ -7,9 +7,7 @@ const Shorts = () => {
   const [videos, setVideos] = useState(null);
 
   useEffect(() => {
-    makeAPICall(`search?part=snippet&q=shorts}`).then((data) =>
-      setVideos(data.items)
-    );
+    makeAPICall(`search?part=snippet&q=shorts}`).then((data) => setVideos(data.items));
   }, []);
 
   return (

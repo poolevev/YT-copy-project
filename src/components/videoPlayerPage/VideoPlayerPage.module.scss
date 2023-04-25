@@ -5,7 +5,7 @@
   align-items: flex-start;
 
   .playerCommentsContainer {
-    margin:20px 50px 0 -50px;
+    margin: 20px 50px 0 -50px;
     max-width: 750px;
 
     @media screen and (min-width: 600px) {
@@ -47,11 +47,8 @@
         }
       }
 
-
       .buttonsContainer {
         display: flex;
-
-
 
         .likeDislikeContainer {
           display: flex;
@@ -69,7 +66,6 @@
             .likeCount {
               color: rgb(61, 60, 60);
             }
-
           }
 
           .dislikeBtn {
@@ -80,9 +76,7 @@
             &:hover {
               background-color: #b6bcc0;
             }
-
           }
-
         }
 
         .addToPlaylistBtn {
@@ -96,15 +90,14 @@
     .descriptionTextContainer {
       margin-top: 10px;
       border-radius: 15px;
-      background-color: #E5E5E5;
+      background-color: #e5e5e5;
       padding: 10px 5px 10px 15px;
 
       .descriptionText {
-
         &:a {
           font-weight: 700;
           color: rgb(41, 98, 173);
-          transition: .4s;
+          transition: 0.4s;
         }
       }
     }
@@ -134,5 +127,4 @@
       background-color: rgb(221, 218, 218);
     }
   }
-
 }

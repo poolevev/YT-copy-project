@@ -28,9 +28,7 @@ class CategoriesManager {
   ];
 
   addCategory = (name, username) => {
-    let existingCategory = this.allCategories.find(
-      (category) => category.name === name || category.name === "shorts break"
-    );
+    let existingCategory = this.allCategories.find((category) => category.name === name || category.name === "shorts break");
 
     if (this.allCategories.length < 20 && !existingCategory) {
       this.allCategories.splice(5, 0, new Category(name, username));

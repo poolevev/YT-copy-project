@@ -1,4 +1,5 @@
-.container {}
+.container {
+}
 
 .shortcard {
   width: 150px;
@@ -11,12 +12,10 @@
   box-shadow: none;
   position: relative;
 
-
   .cardMedia {
     width: 100%;
     height: 180px;
     border-radius: 20px;
-
 
     &:hover {
       border-radius: 4px;
@@ -40,8 +39,6 @@
     .channelLogo {
       border-radius: 50%;
       width: 50px;
-
-
     }
   }
 

@@ -9,8 +9,7 @@ const SearchedVideos = () => {
   const { searchedVideos } = useParams();
 
   useEffect(() => {
-    makeAPICall(`search?part=snippet&q=${searchedVideos}`)
-      .then((data) => setVideos(data.items))
+    makeAPICall(`search?part=snippet&q=${searchedVideos}`).then((data) => setVideos(data.items));
   }, [searchedVideos]);
 
   return (
@@ -18,9 +17,7 @@ const SearchedVideos = () => {
       <h4 className={styles.title}>
         Results for <span style={{ color: "gray" }}>{searchedVideos}</span>
       </h4>
-      <div className={styles.content}>
-        {<Videos videos={videos} />}
-      </div>
+      <div className={styles.content}>{<Videos videos={videos} />}</div>
     </div>
   );
 };

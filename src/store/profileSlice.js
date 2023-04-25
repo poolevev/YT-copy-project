@@ -8,9 +8,9 @@ const currentUser = JSON.parse(localStorage.getItem("LoggedUser"));
 let imageIsExist = currentUser ? currentUser.hasOwnProperty("image") : false;
 
 const initialState = {
-  profilePic:  initialPic,
+  profilePic: initialPic,
   username: "",
-  isLoggedIn: false
+  isLoggedIn: false,
 };
 
 // // First, create the thunk
@@ -33,15 +33,14 @@ export const profileSlice = createSlice({
       state.profilePic = action.payload.image;
       state.isLoggedIn = true;
       state.username = action.payload.username;
-      state.nickname = action.payload.nickname
-
+      state.nickname = action.payload.nickname;
     },
     logout: (state, action) => {
       state.profilePic = initialPic;
       state.isLoggedIn = false;
-      state.username = '';
-      state.nickname = ''
-    }
+      state.username = "";
+      state.nickname = "";
+    },
   },
 });
 
@@ -49,4 +48,3 @@ export const profileSlice = createSlice({
 export const { changeProfilePic, updateUser, logout } = profileSlice.actions;
 
 export default profileSlice.reducer;
-

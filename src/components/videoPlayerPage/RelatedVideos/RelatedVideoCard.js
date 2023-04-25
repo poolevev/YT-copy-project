@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {
-  defaultThumbnailUrl,
-  defaultVideoUrl,
-  defaultVideoTitle,
-  defaultChannelUrl,
-  defaultChannelTitle,
-} from "../../../utils/defaultVideo";
+import { defaultThumbnailUrl, defaultVideoUrl, defaultVideoTitle, defaultChannelUrl, defaultChannelTitle } from "../../../utils/defaultVideo";
 
 import styles from "./RelatedVideoCard.module.scss";
 
@@ -40,35 +34,16 @@ const RelatedVideoCard = ({
       </Link>
       <div className={styles.cardContent}>
         <div className={styles.cardLogo}>
-          <Link
-            to={
-              snippet?.channelId
-                ? `/channel/${snippet?.channelId}`
-                : defaultChannelUrl
-            }
-            className={styles.channelLogoLink}
-          >
+          <Link to={snippet?.channelId ? `/channel/${snippet?.channelId}` : defaultChannelUrl} className={styles.channelLogoLink}>
             <img className={styles.channelLogo} src={snippet?.thumbnails.default.url || defaultThumbnailUrl} alt={"Logo"} />
           </Link>
         </div>
         <div className={styles.cardText}>
           <Link to={videoId ? `/video/${videoId}` : defaultVideoUrl}>
-            <div className={styles.cardTitle}>
-              {`${snippet?.title.slice(0, 60)}...` ||
-                defaultVideoTitle.slice(0, 60)}
-            </div>
+            <div className={styles.cardTitle}>{`${snippet?.title.slice(0, 60)}...` || defaultVideoTitle.slice(0, 60)}</div>
           </Link>
-          <Link
-            to={
-              snippet?.channelId
-                ? `/channel/${snippet?.channelId}`
-                : defaultChannelUrl
-            }
-            className={styles.channelLink}
-          >
-            <div className={styles.channelTitle}>
-              {snippet?.channelTitle || defaultChannelTitle}
-            </div>
+          <Link to={snippet?.channelId ? `/channel/${snippet?.channelId}` : defaultChannelUrl} className={styles.channelLink}>
+            <div className={styles.channelTitle}>{snippet?.channelTitle || defaultChannelTitle}</div>
           </Link>
         </div>
       </div>

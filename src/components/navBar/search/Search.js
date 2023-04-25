@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./SearchBar.module.scss";
 import { BsMic, BsXLg, BsSearch } from "react-icons/bs";
-import { debounce } from "../../../utils/debounce"
+import { debounce } from "../../../utils/debounce";
 
 const SearchBar = () => {
   const [searchedVideos, setSearchedVideo] = useState("");
@@ -16,7 +16,7 @@ const SearchBar = () => {
     setSearchedVideo(suggestion);
     setSearchSuggestions([]);
     navigate(`/search/${suggestion}`);
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -27,36 +27,36 @@ const SearchBar = () => {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       event.preventDefault();
       if (searchedVideos) {
         navigate(`/search/${searchedVideos}`);
         inputRef.current.blur();
       }
     }
-    if (event.key === 'Backspace') {
+    if (event.key === "Backspace") {
       if (searchedVideos.length === 1) {
-        setSearchedVideo("")
-        setSearchSuggestions([])
+        setSearchedVideo("");
+        setSearchSuggestions([]);
       }
-      setShowClearIcon(false)
+      setShowClearIcon(false);
     }
   };
 
   const handleClear = (event) => {
-    debounce(console.log("iz cleara"), 5000)
+    debounce(console.log("iz cleara"), 5000);
     event.preventDefault();
     if (searchedVideos) {
-      setSearchedVideo("")
-      setSearchSuggestions([])
-      setShowClearIcon(false)
+      setSearchedVideo("");
+      setSearchSuggestions([]);
+      setShowClearIcon(false);
     } else {
-      setShowClearIcon(false)
+      setShowClearIcon(false);
     }
   };
 
   const handleVoiceSearch = () => {
-    setIsListening(true)
+    setIsListening(true);
     const recognition = new window.webkitSpeechRecognition();
     recognition.lang = "en-US";
     recognition.onresult = (event) => {
@@ -66,11 +66,11 @@ const SearchBar = () => {
     };
     recognition.onstart = () => {
       setIsListening(true);
-      document.querySelector('input').setAttribute('placeholder', 'Speak now! English only!');
+      document.querySelector("input").setAttribute("placeholder", "Speak now! English only!");
     };
     recognition.onend = () => {
       setIsListening(false);
-      document.querySelector('input').setAttribute('placeholder', 'Search...');
+      document.querySelector("input").setAttribute("placeholder", "Search...");
     };
     recognition.start();
   };
@@ -81,15 +81,15 @@ const SearchBar = () => {
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=8&q=${query}&key=${apiKey}`;
 
     fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        const suggestions = data.items.map(item => item.snippet.title);
+      .then((response) => response.json())
+      .then((data) => {
+        const suggestions = data.items.map((item) => item.snippet.title);
         setSearchSuggestions(suggestions);
       })
-      .catch(error => {
-        console.error('Error fetching search suggestions:', error);
-      })
-  }
+      .catch((error) => {
+        console.error("Error fetching search suggestions:", error);
+      });
+  };
 
   const handleInputChange = (event) => {
     setSearchedVideo(event.target.value);
@@ -100,7 +100,6 @@ const SearchBar = () => {
   return (
     <div className={styles.formWrapper}>
       <form className={styles.form} onSubmit={handleSubmit}>
-
         <input
           className={styles.input}
           placeholder={isListening ? "Speak now! English only!" : "Search..."}
@@ -121,24 +120,23 @@ const SearchBar = () => {
         <button className={styles.buttonSrc} type="submit" aria-label="search">
           <BsSearch />
         </button>
-
       </form>
       {searchSuggestions.length > 0 && (
         <ul className={styles.autocomplete}>
-          {searchSuggestions.map(result => (
-
-            <li key={result} onClick={() => {
-              handleSearchSuggestion(result.length > 60 ? `${result.slice(0, 30)}...` : result);
-            }}>
+          {searchSuggestions.map((result) => (
+            <li
+              key={result}
+              onClick={() => {
+                handleSearchSuggestion(result.length > 60 ? `${result.slice(0, 30)}...` : result);
+              }}
+            >
               <BsSearch className={styles.itemSearchIcon} /> {result.length > 60 ? `${result.slice(0, 60)}...` : result}
             </li>
           ))}
         </ul>
       )}
-
     </div>
   );
 };
 
 export default SearchBar;
-
