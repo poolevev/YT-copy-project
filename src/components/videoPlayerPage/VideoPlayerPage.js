@@ -84,11 +84,14 @@ const VideoPlayerPage = () => {
       setVideoDetail(data.items[0]);
       videoSnippet = data.items[0].snippet
       setLikesVideoSnippet(videoSnippet);
-      addTagToCategories(videoSnippet.tags[0], loggedUser.username);
       setDescriptionText(videoSnippet.description);
       setDateString(videoSnippet.publishedAt)
 
-      addToHistory();
+      if (loggedUser?.username) {
+        addToHistory();
+        addTagToCategories(videoSnippet.tags[0], loggedUser.username);
+      };
+
       makeAPICall(`channels?part=snippet&id=${data.items[0].snippet.channelId}`).then(
         (data) => {
           setLogoLink(data?.items[0].snippet.thumbnails.default.url);
@@ -109,7 +112,7 @@ const VideoPlayerPage = () => {
 
 
   if (!videoDetail?.snippet) return <Loader />;
-  
+
   const { snippet: { title, channelId, channelTitle } } = videoDetail;
   const currentVideoArray = historyManager.allHistory.filter(videoHistory => videoHistory.videoID === id);
   const localViewCount = currentVideoArray.length;

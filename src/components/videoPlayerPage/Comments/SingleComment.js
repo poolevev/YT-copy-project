@@ -7,6 +7,7 @@ import { getTimeDifference } from '../../../utils/getTimeDifference';
 
 const SingleComment = ({ comment }) => {
   const loggedUser = JSON.parse(localStorage.getItem("LoggedUser"));
+  const allUsers = JSON.parse(localStorage.getItem("AllUsers"));
   const alreadyReacted = comment.usersReactions?.find(reactionObj => reactionObj.username === loggedUser?.username)
   const [isLikeClicked, setIsLikeClicked] = useState(alreadyReacted?.reaction === "Like" ? true : false);
   const [isDislikeClicked, setIsDislikeClicked] = useState(alreadyReacted?.reaction === "Dislike" ? true : false);
@@ -73,9 +74,16 @@ const SingleComment = ({ comment }) => {
 
   return (
     <div className={styles.singleCommentCard}>
-      <div style={{ minWidth: "60px" }}>
-        <img className={styles.userLogo} alt="logo" scr={loggedUser.image || "https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"} />
-      </div>
+      <div style={{ minWidth: "50px" }}>
+        <img
+          className={styles.userLogo}
+          alt="logo"
+          src={
+            allUsers.find((user) => user.username === comment.username)
+              ?.image ||
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9IpC2U8VG2ZIvbjGospiXbQQ76X_kjB16dOetFwjdcQ&s"
+          }
+        /></div>
       <div className={styles.commentPart} style={{ wordWrap: "break-word" }}>
         <b>{comment.nickname}</b><small style={{ color: "gray" }}>  {formattedDate} ago</small>
         <p className={styles.commentText}>{comment.text}</p>
@@ -87,7 +95,6 @@ const SingleComment = ({ comment }) => {
 
     </div>
   )
-  // >>>>>>> 914b09fd1c0108ae0620cb46dca3d296f2d3286a
 };
 
 export default SingleComment;

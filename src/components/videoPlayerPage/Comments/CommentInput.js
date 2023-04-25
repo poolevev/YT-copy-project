@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid';
 import ToastAlert from '../../UI/ToastAlert';
 
 function CommentInput({ videoID, addNewComments }) {
+    const allUsers = JSON.parse(localStorage.getItem("AllUsers"));
     const [commentText, setCommentText] = useState('');
     const loggedUser = JSON.parse(localStorage.getItem('LoggedUser'));
     let commentID = uuid();
@@ -36,7 +37,17 @@ function CommentInput({ videoID, addNewComments }) {
 
     return (
         <div className={styles.commentInput}>
-            <div className={styles.logoPart}>User Logo</div>
+            <div className={styles.logoPart}>
+                <img
+                    className={styles.userLogo}
+                    alt="logo"
+                    src={
+                        allUsers.find((user) => user.username === loggedUser.username)
+                            ?.image ||
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9IpC2U8VG2ZIvbjGospiXbQQ76X_kjB16dOetFwjdcQ&s"
+                    }
+                />
+            </div>
             <div className={styles.textPart}>
                 <ToastAlert className={styles.alertToast} show={showToast} close={() => setShowToast(false)} text={toastText} />
                 <textarea
