@@ -154,7 +154,7 @@ function Profile() {
               </Button>
 
               {showLogOutSuccessful && (
-                <span className="logOutSuccessful" style={{ color: "rgb(79, 194, 102)" }}>
+                <span className="logOutSuccessful" style={{ color: "red", fontSize: '20px', fontWeight: 'bold' }}>
                   Logging out now...
                 </span>
               )}

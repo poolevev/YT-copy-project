@@ -1,6 +1,6 @@
 .profileContainer {
-  background-image: url("../../img/profileBackgroundBlurred.jpg");
-  background-size: cover;
+  // background-image: url("../../img/profileBackgroundBlurred.jpg");
+  background-size: auto;
 
   padding: 10px 0px 50px 0px;
   border-radius: 10px;
@@ -34,15 +34,41 @@
   width: 250px !important;
 }
 
-// .profileContainer:before {
-//   content: "";
-//   position: absolute;
-//   top: 0;
-//   left: 200px;
-//   right: 0;
-//   bottom: 0;
-//   background-image: url("../../img/profileBackground.jpg");
-//   background-size: contain;
-//   filter: blur(5px); /* adjust the blur amount as needed */
-//   z-index: -1;
-// }
+.videoLogin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 108%;
+  height: 110%;
+  z-index: -1;
+}
+
+.video-background {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+
+/* Optional styles */
+video {
+  object-fit: auto;
+  width: 2000px;
+
+  opacity: 0.2;
+}
+
+.form-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.error,
+.loginSuccessful {
+  margin-top: 10px;
+  padding: 5px;
+}

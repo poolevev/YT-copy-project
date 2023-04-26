@@ -6,14 +6,16 @@ import { Container, Row, Col, Form, Image } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import styles from "./LoginPage.module.scss";
 
-import React, { useState } from "react";
-import { FileX } from "react-bootstrap-icons";
+
+import sample from "../../img/back.mp4"
+
+import React, {useEffect, useState } from "react";
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
   const [showLoginSuccessful, setShowLoginSuccessful] = useState(false);
-
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -27,6 +29,15 @@ const LoginPage = () => {
     setShowError(false);
   };
 
+  useEffect(() => {
+    const videoElement = document.getElementById("background-video");
+
+    if (videoElement) {
+      videoElement.addEventListener("loadeddata", () => {
+        setVideoLoaded(true);
+      });
+    }
+  }, []);
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -55,27 +66,30 @@ const LoginPage = () => {
   };
 
   return (
-    <Container className={styles.profileContainer} style={{ marginTop: "50px" }}>
+    <Container className={`${styles.profileContainer} video-background`} style={{ marginTop: "50px" }}>
+      <video id="background-video" className={styles.videoLogin} src={sample} loop autoPlay></video>
+
+      {videoLoaded && (
+
       <Row>
-        <Col style={{ marginTop: "35px", marginLeft: "500px" }} md={3} className="d-flex flex-column align-items-center">
-          <form onSubmit={handleSubmit}>
+      <Col style={{ marginTop: "350px", marginLeft: "580px" }} md={3} className="d-flex flex-column align-items-center">          <form onSubmit={handleSubmit}>
             <div>
-              <label style={{ color: "rgb(3, 140, 252)" }} htmlFor="username">
+              <label style={{ fontSize: '20px', fontWeight: 'bold' }} htmlFor="username">
                 Username:
               </label>
-              <input style={{ marginLeft: "5px" }} type="text" id="username" value={username} onChange={handleUsernameChange} />
+              <input style={{ margin: "0px 0px 10px 5px", width: '207px' }} type="text" id="username" value={username} onChange={handleUsernameChange} />
             </div>
             <div>
-              <label style={{ color: "rgb(3, 140, 252)" }} htmlFor="password">
+              <label style={{ fontSize: '20px', fontWeight: 'bold' }} htmlFor="password">
                 Password:
               </label>
-              <input style={{ marginLeft: "10px" }} type="password" id="password" value={password} onChange={handlePasswordChange} />
+              <input style={{ marginLeft: "10px", width: '207px'}} type="password" id="password" value={password} onChange={handlePasswordChange} />
             </div>
-
-            <Link style={{ color: "rgb(93, 147, 177)" }} to="/register">
+           
+            <Link style={{ fontSize: '20px', marginTop: "500px" , color: "blue"}} to="/register">
               Don't have an account yet?
             </Link>
-            <Button style={{ margin: "5px" }} className={styles.profileButton} type="submit">
+            <Button style={{ marginTop:"10px", marginLeft:"5px" }} className={styles.profileButton} type="submit">
               Login
             </Button>
             <div style={{ display: "flex", position: "absolute" }}>
@@ -85,7 +99,7 @@ const LoginPage = () => {
                 </span>
               )}
               {showLoginSuccessful && (
-                <span style={{ color: "rgb(79, 194, 102)" }} className="loginSuccessful">
+                <span style={{ color: "green", fontSize: '20px', fontWeight: 'bold' }} className="loginSuccessful">
                   You are logged in!
                 </span>
               )}
@@ -93,6 +107,7 @@ const LoginPage = () => {
           </form>
         </Col>
       </Row>
+      )}
     </Container>
   );
 };

@@ -7,6 +7,7 @@
   transition: border-radius 5s ease-out;
   margin-left: 150px;
   background-position: 0px 15px;
+  
 
   &:hover {
     border-radius: 200px;
@@ -14,7 +15,7 @@
 }
 
 profileText {
-  color: rgb(93, 147, 177);
+  color: rgb(173, 179, 252);
 }
 
 .profile_image_container {
@@ -23,6 +24,7 @@ profileText {
   justify-content: space-between;
   height: 300px;
   align-items: center;
+  
 }
 
 .profileButton {
@@ -32,16 +34,3 @@ profileText {
 .profileForms {
   width: 250px !important;
 }
-
-// .profileContainer:before {
-//   content: "";
-//   position: absolute;
-//   top: 0;
-//   left: 200px;
-//   right: 0;
-//   bottom: 0;
-//   background-image: url("../../img/profileBackground.jpg");
-//   background-size: contain;
-//   filter: blur(5px); /* adjust the blur amount as needed */
-//   z-index: -1;
-// }

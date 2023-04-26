@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+
 import { Container, Row, Col, Form, Image } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import styles from "./RegisterPage.module.scss";
+
+import sample2 from "../../img/back2.mp4"
+
+import React, {useEffect, useState } from "react";
 
 const RegisterPage = () => {
   const [username, setUsername] = useState("");
@@ -15,6 +19,7 @@ const RegisterPage = () => {
   const [showRegisterSuccessful, setShowRegisterSuccessful] = useState(false);
   const [showUserAlreadyExistError, setShowUserAlreadyExistError] = useState(false);
   const navigate = useNavigate();
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value.trim());
@@ -31,9 +36,22 @@ const RegisterPage = () => {
     setShowPasswordConfirmError(false);
   };
 
+  useEffect(() => {
+    const videoElement = document.getElementById("background-video");
+
+    if (videoElement) {
+      videoElement.addEventListener("loadeddata", () => {
+        setVideoLoaded(true);
+      });
+    }
+  }, []);
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     let valid = true;
+
+    
 
     // Validate username
     if (!username.trim()) {
@@ -91,15 +109,17 @@ const RegisterPage = () => {
 
   return (
     <Container className={styles.profileContainer} style={{ marginTop: "50px" }}>
+       <video id="background-video" className={styles.videoLogin} src={sample2} loop autoPlay></video>
+       {videoLoaded && (
       <Row>
-        <Col style={{ marginTop: "80px", marginLeft: "500px" }} md={3} className="d-flex flex-column align-items-center">
+        <Col style={{ marginTop: "300px", marginLeft: "580px" }} md={3} className="d-flex flex-column align-items-center">
           <form onSubmit={handleSubmit}>
             <div>
-              <label style={{ color: "rgb(3, 140, 252)" }} htmlFor="username">
+              <label style={{ fontSize: '20px', fontWeight: 'bold' }} htmlFor="username">
                 Username:
               </label>
               <input
-                style={{ marginLeft: "5px" }}
+       
                 type="text"
                 id="username"
                 value={username}
@@ -108,23 +128,23 @@ const RegisterPage = () => {
               />
             </div>
             <div>
-              <label style={{ color: "rgb(3, 140, 252)" }} htmlFor="password">
+              <label  style={{ fontSize: '20px', fontWeight: 'bold' }} htmlFor="password">
                 Password:
               </label>
               <input type="password" id="password" value={password} onChange={handlePasswordChange} className="form-control" />
             </div>
             <div>
-              <label style={{ color: "rgb(3, 140, 252)" }} htmlFor="password-confirm">
+              <label  style={{ fontSize: '20px', fontWeight: 'bold' }} htmlFor="password-confirm">
                 Confirm Password:
               </label>
-              <input type="password" id="password-confirm" value={passwordConfirm} onChange={handlePasswordConfirmChange} className="form-control" />
+              <input style={{width: '350px'}} type="password" id="password-confirm" value={passwordConfirm} onChange={handlePasswordConfirmChange} className="form-control" />
             </div>
 
-            <Link style={{ color: "rgb(93, 147, 177)" }} to="/login">
+            <Link style={{ fontSize: '20px', marginTop: "500px" , color: "blue"}} to="/login">
               Already have an account?
             </Link>
 
-            <Button style={{ margin: "5px", background: "rgb(63, 63, 68)" }} type="submit">
+            <Button style={{ margin: "5px 0px 0px 40px", background: "rgb(63, 63, 68)" }} type="submit">
               Register
             </Button>
 
@@ -141,7 +161,7 @@ const RegisterPage = () => {
                 {showPasswordConfirmError && <div className="error"> • Passwords do not match</div>}
               </div>
               {showRegisterSuccessful && (
-                <div style={{ color: "rgb(79, 194, 102)" }} className="error">
+                <div style={{ color: "green", fontSize: '20px', fontWeight: 'bold' }}  className="error">
                   Registration Successful!
                 </div>
               )}
@@ -150,6 +170,7 @@ const RegisterPage = () => {
           </form>
         </Col>
       </Row>
+      )}
     </Container>
   );
 };

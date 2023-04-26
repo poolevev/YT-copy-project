@@ -1,12 +1,11 @@
 .profileContainer {
-  background-color: rgba(0, 0, 0, 0.2);
-  background-image: url("../../img/RegistrationBackground.jpg");
-  background-size: contain;
-  padding: 10px 0px 130px 0px;
+  background-size: auto;
+
+  padding: 10px 0px 50px 0px;
   border-radius: 10px;
   transition: border-radius 5s ease-out;
   margin-left: 150px;
-  background-position: 0px -20px;
+
   &:hover {
     border-radius: 200px;
   }
@@ -30,6 +29,15 @@ profileText {
 
 .profileForms {
   width: 250px !important;
+}
+
+.videoLogin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 108%;
+  height: 110%;
+  z-index: -1;
 }
 
 // .profileContainer:before {
