@@ -29,7 +29,7 @@ const LikedVideos = () => {
         <div>
           <div className={styles.container}>
             {likedVideos.map((item) => (
-              <div key={item.videoID}>{item.videoID && <LibraryVideoCard video={item} />}</div>
+              <div key={item.videoID}>{item.videoID && <LibraryVideoCard video={item} category={"Liked"} />}</div>
             ))}
           </div>
           {showMore && (

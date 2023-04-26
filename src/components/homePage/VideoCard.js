@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { defaultThumbnailUrl, defaultVideoUrl, defaultVideoTitle, defaultChannelUrl, defaultChannelTitle } from "../../utils/defaultVideo";
 import ReactPlayer from "react-player";
@@ -6,6 +6,7 @@ import ReactPlayer from "react-player";
 import styles from "./VideoCard.module.scss";
 import { BiTime } from "react-icons/bi";
 import { getTimeDifference } from "../../utils/getTimeDifference";
+import Loader from "../videoPlayerPage/Loader"
 
 const VideoCard = ({
   video: {
@@ -29,20 +30,22 @@ const VideoCard = ({
 
   if (renderPlayer) {
     return (
-      <ReactPlayer
-        url={`https://www.youtube.com/watch?v=${videoId}`}
-        width="200px"
-        height="400px"
-        controls={false}
-        className={styles.reactPlayer}
-        onPause={() => {
-          isShortsPage && setRenderPlayer(false);
-        }}
-        //the size may be set using  state
-        muted={true}
-        playing={true}
-        id="short-player"
-      />
+      <>
+        <ReactPlayer
+          url={`https://www.youtube.com/watch?v=${videoId}`}
+          width="200px"
+          height="400px"
+          controls={false}
+          className={styles.reactPlayer}
+          onPause={() => {
+            isShortsPage && setRenderPlayer(false);
+          }}
+          //the size may be set using  state
+          muted={true}
+          playing={true}
+          id="short-player"
+        />
+      </>
     );
   } else {
     return (

@@ -51,7 +51,6 @@ class PlaylistsManager {
     let currentPlaylist = this.allPlaylists.find((playlist) => playlist.playlistID === playlistID);
     let currentPlaylistIndex = this.allPlaylists.findIndex((playlist) => playlist.playlistID === playlistID);
     let currentVideoIdIndex = currentPlaylist.videos.findIndex((videoId) => videoId === videoID);
-    console.log(currentPlaylist);
     currentPlaylist.videos.splice(currentVideoIdIndex, 1);
     this.allPlaylists.splice(currentPlaylistIndex, 1, currentPlaylist);
     localStorage.setItem("AllPlaylists", JSON.stringify(this.allPlaylists));

@@ -1,5 +1,4 @@
 import React from "react";
-import { Card } from "react-bootstrap";
 import styles from "./ChannelCard.module.scss";
 
 const ChannelCard = ({ channelDetail }) => (

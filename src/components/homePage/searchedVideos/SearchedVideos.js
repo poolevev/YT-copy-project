@@ -14,9 +14,9 @@ const SearchedVideos = () => {
 
   return (
     <div className={styles.container}>
-      <h4 className={styles.title}>
-        Results for <span style={{ color: "gray" }}>{searchedVideos}</span>
-      </h4>
+      <h6 className={styles.title}>
+        Results for <span style={{ color: "rgb(61, 60, 60)" }}>{searchedVideos}</span>
+      </h6>
       <div className={styles.content}>{<Videos videos={videos} />}</div>
     </div>
   );
