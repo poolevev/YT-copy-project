@@ -28,9 +28,6 @@ const PlaylistCard = ({ playlist, setPlaylists }) => {
     const userCurrentPlaylists = allCurrentPlaylists.filter((playlist) => playlist.username === loggedUser?.username);
 
     setPlaylists(userCurrentPlaylists);
-    // makeAPICall(`videos?part=snippet&id=${playlist.videos[0]}`).then((data) =>
-    //     setVideoCard(data.items[0].snippet.thumbnails.standard.url)
-    // );
   };
 
   return (

@@ -9,7 +9,6 @@ import styles from "./profile.module.scss";
 import commentsManager from "../../models/CommentsManager";
 
 function Profile() {
-  // State variables for the user's profile information
   const currentUser = JSON.parse(localStorage.getItem("LoggedUser"));
   const [nickname, setNickname] = useState(currentUser ? currentUser.nickname : "");
   const [showPasswordError, setShowPasswordError] = useState(false);
@@ -23,14 +22,9 @@ function Profile() {
   const [password, setPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
 
-  // const [lastName, setLastName] = useState('Doe');
-  // const [dob, setDob] = useState('');
-  // const [sex, setSex] = useState('male');
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const [imageSrc, setImageSrc] = useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9IpC2U8VG2ZIvbjGospiXbQQ76X_kjB16dOetFwjdcQ&s")
   const profilePic = useSelector((state) => state.profile.profilePic);
 
   const updateAllUsers = (updatedUser) => {
@@ -57,7 +51,6 @@ function Profile() {
       setImage(base64String);
       dispatch(changeProfilePic(base64String));
 
-      // Update currentUser object and localStorage with the base64 string
       const updatedUser = {
         ...currentUser,
         image: base64String,
@@ -82,7 +75,6 @@ function Profile() {
       setShowNicknameError(false);
       setShowNicknameSuccess(true);
 
-      // update nickname in all comments made by the current user
       commentsManager.updateNickname(oldNickname, nickname);
     } else {
       setShowNicknameSuccess(false);
@@ -154,7 +146,7 @@ function Profile() {
               </Button>
 
               {showLogOutSuccessful && (
-                <span className="logOutSuccessful" style={{ color: "red", fontSize: '20px', fontWeight: 'bold' }}>
+                <span className="logOutSuccessful" style={{ color: "red", fontSize: "20px", fontWeight: "bold" }}>
                   Logging out now...
                 </span>
               )}
@@ -207,10 +199,10 @@ function Profile() {
               Update Password
             </Button>
             <div></div>
-            {showCurrentPasswordError && <profileText className="error">• Current Password doesn't match with your current password.</profileText>}
+            {showCurrentPasswordError && <profileText style={{color: "red"}} className="error">• Current Password doesn't match with your current password.</profileText>}
             <div></div>
             {showPasswordError && (
-              <profileText className="error">
+              <profileText style={{color: "red"}} className="error">
                 • New Password must be at least 6 characters long and contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special
                 character
               </profileText>
@@ -218,26 +210,6 @@ function Profile() {
 
             {showPasswordChangeSuccess && <profileText className="error">Password changed!</profileText>}
           </Form.Group>
-
-          {/* <Form.Group>
-            <Form.Control
-              type="date"
-              placeholder="Date of Birth"
-              value={dob}
-              onChange={(e) => setDob(e.target.value)}
-            />
-          </Form.Group> */}
-          {/* <Form.Group>
-            <Form.Control
-              as="select"
-              value={sex}
-              onChange={(e) => setSex(e.target.value)}
-            >
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </Form.Control>
-          </Form.Group> */}
         </Col>
       </Row>
     </Container>

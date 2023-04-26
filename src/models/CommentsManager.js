@@ -33,21 +33,17 @@ class CommentsManager {
   };
 
   addReaction = (username, reaction, commentID) => {
-    console.log(this.allComments);
     let currentUser = JSON.parse(localStorage.getItem("LoggedUser"));
     let currentComment = this.allComments.find((comment) => comment.commentID === commentID);
     let currentCommentIndex = this.allComments.findIndex((comment) => comment.commentID === commentID);
     let previousReactionObjIndex = currentComment.usersReactions.findIndex((reactionObj) => reactionObj.username === username);
-    console.log(previousReactionObjIndex);
     if (currentUser?.username !== currentComment.username) {
       if (previousReactionObjIndex > -1) {
         currentComment.usersReactions.splice(previousReactionObjIndex, 1);
-        console.log("previous reaction removed");
       }
       currentComment.usersReactions.push(new Reaction(username, reaction));
       this.allComments.splice(currentCommentIndex, 1, currentComment);
       localStorage.setItem("AllComments", JSON.stringify(this.allComments));
-      console.log("added reaction");
     }
   };
 
@@ -57,13 +53,11 @@ class CommentsManager {
     let currentComment = allComments.find((comment) => comment.commentID === commentID);
     let currentCommentIndex = allComments.findIndex((comment) => comment.commentID === commentID);
     let previousReactionObjIndex = currentComment?.usersReactions.findIndex((reactionObj) => reactionObj.username === username);
-    console.log(currentComment, previousReactionObjIndex);
     if (currentUser?.username !== currentComment?.username) {
       if (previousReactionObjIndex > -1) {
         currentComment?.usersReactions.splice(previousReactionObjIndex, 1);
         allComments.splice(currentCommentIndex, 1, currentComment);
         localStorage.setItem("AllComments", JSON.stringify(allComments));
-        console.log("remove reaction");
       }
     }
   };

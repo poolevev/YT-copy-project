@@ -13,15 +13,6 @@ const initialState = {
   isLoggedIn: false,
 };
 
-// // First, create the thunk
-// export const fetchRandom = createAsyncThunk(
-//     'users/fetchRandomCocktail',
-//     async () => {
-//       const response = await axios.get('https://www.thecocktaildb.com/api/json/v1/1/random.php');
-//       return new Cocktail(response.data.drinks[0]);
-//     }
-// );
-
 export const profileSlice = createSlice({
   name: "profileSlice",
   initialState,

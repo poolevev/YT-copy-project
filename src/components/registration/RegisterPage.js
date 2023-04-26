@@ -53,30 +53,25 @@ const RegisterPage = () => {
 
     
 
-    // Validate username
     if (!username.trim()) {
       setShowUsernameError(true);
       valid = false;
     }
 
-    // Validate password
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{6,}$/;
     if (!passwordRegex.test(password)) {
       setShowPasswordError(true);
       valid = false;
     }
 
-    // Validate password confirmation
     if (password !== passwordConfirm) {
       setShowPasswordConfirmError(true);
       valid = false;
     }
 
     if (valid) {
-      // Retrieve existing users from local storage, or start with an empty array
       const existingUsers = JSON.parse(localStorage.getItem("AllUsers") || "[]");
 
-      // Check if the user already exists
       const userExists = existingUsers.some((user) => user.username === username);
 
       if (userExists) {
@@ -90,13 +85,10 @@ const RegisterPage = () => {
         password,
       };
 
-      // Add the new user to the array of existing users
       const allUsers = [...existingUsers, newUser];
 
-      // Save the updated array of users to local storage
       localStorage.setItem("AllUsers", JSON.stringify(allUsers));
 
-      // Clear the form
       setUsername("");
       setPassword("");
       setPasswordConfirm("");

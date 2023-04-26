@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Videos.module.scss";
 import VideoCard from "./VideoCard";
-//import RelatedVideoCard from '../videoPlayerPage/RelatedVideos/RelatedVideoCard';
 
 const Videos = ({ videos, initialVideosNumber }) => {
   const [videosNumber, setVideosNumber] = useState(initialVideosNumber || 9);

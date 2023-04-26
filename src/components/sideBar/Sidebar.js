@@ -20,7 +20,6 @@ function Sidebar() {
           <li
             style={{
               paddingLeft: "20px",
-              //  paddingRight: "40px"
             }}
             className={`${styles.linkItem} ${activeLink === 0 ? styles.active : ""}`}
             onClick={() => handleClick(0)}

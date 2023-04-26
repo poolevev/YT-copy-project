@@ -43,7 +43,6 @@ const ProfilePic = () => {
           </Link>
         </Link>
 
-        // <Link to="/register">Register</Link>
       )}
     </div>
   );
