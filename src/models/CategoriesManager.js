@@ -16,7 +16,7 @@ class CategoriesManager {
 
   allCategories = [
     { name: "All" },
-    { name: "React" },
+    { name: "React JS" },
     { name: "IT Talents" },
     { name: "Javascript" },
     { name: "Music" },
@@ -25,6 +25,11 @@ class CategoriesManager {
     { name: "Live" },
     { name: "Nature" },
     { name: "Cars" },
+    { name: "Bulgaria" },
+    { name: "Programming" },
+    { name: "Happiness" },
+    { name: "Interesting" },
+    { name: "Universe" },
   ];
 
   addCategory = (name, username) => {

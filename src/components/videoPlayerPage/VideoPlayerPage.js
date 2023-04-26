@@ -38,10 +38,8 @@ const VideoPlayerPage = () => {
   function likeVideo() {
     if (isLikeClicked) {
       historyManager.createHistoryItem(id, loggedUser, likesVideoSnippet, null);
-      console.log("not Liked");
     } else {
       historyManager.createHistoryItem(id, loggedUser, likesVideoSnippet, true);
-      console.log("Liked");
     }
 
     setIsLikeClicked(!isLikeClicked);
@@ -51,10 +49,8 @@ const VideoPlayerPage = () => {
   function dislikeVideo() {
     if (isDislikeClicked) {
       historyManager.createHistoryItem(id, loggedUser, likesVideoSnippet, null);
-      console.log("not disLiked");
     } else {
       historyManager.createHistoryItem(id, loggedUser, likesVideoSnippet, false);
-      console.log("disLiked");
     }
 
     setIsDislikeClicked(!isDislikeClicked);

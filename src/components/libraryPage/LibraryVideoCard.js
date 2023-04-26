@@ -4,15 +4,16 @@ import { defaultThumbnailUrl, defaultVideoUrl, defaultVideoTitle, defaultChannel
 import styles from "./LibraryVideoCard.module.scss";
 import { getTimeDifference } from "../../utils/getTimeDifference";
 import { BiHistory } from "react-icons/bi";
-const LibraryVideoCard = ({ video: { videoID, snippet, viewedAt } }) => {
+const LibraryVideoCard = ({ video: { videoID, snippet, viewedAt }, category }) => {
   const formattedDate = getTimeDifference(viewedAt);
 
   return (
     <div className={styles.card}>
-      <span style={{ marginLeft: "10 px" }}>
-        {" "}
-        <BiHistory /> {formattedDate} ago
-      </span>
+      {category !== "Liked" ?
+        <span style={{ marginLeft: "10 px" }}>
+          {" "}
+          <BiHistory />{formattedDate} ago
+        </span> : null}
       <Link to={videoID ? `/video/${videoID}` : `/video/PVc1yFV0p40`}>
         <img
           src={snippet?.thumbnails?.high?.url || defaultThumbnailUrl}

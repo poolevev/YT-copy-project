@@ -44,7 +44,6 @@ const SearchBar = () => {
   };
 
   const handleClear = (event) => {
-    debounce(console.log("iz cleara"), 5000);
     event.preventDefault();
     if (searchedVideos) {
       setSearchedVideo("");
@@ -92,9 +91,9 @@ const SearchBar = () => {
   };
 
   const handleInputChange = (event) => {
-    setSearchedVideo(event.target.value);
+    setSearchedVideo(event.target.value.trimStart());
     setShowClearIcon(true);
-    //debounce(searchSuggestionsCallback(event), 500)
+    debounce(searchSuggestionsCallback(event), 500)
   };
 
   return (

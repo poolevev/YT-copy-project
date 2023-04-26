@@ -45,8 +45,8 @@ const AddToPlaylistBtn = ({ videoID }) => {
     const playlistID = uuid();
     if (newPlaylistName.length) {
       playlistsManager.createPlaylist(loggedUser.username, playlistID, newPlaylistName.trimEnd(), [videoID]);
-      playlistsManager.addVideoToPlaylist(playlistID, videoID);
       setSelectedPlaylists((prev) => [...prev, new Playlist(loggedUser.username, playlistID, newPlaylistName, [videoID])]);
+      playlistsManager.addVideoToPlaylist(playlistID, videoID);
       setNewPlaylistName("");
       setShowCreatePlaylist(false);
       setShowToast(true);
@@ -128,7 +128,6 @@ const AddToPlaylistBtn = ({ videoID }) => {
             className={styles.createPlaylistBtn}
             onClick={() => {
               setShowCreatePlaylist(!showCreatePlaylist);
-              setSelectedPlaylists([]);
               setShowDropdownMenu(false);
             }}
           >
